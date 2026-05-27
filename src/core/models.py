@@ -77,9 +77,7 @@ class Leilao(Base):
 
     __tablename__ = "leiloes"
     __table_args__ = (
-        CheckConstraint(
-            "tipo IN ('judicial', 'extrajudicial')", name="ck_leiloes_tipo"
-        ),
+        CheckConstraint("tipo IN ('judicial', 'extrajudicial')", name="ck_leiloes_tipo"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(
