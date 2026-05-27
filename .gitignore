@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Ambientes e segredos
+.env
+.venv/
+venv/
+
+# Bancos locais
+*.db
+*.sqlite
+*.sqlite3
+
+# Ferramentas
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+
+# Dados pessoais (Fase 1 e fixtures privadas)
+tests/fixtures/private/
+data/*.csv
+data/*.md
