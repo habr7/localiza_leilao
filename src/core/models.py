@@ -66,6 +66,12 @@ class Leiloeiro(Base):
     site_oficial: Mapped[str | None] = mapped_column(Text)
     # Plataformas em que o leiloeiro aparece (ex.: ['megaleiloes.com.br']).
     plataformas: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
+    # Variações de nome encontradas em portais (ajuda o resolvedor a casar nomes).
+    aliases: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
+    # De onde veio o cadastro: 'jucesp_site', 'lai_jucemg', 'agregador:mega', ...
+    fonte_cadastro: Mapped[str | None] = mapped_column(Text)
+    # Última vez que o leiloeiro apareceu numa coleta.
+    visto_em: Mapped[datetime | None] = mapped_column()
     ativo: Mapped[bool] = mapped_column(server_default=text("true"))
     atualizado_em: Mapped[datetime] = mapped_column(server_default=func.now())
 
@@ -78,12 +84,19 @@ class Leilao(Base):
     __tablename__ = "leiloes"
     __table_args__ = (
         CheckConstraint("tipo IN ('judicial', 'extrajudicial')", name="ck_leiloes_tipo"),
+        Index("idx_leiloes_uf_leiloeiro", "uf_leiloeiro"),
+        Index("idx_leiloes_fonte_tipo", "fonte_tipo"),
+        Index("idx_leiloes_status", "status"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True), primary_key=True, server_default=_uuid_default
     )
     leiloeiro_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("leiloeiros.id"))
+    # UF da matrícula do leiloeiro, desnormalizada no momento da ingestão.
+    # Permite filtrar "não-SP" sem JOIN e preserva o valor histórico. É o
+    # gatilho central da tese: uf_leiloeiro != 'SP' com imóvel em SP.
+    uf_leiloeiro: Mapped[str | None] = mapped_column(String(2))
     tipo: Mapped[str] = mapped_column(Text, nullable=False)
     # 'alienacao_fiduciaria', 'particular', 'falencia', ...
     modalidade: Mapped[str | None] = mapped_column(Text)
@@ -94,6 +107,9 @@ class Leilao(Base):
     edital_url: Mapped[str | None] = mapped_column(Text)
     # Fonte da coleta: 'megaleiloes', 'site_proprio:xyz', 'doe_mg', ...
     fonte_origem: Mapped[str] = mapped_column(Text, nullable=False)
+    # Categoria da fonte: 'agregador' | 'site_proprio' | 'jucesp_comunicacao' |
+    # 'doe'. Fontes pequenas/obscuras (site_proprio) sinalizam maior assimetria.
+    fonte_tipo: Mapped[str | None] = mapped_column(Text)
     fonte_url: Mapped[str] = mapped_column(Text, nullable=False)
     coletado_em: Mapped[datetime] = mapped_column(server_default=func.now())
     # 'aberto', 'realizado', 'cancelado', 'suspenso'.
@@ -112,6 +128,8 @@ class Lote(Base):
         UniqueConstraint("hash_dedup", "leilao_id", name="uq_lotes_dedup_leilao"),
         Index("idx_lotes_cidade", "cidade"),
         Index("idx_lotes_dedup", "hash_dedup"),
+        Index("idx_lotes_score", "score_oportunidade"),
+        Index("idx_lotes_tipo_imovel", "tipo_imovel"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(
@@ -147,6 +165,7 @@ class Lote(Base):
 
     leilao: Mapped[Leilao | None] = relationship(back_populates="lotes")
     resultados: Mapped[list[Resultado]] = relationship(back_populates="lote")
+    fontes: Mapped[list[LoteFonte]] = relationship(back_populates="lote")
 
 
 class Resultado(Base):
@@ -180,6 +199,29 @@ class Resultado(Base):
     lote: Mapped[Lote | None] = relationship(back_populates="resultados")
 
 
+class LoteFonte(Base):
+    """Fonte onde um lote foi visto. Um lote físico pode aparecer em N portais.
+
+    A deduplicação mantém um único `lote` e registra cada portal que o anunciou
+    aqui (referência cruzada), preservando a URL e os dados crus de cada fonte.
+    """
+
+    __tablename__ = "lote_fontes"
+    __table_args__ = (UniqueConstraint("lote_id", "fonte_url", name="uq_lote_fontes_url"),)
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), primary_key=True, server_default=_uuid_default
+    )
+    lote_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("lotes.id"))
+    fonte_origem: Mapped[str] = mapped_column(Text, nullable=False)
+    fonte_tipo: Mapped[str | None] = mapped_column(Text)
+    fonte_url: Mapped[str] = mapped_column(Text, nullable=False)
+    coletado_em: Mapped[datetime] = mapped_column(server_default=func.now())
+    dados_extras: Mapped[dict | list | None] = mapped_column(JSONB)
+
+    lote: Mapped[Lote | None] = relationship(back_populates="fontes")
+
+
 # ---------------------------------------------------------------------------
 # Modelos Pydantic (entrada/saída). Sufixo `Schema`.
 # ---------------------------------------------------------------------------
@@ -198,6 +240,9 @@ class LeiloeiroSchema(BaseModel):
     cpf: str | None = None
     site_oficial: str | None = None
     plataformas: list[str] | None = None
+    aliases: list[str] | None = None
+    fonte_cadastro: str | None = None
+    visto_em: datetime | None = None
     ativo: bool = True
     atualizado_em: datetime | None = None
 
@@ -209,6 +254,7 @@ class LeilaoSchema(BaseModel):
 
     id: uuid.UUID | None = None
     leiloeiro_id: uuid.UUID | None = None
+    uf_leiloeiro: str | None = None
     tipo: str
     modalidade: str | None = None
     comitente: str | None = None
@@ -216,6 +262,7 @@ class LeilaoSchema(BaseModel):
     data_2praca: datetime | None = None
     edital_url: str | None = None
     fonte_origem: str
+    fonte_tipo: str | None = None
     fonte_url: str
     coletado_em: datetime | None = None
     status: str = "aberto"
@@ -263,3 +310,17 @@ class ResultadoSchema(BaseModel):
     lance_minimo_2: Decimal | None = None
     agio: Decimal | None = None
     coletado_em: datetime | None = None
+
+
+class LoteFonteSchema(BaseModel):
+    """Representação de entrada/saída de uma fonte de lote."""
+
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID | None = None
+    lote_id: uuid.UUID | None = None
+    fonte_origem: str
+    fonte_tipo: str | None = None
+    fonte_url: str
+    coletado_em: datetime | None = None
+    dados_extras: list | dict | None = None
