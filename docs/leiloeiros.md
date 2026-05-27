@@ -21,13 +21,20 @@ Implementado em `src/leiloeiros/resolver.py` + `src/leiloeiros/matricula.py`:
   `coletar_csv(path)` (já funciona offline). Template de pedido LAI: ver abaixo.
 - **JUCESP** → coletar para excluir quem é de SP.
 
-### Pendência (sessão com rede)
-As URLs das listas públicas (`url_lista`) e os selectors de `_parse` precisam ser
-definidos inspecionando o HTML real. Hoje estão como `None` / `NotImplementedError`.
-Homepages de referência:
-- JUCESP — https://www.jucesp.sp.gov.br
-- JUCERJA — https://www.jucerja.rj.gov.br
-- JUCEMG — https://www.jucemg.mg.gov.br
+### Status das listas públicas (inspeção ao vivo)
+- **JUCEMG** ✅ — lista alfabética estática em
+  `https://jucemg.mg.gov.br/pagina/140/Leiloeiros+Ordem+Alfabética`. ~228
+  leiloeiros, cada um num bloco `<strong>Nome</strong>` + `Matrícula: <n> de <data>`.
+  Parser e fixture (`tests/fixtures/jucemg_leiloeiros.html`) prontos.
+- **JUCERJA** ⚠️ — lista em `https://www.jucerja.rj.gov.br/AuxiliaresComercio/Leiloeiros`
+  (`section.ats-listaLeiloeiros`, itens `li.ats-listaLnks-item`). O servidor
+  entrega só a **1ª página (5 leiloeiros)**; as demais carregam via AJAX/JS
+  (paginação `data-value`, endpoint ainda não mapeado). Site é intermitente (503).
+  Parser/fixture prontos para a 1ª página; o resto vem por LAI ou Playwright.
+- **JUCESP** ⛔ — `www.jucesp.sp.gov.br` e `jucesponline.sp.gov.br` retornam **503**
+  a clientes automatizados (provável WAF/anti-bot para IP de datacenter). Sem lista
+  pública acessível por aqui. Usar `coletar_csv` (LAI) ou reavaliar em produção com
+  IP residencial/proxy/navegador.
 
 ### Prioridade de UFs (de onde mais saem leiloeiros que atuam em SP)
 RJ, MG, PR, RS, SC, DF, GO primeiro; demais depois.

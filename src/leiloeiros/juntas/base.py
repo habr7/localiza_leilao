@@ -37,6 +37,29 @@ class JuntaScraper(abc.ABC):
     def fonte_cadastro(self) -> str:
         return f"junta:{self.junta.lower()}"
 
+    def _novo_raw(
+        self,
+        nome: str,
+        numero: str,
+        site_oficial: str | None = None,
+        aliases: list[str] | None = None,
+    ) -> LeiloeiroRaw:
+        """Monta um LeiloeiroRaw com os defaults da Junta (matrícula canônica).
+
+        A matrícula é gravada como ``"<JUNTA> <numero>"`` (ex.: "JUCEMG 1062")
+        para que o resolvedor derive UF/Junta pelo prefixo e case por
+        (junta, número) com alta confiança.
+        """
+        return LeiloeiroRaw(
+            nome=nome,
+            matricula=f"{self.junta} {numero}",
+            uf_matricula=self.uf,
+            junta_comercial=self.junta,
+            site_oficial=site_oficial,
+            aliases=aliases,
+            fonte_cadastro=self.fonte_cadastro,
+        )
+
     async def _fetch(self, url: str, client: httpx.AsyncClient | None = None) -> str:
         """Baixa uma página respeitando UA identificável e throttling."""
         proprio = client is None

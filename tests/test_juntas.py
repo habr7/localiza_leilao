@@ -1,8 +1,17 @@
 """Testes da interface dos scrapers de Junta Comercial."""
 
+from pathlib import Path
+
 import pytest
 
-from src.leiloeiros.juntas import JUNTAS_DISPONIVEIS, JucerjaScraper, JucespScraper
+from src.leiloeiros.juntas import (
+    JUNTAS_DISPONIVEIS,
+    JucemgScraper,
+    JucerjaScraper,
+    JucespScraper,
+)
+
+FIXTURES = Path(__file__).parent / "fixtures"
 
 
 def test_registro_de_juntas():
@@ -28,3 +37,35 @@ async def test_coletar_sem_url_lista_avisa_pendencia():
     """Sem URL de lista pública configurada, coletar sinaliza a pendência."""
     with pytest.raises(NotImplementedError):
         await JucespScraper().coletar()
+
+
+def test_parse_jucemg_extrai_leiloeiros():
+    html = (FIXTURES / "jucemg_leiloeiros.html").read_text(encoding="utf-8")
+    registros = JucemgScraper()._parse(html)
+    # A relação alfabética da JUCEMG tem mais de 200 leiloeiros.
+    assert len(registros) > 200
+    por_nome = {r.nome: r for r in registros}
+    adriana = por_nome["Adriana Pires Amancio"]
+    assert adriana.matricula == "JUCEMG 1062"
+    assert adriana.uf_matricula == "MG"
+    assert adriana.junta_comercial == "JUCEMG"
+    assert adriana.site_oficial == "http://www.apaleiloes.com.br"
+    assert adriana.fonte_cadastro == "junta:jucemg"
+    # Anotação "(MATRÍCULA SUPLEMENTAR)" é removida do nome.
+    assert "Alex Willian Hoppe" in por_nome
+    assert all("SUPLEMENTAR" not in r.nome.upper() for r in registros)
+
+
+def test_parse_jucerja_extrai_leiloeiros_da_pagina():
+    html = (FIXTURES / "jucerja_leiloeiros.html").read_text(encoding="utf-8")
+    registros = JucerjaScraper()._parse(html)
+    # O servidor entrega a 1ª página (5 leiloeiros); o resto vem por AJAX/LAI.
+    assert len(registros) == 5
+    por_nome = {r.nome: r for r in registros}
+    murilo = por_nome["MURILO CARDOZO CHAVES"]
+    assert murilo.matricula == "JUCERJA 8"
+    assert murilo.uf_matricula == "RJ"
+    assert murilo.site_oficial is None  # "Não cadastrado" vira ausência
+    luiz = por_nome["LUIZ TENÓRIO DE PAULA"]
+    assert luiz.matricula == "JUCERJA 19"
+    assert luiz.site_oficial == "www.depaulaonline.com.br"
