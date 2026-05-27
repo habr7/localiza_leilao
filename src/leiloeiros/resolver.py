@@ -140,3 +140,23 @@ class LeiloeiroResolver:
             leiloeiro=None,
             motivo="nao_resolvido",
         )
+
+    def resolver_multiplas(
+        self, nome: str | None = None, matriculas: list[str] | None = None
+    ) -> Resolucao:
+        """Resolve um leiloeiro que pode exibir várias matrículas (multi-UF).
+
+        Regra de segurança da tese: se **qualquer** matrícula for da JUCESP, o
+        leiloeiro opera como leiloeiro de SP (não é alvo) — é assim que tratamos
+        quem tem matrícula em SP + matrícula suplementar em outro estado. Sem
+        nenhuma matrícula SP, devolve a melhor resolução não-SP (maior confiança).
+        """
+        validas = [m for m in (matriculas or []) if m and m.strip()]
+        if not validas:
+            return self.resolver(nome=nome)
+        resolucoes = [self.resolver(nome=nome, matricula=m) for m in validas]
+        for r in resolucoes:
+            if r.uf == "SP":
+                return r
+        ordem = {"alta": 0, "media": 1, "baixa": 2}
+        return min(resolucoes, key=lambda r: ordem.get(r.confianca, 3))

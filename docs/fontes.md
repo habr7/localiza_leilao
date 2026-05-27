@@ -15,6 +15,12 @@
   domínios). A mudança só vale em **sessão nova** (rebuilda o cache).
 - **Descoberta dinâmica:** não manter allowlist fixa de domínios de leiloeiro — os
   sites saem do cadastro das Juntas (Fase 2) e dos agregadores. Por isso Full.
+- **Agregador = leiloeiro "da casa" (achado da ingestão Mega):** no Mega Leilões,
+  todos os lotes SP de uma amostra de 20 são conduzidos pelo mesmo leiloeiro oficial
+  da plataforma (Fernando José Cerello, JUCESP 844). Ou seja, **0 lotes não-SP** —
+  a assimetria é ~nula em agregadores grandes, confirmando que o valor da tese está
+  nos **sites próprios de leiloeiros não-SP** (Fase 3.2) e nas comunicações JUCESP.
+  O agregador serve de baseline e de descobridor de leiloeiros.
 
 ## Agregadores (baseline + descoberta de leiloeiros)
 Para cada um: listar imóveis `uf=SP`, extrair leilão (tipo, datas, edital), lote
@@ -23,7 +29,7 @@ matrícula)**. Cruzar com o cadastro via `LeiloeiroResolver` e marcar `uf_leiloe
 
 | Portal | Domínio | Notas de estrutura | Status |
 |---|---|---|---|
-| Mega Leilões | megaleiloes.com.br | — | a fazer |
+| Mega Leilões | megaleiloes.com.br | Listagem SP em `/imoveis/sp` (cards `div.card.open`). Leiloeiro só no detalhe (`.author.item .value`: nome + linhas "JUCExx Nº N"). Tipo em `.batch-type`; praças em `.instance.first`/segundo; avaliação/localização em blocos `.item`. | ✅ feito |
 | Sodré Santoro / Sold | sodresantoro.com.br | — | a fazer |
 | Zukerman / Zuk | zukerman.com.br, portalzuk.com.br | leiloeiros JUCESP (719/744) | a fazer |
 | Superbid | superbid.net | — | a fazer |

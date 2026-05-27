@@ -84,6 +84,9 @@ class Leilao(Base):
     __tablename__ = "leiloes"
     __table_args__ = (
         CheckConstraint("tipo IN ('judicial', 'extrajudicial')", name="ck_leiloes_tipo"),
+        # Chave natural da coleta: a URL do leilão na fonte. Permite upsert
+        # idempotente (rodar o coletor 2x não duplica o leilão).
+        UniqueConstraint("fonte_url", name="uq_leiloes_fonte_url"),
         Index("idx_leiloes_uf_leiloeiro", "uf_leiloeiro"),
         Index("idx_leiloes_fonte_tipo", "fonte_tipo"),
         Index("idx_leiloes_status", "status"),
