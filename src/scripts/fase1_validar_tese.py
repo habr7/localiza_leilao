@@ -13,7 +13,6 @@ menos 10 pontos percentuais *maior*.
 
 from __future__ import annotations
 
-import re
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -25,8 +24,11 @@ import structlog
 from scipy.stats import mannwhitneyu
 
 from src.core.config import settings
+from src.leiloeiros.matricula import parse_uf_matricula
 
 log = structlog.get_logger()
+
+__all__ = ["parse_uf_matricula"]
 
 # Caminhos de entrada/saída.
 DATA_DIR = Path("data")
@@ -37,98 +39,6 @@ OUTPUT_MD = DATA_DIR / "fase1_output.md"
 LIMIAR_AGIO_PP = 0.03  # 3 pontos percentuais de diferença na mediana de ágio
 LIMIAR_DESERTO_PP = 0.10  # 10 pontos percentuais de diferença na taxa de deserto
 N_MINIMO_GRUPO = 30  # abaixo disso em qualquer grupo, o veredito é INSUFICIENTE
-
-# UFs brasileiras (siglas de 2 letras).
-_UFS = {
-    "AC",
-    "AL",
-    "AP",
-    "AM",
-    "BA",
-    "CE",
-    "DF",
-    "ES",
-    "GO",
-    "MA",
-    "MT",
-    "MS",
-    "MG",
-    "PA",
-    "PB",
-    "PR",
-    "PE",
-    "PI",
-    "RJ",
-    "RN",
-    "RS",
-    "RO",
-    "RR",
-    "SC",
-    "SP",
-    "SE",
-    "TO",
-}
-
-# Mapa de siglas de Juntas Comerciais -> UF. Inclui variações comuns.
-JUNTA_TO_UF: dict[str, str] = {
-    "JUCEAC": "AC",
-    "JUCEAL": "AL",
-    "JUCAP": "AP",
-    "JUCEAP": "AP",
-    "JUCEA": "AM",
-    "JUCEAM": "AM",
-    "JUCEB": "BA",
-    "JUCEBA": "BA",
-    "JUCEC": "CE",
-    "JUCECE": "CE",
-    "JUCISDF": "DF",
-    "JUCIDF": "DF",
-    "JUCEDF": "DF",
-    "JUCEES": "ES",
-    "JUCEG": "GO",
-    "JUCEGO": "GO",
-    "JUCEMA": "MA",
-    "JUCEMAT": "MT",
-    "JUCEMT": "MT",
-    "JUCEMS": "MS",
-    "JUCEMG": "MG",
-    "JUCEPA": "PA",
-    "JUCEP": "PB",
-    "JUCEPB": "PB",
-    "JUCEPAR": "PR",
-    "JUCEPE": "PE",
-    "JUCEPI": "PI",
-    "JUCERJA": "RJ",
-    "JUCERJ": "RJ",
-    "JUCERN": "RN",
-    "JUCERGS": "RS",
-    "JUCERS": "RS",
-    "JUCER": "RO",
-    "JUCERO": "RO",
-    "JUCERR": "RR",
-    "JUCESC": "SC",
-    "JUCESP": "SP",
-    "JUCESE": "SE",
-    "JUCETINS": "TO",
-    "JUCETO": "TO",
-}
-# Aceita também a UF informada diretamente como prefixo (ex.: "SP 123").
-JUNTA_TO_UF.update({uf: uf for uf in _UFS})
-
-
-def parse_uf_matricula(matricula: str | None) -> str | None:
-    """Extrai a UF do leiloeiro a partir do prefixo da matrícula.
-
-    Aceita variações com espaço, hífen e maiúsculas/minúsculas, por exemplo:
-    "JUCERJA 123", "jucerja-123", "JUCERJA123", "  Jucesp 456  ". Retorna a sigla
-    da UF (ex.: "RJ") ou None se o prefixo não for reconhecido.
-    """
-    if not matricula:
-        return None
-    token = re.match(r"[A-Za-z]+", matricula.strip())
-    if token is None:
-        return None
-    return JUNTA_TO_UF.get(token.group(0).upper())
 
 
 def calcular_agio(preco_arremate: float | None, lance_minimo_2: float | None) -> float | None:
