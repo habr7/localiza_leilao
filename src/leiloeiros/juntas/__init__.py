@@ -10,8 +10,11 @@ docs/leiloeiros.md): RJ, MG, PR, RS, SC, DF, GO primeiro; demais depois.
 from src.leiloeiros.juntas.base import JuntaScraper
 from src.leiloeiros.juntas.jucedf import JucedfScraper
 from src.leiloeiros.juntas.juceg import JucegScraper
+from src.leiloeiros.juntas.jucemat import JucematScraper
 from src.leiloeiros.juntas.jucemg import JucemgScraper
 from src.leiloeiros.juntas.jucepar import JuceparScraper
+from src.leiloeiros.juntas.jucepb import JucepbScraper
+from src.leiloeiros.juntas.jucepi import JucepiScraper
 from src.leiloeiros.juntas.jucergs import JucergsScraper
 from src.leiloeiros.juntas.jucerja import JucerjaScraper
 from src.leiloeiros.juntas.jucesc import JucescScraper
@@ -20,14 +23,18 @@ from src.leiloeiros.juntas.jucesp import JucespScraper
 JUNTAS_DISPONIVEIS: dict[str, type[JuntaScraper]] = {
     # SP: lista de exclusão (quem é da JUCESP NÃO é oportunidade da tese).
     JucespScraper.junta: JucespScraper,
-    # Não-SP: alvos da tese, na ordem de prioridade do projeto.
+    # Não-SP: alvos da tese. Com parser ao vivo (trazem site_oficial):
+    JuceparScraper.junta: JuceparScraper,  # PR
+    JucegScraper.junta: JucegScraper,  # GO
+    JucematScraper.junta: JucematScraper,  # MT
+    JucepbScraper.junta: JucepbScraper,  # PB
+    JucepiScraper.junta: JucepiScraper,  # PI
+    # Não-SP: interface pronta, parser ao vivo pendente (lista em JS/PDF):
     JucerjaScraper.junta: JucerjaScraper,
     JucemgScraper.junta: JucemgScraper,
-    JuceparScraper.junta: JuceparScraper,
     JucergsScraper.junta: JucergsScraper,
     JucescScraper.junta: JucescScraper,
     JucedfScraper.junta: JucedfScraper,
-    JucegScraper.junta: JucegScraper,
 }
 
 __all__ = [
@@ -40,5 +47,8 @@ __all__ = [
     "JucescScraper",
     "JucedfScraper",
     "JucegScraper",
+    "JucematScraper",
+    "JucepbScraper",
+    "JucepiScraper",
     "JUNTAS_DISPONIVEIS",
 ]

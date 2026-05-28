@@ -86,3 +86,43 @@ def test_juceg_parse_extrai_nome_matricula_site():
     assert "/" in primeiro.matricula  # ex.: "008/95" (sem o " de DATA")
     assert " de " not in primeiro.matricula
     assert any(r.site_oficial for r in registros)
+
+
+def _fix(nome):
+    from pathlib import Path
+
+    return (Path(__file__).parent / "fixtures" / nome).read_text(encoding="utf-8")
+
+
+def test_jucemat_parse_cards():
+    """JUCEMAT: cartões .featured-box com nome (h2), matrícula (label) e site."""
+    from src.leiloeiros.juntas import JucematScraper
+
+    registros = JucematScraper()._parse(_fix("jucemat_lista.html"))
+    assert registros
+    for r in registros:
+        assert r.uf_matricula == "MT" and r.junta_comercial == "JUCEMAT"
+        assert r.nome and r.matricula
+    assert any(r.site_oficial and r.site_oficial.startswith("http") for r in registros)
+
+
+def test_jucepb_parse_rotulada():
+    """JUCEPB: lista rotulada (Matrícula:/Site:)."""
+    from src.leiloeiros.juntas import JucepbScraper
+
+    registros = JucepbScraper()._parse(_fix("jucepb_lista.html"))
+    assert registros
+    assert registros[0].uf_matricula == "PB"
+    assert any(r.site_oficial for r in registros)
+
+
+def test_jucepi_parse_rotulada():
+    """JUCEPI: lista rotulada com matrícula 'n.º 11/2006, em ...' normalizada."""
+    from src.leiloeiros.juntas import JucepiScraper
+
+    registros = JucepiScraper()._parse(_fix("jucepi_lista.html"))
+    assert registros
+    r = registros[0]
+    assert r.uf_matricula == "PI"
+    assert "n.º" not in r.matricula and "," not in r.matricula
+    assert any(x.site_oficial for x in registros)
