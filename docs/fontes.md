@@ -51,7 +51,7 @@ Clusters encontrados (por assinatura de assets):
 | Plataforma | Sites (na amostra) | Acesso aos dados | Status |
 |---|---|---|---|
 | **Suporte Leilões** | ~14 | `GET /api/buscadorMount?categoria=2` (JSON: imóveis por UF) + `GET /buscador?categoria=2&uf=SP&pagina=N` com header `X-Requested-With: XMLHttpRequest` (HTML renderizado, 12 lotes/página) | ✅ feito |
-| **vLance** (`/v3/js/vlance/…`) | ~9 | server-rendered + AJAX de lotes (endpoint a mapear) | a fazer |
+| **vLance** (`/v3/js/vlance/…`) | ~28 | API `/core/api/get-leiloes` (JSON de EVENTOS, com `uf`, `categorias`, `tp_judicial_extrajudicial`, `vl_lanceinicial`). Lotes ficam dentro do evento; busca de lote por UF não exposta na API. | identificado; lote-SP pendente |
 | **Superbid white-label** (`api.s4bdigital.net`) | ~11 | API Superbid; porém são white-labels do agregador (lotes também na Superbid → menos assimetria) | adiar |
 | Wix / outros | ~6 | heterogêneo | a fazer |
 
@@ -64,6 +64,12 @@ Clusters encontrados (por assinatura de assets):
 > `src/scripts/consultar_lotes_alvo.py` (CSV em `data/lotes_alvo.csv`).
 > Observação: nesta amostra todos vieram como `judicial` (eventos tipo TRT); filtrar
 > `--tipo extrajudicial` para focar na maior assimetria da tese.
+
+> **vLance (28 sites no cadastro):** API de eventos mapeada, mas **nenhum evento
+> tem `uf=SP`** — são leilões regionais (MG/GO/SC). Lotes-SP só existiriam *dentro*
+> de eventos não-SP, e a API não expõe busca de lote por UF (precisaria varrer a
+> página de cada evento). Baixo retorno imediato; adiado em favor de cobrir mais
+> sites Suporte Leilões. Infra de descoberta (fingerprint) já identifica os 28.
 
 ## Comunicações à JUCESP (fonte de ouro)
 Leiloeiro de fora é obrigado a comunicar leilão de bem em SP. Investigar lista
