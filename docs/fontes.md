@@ -55,15 +55,19 @@ Clusters encontrados (por assinatura de assets):
 | **Superbid white-label** (`api.s4bdigital.net`) | ~11 | API Superbid; porém são white-labels do agregador (lotes também na Superbid → menos assimetria) | adiar |
 | Wix / outros | ~6 | heterogêneo | a fazer |
 
-> **Achado da Suporte Leilões (survey via buscadorMount):** 6 sites de leiloeiros
+> **Achado da Suporte Leilões (survey via buscadorMount):** sites de leiloeiros
 > não-SP com imóveis em SP — liderleiloes (150), e-confianca (45), valeroleiloes
-> (32), marcoantonio (2), rodrigo (2). A carga ao vivo persistiu **179 lotes-alvo**
-> de 4 desses sites (liderleiloes 143, valero 32, marco 2, rodrigo 2); e-confianca
-> caiu por timeout intermitente (retentar). Os lotes-alvo (imóvel SP + leiloeiro
-> não-SP) entram com `fonte_tipo='site_proprio'` e são consultados via
-> `src/scripts/consultar_lotes_alvo.py` (CSV em `data/lotes_alvo.csv`).
-> Observação: nesta amostra todos vieram como `judicial` (eventos tipo TRT); filtrar
+> (32), rodrigo (2), marcoantonio (2). Carga ao vivo: **224 lotes-alvo** persistidos
+> (Caroline/lider 143, Marilaine/e-confianca 45, Valero 32, +2/+2), sendo
+> **80 extrajudiciais** e 144 judiciais. Os lotes-alvo (imóvel SP + leiloeiro não-SP)
+> entram com `fonte_tipo='site_proprio'` e são consultados via
+> `src/scripts/consultar_lotes_alvo.py` (CSV em `data/lotes_alvo.csv`); use
 > `--tipo extrajudicial` para focar na maior assimetria da tese.
+>
+> A plataforma tem **dois layouts de card** (`article.lote-main` no tema novo e
+> `.lote-item` no antigo, ex.: e-confianca) — o parser cobre ambos via texto do card.
+> Na varredura ampla, sites lentos podem cair com timeout curto; recoletar os sites
+> conhecidos com timeout maior captura o restante (ex.: e-confianca).
 
 > **vLance (28 sites no cadastro):** API de eventos mapeada, mas **nenhum evento
 > tem `uf=SP`** — são leilões regionais (MG/GO/SC). Lotes-SP só existiriam *dentro*

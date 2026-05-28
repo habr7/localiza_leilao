@@ -65,10 +65,10 @@ def carregar_sites_nao_sp() -> dict[str, LeiloeiroRef]:
 
 async def coletar_todos(dominios: list[str]) -> dict[str, list[LoteRaw]]:
     """Coleta lotes SP de todos os domínios em paralelo (domínios distintos)."""
-    sem = asyncio.Semaphore(8)
+    sem = asyncio.Semaphore(12)
     # Varredura ampla: muitos domínios estão fora do ar. Falhar rápido
-    # (2 tentativas, timeout curto) em vez de gastar minutos em retries.
-    async with SuporteLeiloesScraper(tentativas=2, timeout_s=12.0) as scraper:
+    # (1 tentativa, timeout curto) em vez de gastar minutos em retries.
+    async with SuporteLeiloesScraper(tentativas=1, timeout_s=8.0) as scraper:
 
         async def um(dominio: str) -> tuple[str, list[LoteRaw]]:
             async with sem:

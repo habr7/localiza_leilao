@@ -93,31 +93,34 @@ class SuporteLeiloesScraper(BaseScraper):
         tree = HTMLParser(html)
         dominio = urlsplit(origem).netloc
         lotes: list[LoteRaw] = []
-        for art in tree.css("article.lote-main"):
+        # A plataforma tem dois layouts de card: `article.lote-main` (tema novo) e
+        # `.lote-item` (tema antigo, ex.: e-confianca). Extraímos via texto do card
+        # para cobrir ambos.
+        for art in tree.css("article.lote-main, .lote-item"):
             link = art.css_first("a.link-img") or art.css_first('a[href*="/lote/"]')
             href = link.attributes.get("href") if link else None
             if not href:
                 continue
-            cidade, uf = _cidade_uf(art.text())
+            texto = re.sub(r"\s+", " ", art.text())
+            cidade, uf = _cidade_uf(texto)
             if uf != "SP" or not cidade:  # filtro duro do projeto
                 continue
-            url = canonical_url(urljoin(origem, href))
             lotes.append(
                 LoteRaw(
                     fonte_origem=f"site_proprio:{dominio}",
                     fonte_tipo=self.fonte_tipo,
-                    fonte_url=url,
+                    fonte_url=canonical_url(urljoin(origem, href)),
                     tipo=_tipo_leilao(href),
                     cidade=cidade,
                     uf=uf,
                     titulo=_titulo(art),
-                    numero_lote=_numero_lote(art),
-                    tipo_imovel=_tipo_imovel(art.text()),
-                    lance_minimo_1=_lance_inicial(art),
+                    numero_lote=_numero_lote(texto),
+                    tipo_imovel=_tipo_imovel(texto),
+                    lance_minimo_1=_dinheiro(texto),
                     descricao=_titulo(art),
                     dados_extras={
-                        "status": _texto(art, ".strong-status"),
-                        "desconto": _texto(art, ".item-desconto"),
+                        "status": "aberto" if "aberto para lances" in texto.lower() else None,
+                        "desconto": _desconto(texto),
                     },
                 )
             )
@@ -129,15 +132,14 @@ def _origem(url: str) -> str:
     return f"{partes.scheme}://{partes.netloc}"
 
 
-def _texto(art: object, seletor: str) -> str | None:
-    el = art.css_first(seletor)  # type: ignore[attr-defined]
-    return re.sub(r"\s+", " ", el.text(strip=True)) if el else None
+def _numero_lote(texto: str) -> str | None:
+    m = re.search(r"Lote\s*[-ºo°]?\s*(\d+)", texto, re.IGNORECASE)
+    return m.group(1) if m else None
 
 
-def _numero_lote(art: object) -> str | None:
-    txt = _texto(art, ".item-numeroLote") or ""
-    m = re.search(r"\d+", txt)
-    return m.group(0) if m else None
+def _desconto(texto: str) -> str | None:
+    m = re.search(r"(\d+)%\s*desconto", texto, re.IGNORECASE)
+    return f"{m.group(1)}%" if m else None
 
 
 def _titulo(art: object) -> str | None:
@@ -155,14 +157,6 @@ def _titulo(art: object) -> str | None:
     # Corta o rodapé do card (preço/status), que vem concatenado no mesmo link.
     texto = re.split(r"Lance Inicial|Lance Atual|Status atual", texto)[0]
     return texto.strip() or None
-
-
-def _lance_inicial(art: object) -> Decimal | None:
-    for rc in art.css(".reset-colorGrid"):  # type: ignore[attr-defined]
-        valor = _dinheiro(rc.text())
-        if valor is not None:
-            return valor
-    return None
 
 
 def _cidade_uf(texto: str) -> tuple[str | None, str | None]:

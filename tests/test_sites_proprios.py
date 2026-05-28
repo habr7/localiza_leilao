@@ -30,6 +30,19 @@ def test_parse_cards_extrai_lotes_sp():
     assert primeiro.titulo and "Lance Inicial" not in primeiro.titulo
 
 
+def test_parse_cards_layout_antigo_lote_item():
+    # e-confianca usa o tema antigo (.lote-item) da mesma plataforma.
+    html = (FIXTURES / "suporte_leiloes_econf_sp.html").read_text(encoding="utf-8")
+    lotes = SuporteLeiloesScraper()._parse_cards(html, "https://www.e-confianca.com.br")
+    assert len(lotes) == 12
+    assert all(lote.uf == "SP" for lote in lotes)
+    assert all(lote.fonte_origem == "site_proprio:www.e-confianca.com.br" for lote in lotes)
+    primeiro = lotes[0]
+    assert primeiro.cidade == "Ribeirão Preto"
+    assert primeiro.numero_lote == "1"
+    assert primeiro.lance_minimo_1 == Decimal("314557.90")
+
+
 def test_cidade_uf_pega_ultima_ocorrencia():
     assert _cidade_uf("Imóvel em Vila Zelina, São Paulo/SP São Paulo - SP") == ("São Paulo", "SP")
     assert _cidade_uf("sem localidade") == (None, None)
