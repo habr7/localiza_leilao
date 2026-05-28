@@ -92,13 +92,15 @@ varrer os grandes, não dá para afirmar nada — vira viés de amostragem.
 
 ### Resultado da coleta (Mega Leilões, imóveis SP)
 
-Amostra confirmada (6 páginas de `/sp`, ~21h de 2026-05-28):
+Varredura completa de `/sp` (todas as páginas, 2026-05-28):
 
-- **90 imóveis em SP** coletados e enriquecidos com leiloeiro + matrículas.
-- **0 imóveis-alvo** (`fora_sp = sim`): **100% resolveram para `uf_leiloeiro = SP`**.
-- Tipo de leilão: 83 extrajudiciais, 7 judiciais.
-- Todos os 90 sob o mesmo leiloeiro, que exibe `JUCESP Nº 844` **e** `JUCEMG Nº 1192`
-  → pela regra "SP vence", é SP (não-alvo).
+- **394 imóveis em SP** coletados e enriquecidos com leiloeiro + matrículas.
+- **0 imóveis-alvo** (`fora_sp = sim`): **392 resolveram para `uf_leiloeiro = SP`**
+  e apenas 2 ficaram sem matrícula reconhecida (revisão manual).
+- Apenas **3 leiloeiros distintos** em 394 lotes — concentração altíssima, todos
+  com matrícula JUCESP (um deles exibe `JUCESP Nº 844` **e** `JUCEMG Nº 1192` →
+  pela regra "SP vence", é SP).
+- Tipo de leilão: 161 extrajudiciais, 233 judiciais.
 
 Isto confirma empiricamente a camada 2: **o maior agregador nacional não produz
 alvos da tese** — não porque falte imóvel em SP, mas porque os leiloeiros desses
