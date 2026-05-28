@@ -6,6 +6,8 @@ import pytest
 
 from src.leiloeiros.juntas import (
     JUNTAS_DISPONIVEIS,
+    JucebScraper,
+    JucegScraper,
     JucemgScraper,
     JucerjaScraper,
     JucespScraper,
@@ -18,6 +20,8 @@ def test_registro_de_juntas():
     assert JUNTAS_DISPONIVEIS["JUCESP"].uf == "SP"
     assert JUNTAS_DISPONIVEIS["JUCERJA"].uf == "RJ"
     assert JUNTAS_DISPONIVEIS["JUCEMG"].uf == "MG"
+    assert JUNTAS_DISPONIVEIS["JUCEG"].uf == "GO"
+    assert JUNTAS_DISPONIVEIS["JUCEB"].uf == "BA"
 
 
 def test_fonte_cadastro_derivada():
@@ -69,3 +73,28 @@ def test_parse_jucerja_extrai_leiloeiros_da_pagina():
     luiz = por_nome["LUIZ TENÓRIO DE PAULA"]
     assert luiz.matricula == "JUCERJA 19"
     assert luiz.site_oficial == "www.depaulaonline.com.br"
+
+
+def test_parse_juceg_extrai_leiloeiros():
+    html = (FIXTURES / "juceg_leiloeiros.html").read_text(encoding="utf-8")
+    registros = JucegScraper()._parse(html)
+    assert len(registros) > 50
+    por_nome = {r.nome: r for r in registros}
+    joao = por_nome["JOÃO ALVES BARROS"]
+    assert joao.matricula == "JUCEG 007/90"
+    assert joao.uf_matricula == "GO"
+    assert joao.junta_comercial == "JUCEG"
+    # Muitos leiloeiros de GO têm site próprio (alvo do scraper da Fase 3.2).
+    assert sum(1 for r in registros if r.site_oficial) > 20
+
+
+def test_parse_juceb_extrai_leiloeiros():
+    html = (FIXTURES / "juceb_leiloeiros.html").read_text(encoding="utf-8")
+    registros = JucebScraper()._parse(html)
+    assert len(registros) > 50
+    por_nome = {r.nome: r for r in registros}
+    paulo = por_nome["Paulo Cézar Rocha Teixeira"]
+    assert paulo.matricula == "JUCEB 004627/00"
+    assert paulo.uf_matricula == "BA"
+    assert paulo.site_oficial == "http://www.leiloesjudiciaisbahia.com.br"
+    assert sum(1 for r in registros if r.site_oficial) > 20
