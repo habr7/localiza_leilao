@@ -1,0 +1,2674 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>  
+	<meta http-equiv="Content-Type" content="text/html; charset-UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="w3.css">
+    
+  
+    
+    	
+		
+        <!-- SCRIPTS -->
+
+        <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+		<script src="css/jquery-ui.js"></script>
+		<script src="css/jquery.maskedinput.min.js"></script>
+		<script type="text/javascript" src="css/jquery.tablesorter.js"></script>
+	
+		<script type="text/javascript" src="css/jquery.tablesorter.widgets.js"></script>
+		<script type="text/javascript" src="css/jquery.tablesorter.widgets-filter-formatter.js"></script>
+		<script src="css/colorbox/jquery.colorbox.js"></script> 
+		
+		<link rel="stylesheet" href="css/colorbox/example1/colorbox.css" type="text/css">
+		<link rel="stylesheet" href="css/tabela-ice.css" type="text/css">	
+		
+       
+        	<link rel="stylesheet" type="text/css" href="../css/filter.formatter.css">
+		<link rel="stylesheet" href="css/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="css/theme.green.css">
+ 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125037087-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-125037087-1');
+</script>
+
+  
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">			
+/*jQuery.fn.center = function () {
+    this.css("position","absolute");
+    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + 
+                                                $(window).scrollTop()) + "px");
+    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 
+                                                $(window).scrollLeft()) + "px");
+    return this;
+}
+*/
+
+
+$(document).ready(function() 
+{
+
+
+ $( function() {
+$( document ).tooltip({
+track: true
+});
+} );
+
+
+$('tr.row').click(function() {
+var aarc =  $(this).find('td.aarc').text();
+var nome = $(this).find('td.nome').text() ;
+var data = $(this).find('td.data').text() ;
+
+window.location.href ="dados.php?aarc="+aarc+"&nome="+nome+"&data="+data+"&link=index.php";
+
+			/*var ref = "dados.php?aarc="+aarc+"&nome="+nome+"&data="+data+"&link=index.php";
+			
+			parent.$.colorbox({
+			 href: ref,
+			 iframe:true,
+			width:"50%",
+			height:"90%",
+			opacity:0.6,
+			onClosed:function(){ }
+			});	
+		*/
+	
+	
+});
+	//MÁSCARA DE MOEDA
+  
+	$('#cpf').mask("999.999.999-99");
+			
+   // $(document).tooltip();
+  
+ 
+var $table = $('table'),
+    process = false;
+
+$('.error').click(function(){
+  $.tablesorter.showError( $table, 'This is the error row');
+});
+
+$('.process').click(function(){
+  process = !process;
+  $.tablesorter.isProcessing( $table, process );
+});
+
+$('.sortable').click(function(){
+  $table
+    .find('.tablesorter-header:last').toggleClass('sorter-false')
+    .trigger('update');
+});
+
+$('#tab').tablesorter({
+  //sortList: [ [0,0] ],
+ //  dateFormat : "mmddyyyy", 
+  
+  widgets : [ 'zebra', 'columns', "filter" ],
+
+
+headers: {
+      //0: { sorter: "shortDate" } //, dateFormat will parsed as the default above
+       1: { sorter: "shortDate", dateFormat: "ddmmyyyy" }, // set day first format; set using class names
+      // 2: { sorter: "shortDate", dateFormat: "yyyymmdd" }  // set year first format; set using data attributes (jQuery data)
+    }
+
+  });
+
+
+});
+
+
+
+//})
+ 
+
+</SCRIPT>	
+  
+ <STYLE type="text/css">
+
+th
+{
+	text-align:center;
+}
+ 
+.textoNegrito
+{
+	color: #264FA4;
+	font-weight:bold; 
+}
+
+.row
+{
+cursor:pointer;	
+
+}
+
+
+@media only screen and (max-width: 900px) {
+ .imgs{
+ width: 120px;
+  transition: width 0.4s;	
+	
+}
+
+.imgs:hover{
+	 width: 140px;
+	 z-index:100;	  
+}
+#body{
+background-image: url('img/Central_LEILOEIRO_POR_ANTIGUIDADE_tela.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 45% 50%;
+  width: 100%;
+}
+.iframe{
+	margin-left:6%;
+	width: 94%;
+	height: 100% ;
+	
+	
+}
+}
+
+@media only screen and (min-width: 800px) {
+ .imgs{
+ width: 150px;
+  transition: width 0.7s;	
+	
+}
+
+.imgs:hover{
+	 width: 160px;
+	 z-index:100;	  
+}	
+#body{
+background-image: url('img/Central_LEILOEIRO_POR_ANTIGUIDADE_tela.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 0px 0px;
+  width: 100%;*
+   
+}
+.iframe{
+	margin-left:-25px;
+	width: 113% ;
+	height: 860px;
+	
+}
+.menu{
+  margin-top:165px;
+  width: 100%;
+  max-height: 725px;
+  overflow-y: auto;
+}
+}
+	
+@media only screen and (max-width: 500px){
+	
+	 .imgs{
+ width: 90px;
+  transition: width 0.7s;	
+	
+}
+
+.imgs:hover{
+	 width: 110px;
+	 z-index:100;	  
+}
+#body{
+background-image: url('img/Central_LEILOEIRO_POR_ANTIGUIDADE_tela.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+ background-position: 0px 0px;
+  width: 100%;
+   
+}
+/*.iframe{
+	margin-left:-25px;
+	width: 113% ;
+	height: 860px;
+	
+}*/	
+	
+.menu{
+  margin-top:165px;
+  width: 100%;
+  max-height: 725px;
+  overflow-y: auto;
+}	
+}
+.img {
+	display: block;
+	
+	margin: 0px auto 0px auto;
+	transition: .3s;
+	
+	-webkit-filter: grayscale(100%);
+	filter: invert(100%);
+	filter: black; /* IE */
+}
+
+img:hover {
+	-webkit-filter: none;	
+	filter: none;	
+}
+
+
+/*.menu{
+  margin-top:165px;
+  width: 100%;
+  max-height: 725px;
+  overflow-y: auto;
+}
+*/
+
+ </STYLE>  
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<title>LEILOEIRO POR ANTIGUIDADE</title>
+</head>
+<body id="body">
+
+<header class="w3-center w3-top" style="padding:39px; background:#fff;">
+<a href="index_novo.php">
+<img src="img/ID-JUCESC-HORIZONTAL.png" width="279" height="109" style="margin:-35px auto" />
+</a>
+</header>
+<!--
+<a href="http://www.jucesc.sc.gov.br/index.php/servicos/leiloeiros"><img style="margin-top: 0px ; max-height:190px" src="cabecalho.png" style="cursor:pointer"  width="100%" ></a>
+-->
+<div class="w3-row menu">
+<table id="tab" class="tablesorter tablesorter-green">
+		  <thead style="cursor:pointer">
+	       			<tr>		
+      				<th  title="Clique para ordenar a coluna" width="8%"><b>AARC</b></th>
+                    <th  title="Clique para ordenar a coluna" width="50%" data-placeholder="Digite o Nome para pesquisar"><b>Nome</b></th>
+                    <th class="sorter-shortDate dateFormat-ddmmyyyy" title="Clique para ordenar a coluna" width=""><b>Data Matricula</b></th>
+                     <th  title="Clique para ordenar a coluna" width="" data-placeholder="Digite a Situação para pesquisar"><b>Situação</b></th>
+					                   </tr>
+</thead>
+				<tbody style="text-align: center;">  
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">3</td>
+                     <td class="nome" width="14%">Artur Henrique Carstens</td>
+                     <td class="data">21/06/1982 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">2</td>
+                     <td class="nome" width="14%">Célio De Souza</td>
+                     <td class="data">15/07/1982 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">13</td>
+                     <td class="nome" width="14%">Ruy Walter Baldissera</td>
+                     <td class="data">24/01/1990 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">15</td>
+                     <td class="nome" width="14%">Isolda Capelari</td>
+                     <td class="data">22/08/1996 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">19</td>
+                     <td class="nome" width="14%">Paulo Pizzolatti Neto</td>
+                     <td class="data">17/11/1998 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">28</td>
+                     <td class="nome" width="14%">Vicente Alves Pereira Neto</td>
+                     <td class="data">15/12/1999 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">29</td>
+                     <td class="nome" width="14%">Paulo Mario Lopes Machado</td>
+                     <td class="data">15/12/1999 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">30</td>
+                     <td class="nome" width="14%">Lúcio Ubialli</td>
+                     <td class="data">15/12/1999 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">31</td>
+                     <td class="nome" width="14%">Roberto Marcondes De Azevedo</td>
+                     <td class="data">15/12/1999 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">38</td>
+                     <td class="nome" width="14%">Paulo Roberto Pimental Porto</td>
+                     <td class="data">13/06/2000 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">39</td>
+                     <td class="nome" width="14%">Daniel Schneider Chaieb</td>
+                     <td class="data">27/06/2000 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">42</td>
+                     <td class="nome" width="14%">Rogério Damiani</td>
+                     <td class="data">09/10/2000 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">49</td>
+                     <td class="nome" width="14%">Ancila Maria Baldissera Paludo</td>
+                     <td class="data">13/12/2000 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">71</td>
+                     <td class="nome" width="14%">Rodrigo Schmitz</td>
+                     <td class="data">05/04/2001 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">86</td>
+                     <td class="nome" width="14%">Fabiane Tissiane Baldissera De Souza</td>
+                     <td class="data">30/01/2002 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">94</td>
+                     <td class="nome" width="14%">Jorge Luiz Canella</td>
+                     <td class="data">28/06/2002 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">97</td>
+                     <td class="nome" width="14%">Tarcísio Geraldo Meneghel Coutinho</td>
+                     <td class="data">17/10/2002 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">99</td>
+                     <td class="nome" width="14%">Wendel Machado Garcia</td>
+                     <td class="data">12/12/2002 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">102</td>
+                     <td class="nome" width="14%">Felipe Gonzaga Daux</td>
+                     <td class="data">13/03/2003 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">104</td>
+                     <td class="nome" width="14%">Paulo Castelan Minatto</td>
+                     <td class="data">13/03/2003 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">133</td>
+                     <td class="nome" width="14%">Luiza Belloti Moura Pigini</td>
+                     <td class="data">20/07/2004 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">143</td>
+                     <td class="nome" width="14%">Enéas Carrilho De Vasconcelos Neto</td>
+                     <td class="data">10/08/2004 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">137</td>
+                     <td class="nome" width="14%">Jefferson Eduardo Zampieri</td>
+                     <td class="data">19/08/2004 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">138</td>
+                     <td class="nome" width="14%">César Luis Moresco</td>
+                     <td class="data">19/08/2004 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">141</td>
+                     <td class="nome" width="14%">Giovanni Silva Wersdoefer</td>
+                     <td class="data">19/08/2004 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">144</td>
+                     <td class="nome" width="14%">Quênia De Luca Martins</td>
+                     <td class="data">19/08/2004 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">147</td>
+                     <td class="nome" width="14%">Terezinha De Souza Ruzinski</td>
+                     <td class="data">06/10/2004 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">148</td>
+                     <td class="nome" width="14%">Avilson José Souza</td>
+                     <td class="data">06/10/2004 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">159</td>
+                     <td class="nome" width="14%">Eduardo Schmitz</td>
+                     <td class="data">13/04/2005 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">161</td>
+                     <td class="nome" width="14%">Daniela Felzke</td>
+                     <td class="data">13/04/2005 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">162</td>
+                     <td class="nome" width="14%">Júlio Ramos Luz</td>
+                     <td class="data">13/04/2005 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">164</td>
+                     <td class="nome" width="14%">Paulo Setsuo Nakakogue</td>
+                     <td class="data">20/06/2005 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">190</td>
+                     <td class="nome" width="14%">Eduardo De Werk</td>
+                     <td class="data">29/08/2006 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">207</td>
+                     <td class="nome" width="14%">Sônia Regina Nunes</td>
+                     <td class="data">31/08/2007 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">214</td>
+                     <td class="nome" width="14%">Daniella Bianchini Spuldaro</td>
+                     <td class="data">21/01/2008 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">212</td>
+                     <td class="nome" width="14%">Adriane Regina Morais Loenert</td>
+                     <td class="data">26/02/2008 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">220</td>
+                     <td class="nome" width="14%">Sandro Luis De Souza</td>
+                     <td class="data">03/09/2008 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">225</td>
+                     <td class="nome" width="14%">João Lucas Silveira Santos</td>
+                     <td class="data">26/01/2009 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">237</td>
+                     <td class="nome" width="14%">Giovano Ávila Alves</td>
+                     <td class="data">20/07/2009 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">234</td>
+                     <td class="nome" width="14%">Jorge Ferlin Dale Nogari Dos Santos</td>
+                     <td class="data">21/12/2009 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">258</td>
+                     <td class="nome" width="14%">Eduardo Abreu Alves Barbosa</td>
+                     <td class="data">19/02/2010 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">263</td>
+                     <td class="nome" width="14%">Rodolfo Da Rosa Schöntag</td>
+                     <td class="data">26/03/2010 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">262</td>
+                     <td class="nome" width="14%">Jean Fernando Ribeiro Pavesi</td>
+                     <td class="data">30/03/2010 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">266</td>
+                     <td class="nome" width="14%">Janine Ledoux Krobel Lorenz</td>
+                     <td class="data">28/06/2010 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">267</td>
+                     <td class="nome" width="14%">Eduardo Luiz Costi</td>
+                     <td class="data">08/09/2010 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">272</td>
+                     <td class="nome" width="14%">Lhano Martins Xavier</td>
+                     <td class="data">13/06/2011 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">274</td>
+                     <td class="nome" width="14%">Valmir Antônio Claudino</td>
+                     <td class="data">26/06/2011 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">276</td>
+                     <td class="nome" width="14%">Simone Wenning</td>
+                     <td class="data">26/07/2011 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">281</td>
+                     <td class="nome" width="14%">Gabriel Mazzolli Damiani</td>
+                     <td class="data">27/02/2012 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">284</td>
+                     <td class="nome" width="14%">Ágata Cristi Minuzzi Dias Pimentel </td>
+                     <td class="data">19/03/2012 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">285</td>
+                     <td class="nome" width="14%">Alex Willian Hoppe</td>
+                     <td class="data">22/06/2012 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">286</td>
+                     <td class="nome" width="14%">Adriano Domingues Jardim</td>
+                     <td class="data">25/06/2012 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">287</td>
+                     <td class="nome" width="14%">Taisa Raquel Pereira Carvalho</td>
+                     <td class="data">01/08/2012 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">299</td>
+                     <td class="nome" width="14%">Luciano Tavares</td>
+                     <td class="data">24/01/2013 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">301</td>
+                     <td class="nome" width="14%">Tatiane Dos Santos Duarte</td>
+                     <td class="data">01/03/2013 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">302</td>
+                     <td class="nome" width="14%">Alex Disarz</td>
+                     <td class="data">03/04/2013 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">303</td>
+                     <td class="nome" width="14%">Nelcir Aparecida Catafesta</td>
+                     <td class="data">25/04/2013 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">304</td>
+                     <td class="nome" width="14%">Marco Antônio Ghisi Machado</td>
+                     <td class="data">17/05/2013 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">305</td>
+                     <td class="nome" width="14%">Elizabete Ubialli</td>
+                     <td class="data">06/08/2013 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">306</td>
+                     <td class="nome" width="14%">Daniel Elias Garcia</td>
+                     <td class="data">21/10/2013 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">307</td>
+                     <td class="nome" width="14%">Luciana de França Fernandes</td>
+                     <td class="data">21/10/2013 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">309</td>
+                     <td class="nome" width="14%">Ulisses Donizete Ramos</td>
+                     <td class="data">20/12/2013 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">310</td>
+                     <td class="nome" width="14%">Roni Mansur Rucco</td>
+                     <td class="data">09/06/2014 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">312</td>
+                     <td class="nome" width="14%">Rosa Lúcia Lopes Carstens</td>
+                     <td class="data">09/06/2014 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">313</td>
+                     <td class="nome" width="14%">Anderson Luchtenberg</td>
+                     <td class="data">14/07/2014 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">314</td>
+                     <td class="nome" width="14%">Rafaela Zibetti Dal Molin</td>
+                     <td class="data">14/07/2014 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">315</td>
+                     <td class="nome" width="14%">Giovana Norma Bolico Schmitz</td>
+                     <td class="data">15/09/2014 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">319</td>
+                     <td class="nome" width="14%">Odiclesio Jaison Storchio</td>
+                     <td class="data">23/01/2015 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">320</td>
+                     <td class="nome" width="14%">Andrey Davis Balduino</td>
+                     <td class="data">30/01/2015 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">321</td>
+                     <td class="nome" width="14%">Guilherme Ribas Ibagy</td>
+                     <td class="data">26/03/2015 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">322</td>
+                     <td class="nome" width="14%">Marcos Alessandro Zampieri</td>
+                     <td class="data">14/04/2015 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">323</td>
+                     <td class="nome" width="14%">Nelson Zampieri</td>
+                     <td class="data">14/04/2015 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">324</td>
+                     <td class="nome" width="14%">Ricardo Bampi</td>
+                     <td class="data">19/05/2015 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">325</td>
+                     <td class="nome" width="14%">Ricardo Loli Zanini</td>
+                     <td class="data">19/05/2015 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">326</td>
+                     <td class="nome" width="14%">Fábio Panceri Vieceli</td>
+                     <td class="data">25/06/2015 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">327</td>
+                     <td class="nome" width="14%">Maria Helena Zimmermann</td>
+                     <td class="data">14/07/2015 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">328</td>
+                     <td class="nome" width="14%">Eduardo Antônio Sausen</td>
+                     <td class="data">14/07/2015 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">331</td>
+                     <td class="nome" width="14%">Deyvit De Brito</td>
+                     <td class="data">18/08/2015 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">332</td>
+                     <td class="nome" width="14%">Diorgenes Valerio Jorge</td>
+                     <td class="data">17/09/2015 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">333</td>
+                     <td class="nome" width="14%">Paulo Roberto Worm</td>
+                     <td class="data">17/09/2015 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">334</td>
+                     <td class="nome" width="14%">Darlene Cagliari </td>
+                     <td class="data">17/09/2015 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">335</td>
+                     <td class="nome" width="14%">Marcus Rogério Araújo Samoel</td>
+                     <td class="data">12/11/2015 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">336</td>
+                     <td class="nome" width="14%">Ademir Feuser</td>
+                     <td class="data">12/11/2015 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">337</td>
+                     <td class="nome" width="14%">Andreia Cristina Nunes</td>
+                     <td class="data">22/12/2015 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">340</td>
+                     <td class="nome" width="14%">Roger Wenning</td>
+                     <td class="data">02/03/2016 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">341</td>
+                     <td class="nome" width="14%">Agenor Luis Silveira</td>
+                     <td class="data">02/03/2016 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">342</td>
+                     <td class="nome" width="14%">Alex Jorge Moysés Júnior</td>
+                     <td class="data">02/03/2016 </td>
+                     <td class="situacao">Suspenso </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">343</td>
+                     <td class="nome" width="14%">Charles Betiato</td>
+                     <td class="data">02/03/2016 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">344</td>
+                     <td class="nome" width="14%">Adriana Mota Da Rosa Bunn</td>
+                     <td class="data">11/04/2016 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">346</td>
+                     <td class="nome" width="14%">Rafael Alves Da Cruz</td>
+                     <td class="data">11/04/2016 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">345</td>
+                     <td class="nome" width="14%">Luiz Felipe Machado</td>
+                     <td class="data">20/05/2016 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">348</td>
+                     <td class="nome" width="14%">Rodrigo Vitório Macagnan</td>
+                     <td class="data">29/07/2016 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">349</td>
+                     <td class="nome" width="14%">Anselmo Da Silva Livramento Machado</td>
+                     <td class="data">25/08/2016 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">350</td>
+                     <td class="nome" width="14%">Soraia Custódio Da Luz</td>
+                     <td class="data">04/10/2016 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">351</td>
+                     <td class="nome" width="14%">Iara Macedo Della Giustina</td>
+                     <td class="data">04/10/2016 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">353</td>
+                     <td class="nome" width="14%">Frida Cristian Pereira Becker</td>
+                     <td class="data">01/12/2016 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">354</td>
+                     <td class="nome" width="14%">Vanderlei Petri</td>
+                     <td class="data">13/12/2016 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">356</td>
+                     <td class="nome" width="14%">Magnun Luiz Serpa</td>
+                     <td class="data">08/02/2017 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">357</td>
+                     <td class="nome" width="14%">Diego Wolf De Oliveira</td>
+                     <td class="data">14/02/2017 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">358</td>
+                     <td class="nome" width="14%">Michele Pacheco Da Rosa Sandor</td>
+                     <td class="data">10/04/2017 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">360</td>
+                     <td class="nome" width="14%">Saionara Périco Góes</td>
+                     <td class="data">19/05/2017 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">363</td>
+                     <td class="nome" width="14%">Anderson Douglas Gali Falleiros</td>
+                     <td class="data">28/06/2017 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">364</td>
+                     <td class="nome" width="14%">Salmi Paladini Neto</td>
+                     <td class="data">28/06/2017 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">365</td>
+                     <td class="nome" width="14%">Roberto Carlos Antunes Da Costa</td>
+                     <td class="data">28/06/2017 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">366</td>
+                     <td class="nome" width="14%">Carmen Lúcia Capela</td>
+                     <td class="data">17/07/2017 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">368</td>
+                     <td class="nome" width="14%">Marco Aurélio Périco Góes</td>
+                     <td class="data">18/09/2017 </td>
+                     <td class="situacao">Suspenso </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">369</td>
+                     <td class="nome" width="14%">Mair Raimundo Camargo Filho</td>
+                     <td class="data">27/09/2017 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">370</td>
+                     <td class="nome" width="14%">Fábio Marlon Machado</td>
+                     <td class="data">27/09/2017 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">371</td>
+                     <td class="nome" width="14%">Renato Antônio Batista </td>
+                     <td class="data">24/10/2017 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">372</td>
+                     <td class="nome" width="14%">Glauber Zabot</td>
+                     <td class="data">24/10/2017 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">373</td>
+                     <td class="nome" width="14%">Ely Da Luz Ramos</td>
+                     <td class="data">09/11/2017 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">374</td>
+                     <td class="nome" width="14%">Elio Montagna Junior</td>
+                     <td class="data">14/12/2017 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">375</td>
+                     <td class="nome" width="14%">Andréa Baldissera</td>
+                     <td class="data">25/01/2018 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">377</td>
+                     <td class="nome" width="14%">Etla Weiss Da Costa </td>
+                     <td class="data">22/02/2018 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">378</td>
+                     <td class="nome" width="14%">Marcelo Drechsel</td>
+                     <td class="data">09/04/2018 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">379</td>
+                     <td class="nome" width="14%">João Paulo Sampaio Damiani</td>
+                     <td class="data">30/04/2018 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">380</td>
+                     <td class="nome" width="14%">Suelem Regina Bocasanta </td>
+                     <td class="data">30/04/2018 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">381</td>
+                     <td class="nome" width="14%">Sandra Regina Kuehn</td>
+                     <td class="data">30/04/2018 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">383</td>
+                     <td class="nome" width="14%">Luan Ubialli</td>
+                     <td class="data">18/05/2018 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">384</td>
+                     <td class="nome" width="14%">Elisabeth França Maltez</td>
+                     <td class="data">18/05/2018 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">389</td>
+                     <td class="nome" width="14%">João Vieira Farias</td>
+                     <td class="data">29/08/2018 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">390</td>
+                     <td class="nome" width="14%">Raul Bergson De Oliveira </td>
+                     <td class="data">23/10/2018 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">391</td>
+                     <td class="nome" width="14%">Guilherme Antônio Scarpari De Lucca</td>
+                     <td class="data">04/04/2019 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">392</td>
+                     <td class="nome" width="14%">Guilherme E. Stutz Toporoski</td>
+                     <td class="data">24/05/2019 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">394</td>
+                     <td class="nome" width="14%">Denise Deibler Magalhães</td>
+                     <td class="data">19/06/2019 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">395</td>
+                     <td class="nome" width="14%">Auriannye Marques</td>
+                     <td class="data">02/07/2019 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">396</td>
+                     <td class="nome" width="14%">Izabel De Castro</td>
+                     <td class="data">21/08/2019 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">398</td>
+                     <td class="nome" width="14%">Rubens Henrique De Castro</td>
+                     <td class="data">01/10/2019 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">402</td>
+                     <td class="nome" width="14%">Liliamar Fátima Parmeggiani Pestana Marques Gomes</td>
+                     <td class="data">04/03/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">403</td>
+                     <td class="nome" width="14%">Augusto Parmeggiani Pestana Marques Gomes</td>
+                     <td class="data">04/03/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">404</td>
+                     <td class="nome" width="14%">Claudio Cesar Gonçalves</td>
+                     <td class="data">17/03/2020 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">405</td>
+                     <td class="nome" width="14%">Luciana Nora</td>
+                     <td class="data">17/03/2020 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">406</td>
+                     <td class="nome" width="14%">Paulo Alexandre Heisler</td>
+                     <td class="data">17/03/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">407</td>
+                     <td class="nome" width="14%">Gustavo Cristiano Samuel Dos Reis</td>
+                     <td class="data">17/03/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">412</td>
+                     <td class="nome" width="14%">Aridina Maria Do Amaral</td>
+                     <td class="data">05/06/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">417</td>
+                     <td class="nome" width="14%">Jorge Vinicius De Moura Correa</td>
+                     <td class="data">31/08/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">418</td>
+                     <td class="nome" width="14%">Rafael Ceretta Alegranzzi</td>
+                     <td class="data">31/08/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">419</td>
+                     <td class="nome" width="14%">Edvar Vitor Soprano</td>
+                     <td class="data">31/08/2020 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">421</td>
+                     <td class="nome" width="14%">Eloisa Auxiliadora Menegassi Correa</td>
+                     <td class="data">24/09/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">422</td>
+                     <td class="nome" width="14%">Maurício Guerra Alves</td>
+                     <td class="data">14/10/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">423</td>
+                     <td class="nome" width="14%">Giuliano Frassetto</td>
+                     <td class="data">14/10/2020 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">424</td>
+                     <td class="nome" width="14%">Norton Jochims Fernandes </td>
+                     <td class="data">16/10/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">425</td>
+                     <td class="nome" width="14%">Osmar Sergio Costa</td>
+                     <td class="data">16/10/2020 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">427</td>
+                     <td class="nome" width="14%">Giancarlo Peterlongo Lorenzini Menegotto</td>
+                     <td class="data">04/11/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">428</td>
+                     <td class="nome" width="14%">Sarita Ana Giacomazzi Araujo</td>
+                     <td class="data">06/11/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">429</td>
+                     <td class="nome" width="14%">Varones Pasqual Drabach Filho</td>
+                     <td class="data">06/11/2020 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">433</td>
+                     <td class="nome" width="14%">Rudival Almeida Gomes Junior</td>
+                     <td class="data">26/01/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">437</td>
+                     <td class="nome" width="14%">Rodrigo Sanson</td>
+                     <td class="data">16/02/2021 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">438</td>
+                     <td class="nome" width="14%">José Valero Santos Junior</td>
+                     <td class="data">08/03/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">440</td>
+                     <td class="nome" width="14%">Jéfferson Tácio Furlanetto Miotti</td>
+                     <td class="data">31/03/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">442</td>
+                     <td class="nome" width="14%">Sabrina Da Silva Pereira Eckelberg</td>
+                     <td class="data">13/05/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">443</td>
+                     <td class="nome" width="14%">Marileia May</td>
+                     <td class="data">13/05/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">444</td>
+                     <td class="nome" width="14%">Davi Borges De Aquino</td>
+                     <td class="data">31/05/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">446</td>
+                     <td class="nome" width="14%">Cristiane Da Costa</td>
+                     <td class="data">05/07/2021 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">447</td>
+                     <td class="nome" width="14%">Claudia Schiessl</td>
+                     <td class="data">13/07/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">448</td>
+                     <td class="nome" width="14%">Edwin Romel Maranon Michel</td>
+                     <td class="data">13/07/2021 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">449</td>
+                     <td class="nome" width="14%">Rodrigo Amboni Farias</td>
+                     <td class="data">20/07/2021 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">450</td>
+                     <td class="nome" width="14%">Mouzar Baston Filho</td>
+                     <td class="data">24/08/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">451</td>
+                     <td class="nome" width="14%">Vanessa Priscila Brassiani                                                      </td>
+                     <td class="data">10/09/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">452</td>
+                     <td class="nome" width="14%">Ricardo Ferreira Gomes</td>
+                     <td class="data">20/09/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">453</td>
+                     <td class="nome" width="14%">Levy Dos Santos Moraes Filho</td>
+                     <td class="data">27/09/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">456</td>
+                     <td class="nome" width="14%">Luiz Balbino Da Silva Junior</td>
+                     <td class="data">07/10/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">457</td>
+                     <td class="nome" width="14%">Jose Ivanildo De Sousa Damasceno</td>
+                     <td class="data">03/11/2021 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">434</td>
+                     <td class="nome" width="14%">Josecelli Kildare Fraga Gomes</td>
+                     <td class="data">06/12/2021 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">458</td>
+                     <td class="nome" width="14%">Marciano Mauro Pagliarini</td>
+                     <td class="data">15/12/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">461</td>
+                     <td class="nome" width="14%">Milton Santiago Sola Muniz</td>
+                     <td class="data">15/12/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">462</td>
+                     <td class="nome" width="14%">Fernando Rodrigues Benvenho</td>
+                     <td class="data">15/12/2021 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">463</td>
+                     <td class="nome" width="14%">Gustavo Henrique Zanoni Pereira</td>
+                     <td class="data">05/01/2022 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">467</td>
+                     <td class="nome" width="14%">Everton Dias Medeiros</td>
+                     <td class="data">10/03/2022 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">471</td>
+                     <td class="nome" width="14%">Conceição Maria Fixer</td>
+                     <td class="data">25/03/2022 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">470</td>
+                     <td class="nome" width="14%">Ricardo Andrei Mallmann</td>
+                     <td class="data">05/04/2022 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">469</td>
+                     <td class="nome" width="14%">Anderson Lopes De Paula</td>
+                     <td class="data">25/04/2022 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">472</td>
+                     <td class="nome" width="14%">Itamar Coraci Xavier De Liz</td>
+                     <td class="data">18/05/2022 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">477</td>
+                     <td class="nome" width="14%">Soraya Nass Nart</td>
+                     <td class="data">12/07/2022 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">476</td>
+                     <td class="nome" width="14%">Jorge Marco Aurélio Biavati</td>
+                     <td class="data">15/07/2022 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">478</td>
+                     <td class="nome" width="14%">Ana Carolina Zaninetti Rosa</td>
+                     <td class="data">20/07/2022 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">479</td>
+                     <td class="nome" width="14%">André Luiz Wuitschik</td>
+                     <td class="data">08/09/2022 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">482</td>
+                     <td class="nome" width="14%">Daiane Fucks Pelentir</td>
+                     <td class="data">10/11/2022 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">484</td>
+                     <td class="nome" width="14%">Jean Carlos Zappelini Becker</td>
+                     <td class="data">10/11/2022 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">486</td>
+                     <td class="nome" width="14%">André Lucas Junkes</td>
+                     <td class="data">23/11/2022 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">485</td>
+                     <td class="nome" width="14%">Luciano Resende Rodrigues</td>
+                     <td class="data">06/12/2022 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">489</td>
+                     <td class="nome" width="14%">Débora Viale Prazeres Vilela Veiga</td>
+                     <td class="data">18/01/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">487</td>
+                     <td class="nome" width="14%">Cirlei Freitas Balbino Da Silva</td>
+                     <td class="data">25/01/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">488</td>
+                     <td class="nome" width="14%">Marcos Antonio Tulio</td>
+                     <td class="data">25/01/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">491</td>
+                     <td class="nome" width="14%">Felipe Emilio Beling</td>
+                     <td class="data">08/02/2023 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">492</td>
+                     <td class="nome" width="14%">Catiele Borges Leffa</td>
+                     <td class="data">08/02/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">493</td>
+                     <td class="nome" width="14%">Dionir Bianchi</td>
+                     <td class="data">23/02/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">490</td>
+                     <td class="nome" width="14%">Michelle Spironello</td>
+                     <td class="data">16/03/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">497</td>
+                     <td class="nome" width="14%">Patricia Pimentel Grocoski Costa</td>
+                     <td class="data">25/05/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">498</td>
+                     <td class="nome" width="14%">Neila Rosane Ribeiro Dos Santos</td>
+                     <td class="data">13/07/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">500</td>
+                     <td class="nome" width="14%">Thaís Cristina Kich</td>
+                     <td class="data">13/07/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">499</td>
+                     <td class="nome" width="14%">Luci Vera Primaz Dos Reis</td>
+                     <td class="data">19/07/2023 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">501</td>
+                     <td class="nome" width="14%">Juliana Tais Benatti</td>
+                     <td class="data">08/08/2023 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">502</td>
+                     <td class="nome" width="14%">Lucas Andreatta De Oliveira</td>
+                     <td class="data">08/08/2023 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">503</td>
+                     <td class="nome" width="14%">Thainá Lima</td>
+                     <td class="data">15/08/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">504</td>
+                     <td class="nome" width="14%">Viviane Aparecida Brassiani Engicht</td>
+                     <td class="data">15/08/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">505</td>
+                     <td class="nome" width="14%">Sued Peter Bastos Dyna</td>
+                     <td class="data">15/08/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">506</td>
+                     <td class="nome" width="14%">José Fernando De Quina</td>
+                     <td class="data">28/08/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">507</td>
+                     <td class="nome" width="14%">Rodolfo Macarini De Souza</td>
+                     <td class="data">28/08/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">508</td>
+                     <td class="nome" width="14%">Andrea Ferraz De Albuquerque</td>
+                     <td class="data">05/09/2023 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">509</td>
+                     <td class="nome" width="14%">Vagner Ferreira De Oliveira</td>
+                     <td class="data">12/09/2023 </td>
+                     <td class="situacao">Destituído </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">510</td>
+                     <td class="nome" width="14%">Joacir Monzon Pouey</td>
+                     <td class="data">22/09/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">511</td>
+                     <td class="nome" width="14%">Ricardo Martins De Souza</td>
+                     <td class="data">06/10/2023 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">512</td>
+                     <td class="nome" width="14%">Daniel Melo Cruz</td>
+                     <td class="data">23/10/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">513</td>
+                     <td class="nome" width="14%">Ligia Coneglian Carrilho De Vasconcelos</td>
+                     <td class="data">21/11/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">515</td>
+                     <td class="nome" width="14%">Luciano Marangoni</td>
+                     <td class="data">21/11/2023 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">516</td>
+                     <td class="nome" width="14%">Fabiane Pacheco</td>
+                     <td class="data">05/12/2023 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">521</td>
+                     <td class="nome" width="14%">Helcio Kronberg</td>
+                     <td class="data">11/01/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">519</td>
+                     <td class="nome" width="14%">Joyce Ribeiro</td>
+                     <td class="data">15/01/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">523</td>
+                     <td class="nome" width="14%">Adaiana Garcia</td>
+                     <td class="data">15/01/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">520</td>
+                     <td class="nome" width="14%">Renan Augusto Fernandes Guimarães</td>
+                     <td class="data">06/02/2024 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">524</td>
+                     <td class="nome" width="14%">Monique Kristy Furtado </td>
+                     <td class="data">06/02/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">525</td>
+                     <td class="nome" width="14%">Lucas Bernardes Da Silva</td>
+                     <td class="data">06/02/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">526</td>
+                     <td class="nome" width="14%">Alvaro Marques Teixeira</td>
+                     <td class="data">08/02/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">517</td>
+                     <td class="nome" width="14%">Brian Galvão Frota</td>
+                     <td class="data">16/02/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">518</td>
+                     <td class="nome" width="14%">Vanessa Goelzer De Araújo Vargas E Pinto</td>
+                     <td class="data">23/02/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">528</td>
+                     <td class="nome" width="14%">Geraldo Von Zuccalmaglio</td>
+                     <td class="data">06/03/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">514</td>
+                     <td class="nome" width="14%">Dionei Scottini</td>
+                     <td class="data">01/04/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">527</td>
+                     <td class="nome" width="14%">Murilo Paes Lopes Lourenço</td>
+                     <td class="data">01/04/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">529</td>
+                     <td class="nome" width="14%">Kamila Biancart Candido</td>
+                     <td class="data">01/04/2024 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">530</td>
+                     <td class="nome" width="14%">Priscila Francieli Weigsding Coelho</td>
+                     <td class="data">01/04/2024 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">531</td>
+                     <td class="nome" width="14%">Tiago Lopes Alegranzzi </td>
+                     <td class="data">01/04/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">532</td>
+                     <td class="nome" width="14%">Valeria Rosane Almeida Ignacio</td>
+                     <td class="data">03/04/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">533</td>
+                     <td class="nome" width="14%">Diego Costa Muller</td>
+                     <td class="data">03/04/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">535</td>
+                     <td class="nome" width="14%">Elton Luiz Simon</td>
+                     <td class="data">03/04/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">536</td>
+                     <td class="nome" width="14%">Ivone Foresti Shehadeh</td>
+                     <td class="data">03/04/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">534</td>
+                     <td class="nome" width="14%">Cinthia Cassiane Sens</td>
+                     <td class="data">15/04/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">537</td>
+                     <td class="nome" width="14%">Erick Soares Teles</td>
+                     <td class="data">22/04/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">539</td>
+                     <td class="nome" width="14%">Marcus Vinicius Yoshimi Uebara</td>
+                     <td class="data">14/05/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">547</td>
+                     <td class="nome" width="14%">Renato Schlobach Moysés</td>
+                     <td class="data">19/06/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">538</td>
+                     <td class="nome" width="14%">Janderson Dias Garcia</td>
+                     <td class="data">20/06/2024 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">544</td>
+                     <td class="nome" width="14%">Lucas Rafael Antunes Moreira</td>
+                     <td class="data">20/06/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">545</td>
+                     <td class="nome" width="14%">Alfio Carlos Affonso Zalli Neto</td>
+                     <td class="data">20/06/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">550</td>
+                     <td class="nome" width="14%">Viviane Teixeira Prates Hallal</td>
+                     <td class="data">23/07/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">551</td>
+                     <td class="nome" width="14%">Gustavo Moretto Guimarães De Oliveira </td>
+                     <td class="data">23/07/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">552</td>
+                     <td class="nome" width="14%">Francisco Hillesheim</td>
+                     <td class="data">23/07/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">553</td>
+                     <td class="nome" width="14%">Nathan Correa Alves</td>
+                     <td class="data">23/07/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">548</td>
+                     <td class="nome" width="14%">Érico Sobral Soares</td>
+                     <td class="data">30/07/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">554</td>
+                     <td class="nome" width="14%">Bernardo Bihr Lopes</td>
+                     <td class="data">30/07/2024 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">555</td>
+                     <td class="nome" width="14%">José Sergio Della Giustina</td>
+                     <td class="data">30/07/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">560</td>
+                     <td class="nome" width="14%">Susan Andrielli Da Silva</td>
+                     <td class="data">28/08/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">562</td>
+                     <td class="nome" width="14%">Mário Lessa Freitas Filho</td>
+                     <td class="data">12/09/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">565</td>
+                     <td class="nome" width="14%">Cristiano Da Rosa Schontag</td>
+                     <td class="data">23/09/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">558</td>
+                     <td class="nome" width="14%">Jonas Gabriel Antunes Moreira</td>
+                     <td class="data">30/09/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">561</td>
+                     <td class="nome" width="14%">Fernando Caetano Moreira Filho</td>
+                     <td class="data">30/09/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">564</td>
+                     <td class="nome" width="14%">Luiz Barbosa De Lima Junior</td>
+                     <td class="data">30/09/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">566</td>
+                     <td class="nome" width="14%">Claudio Trombetta</td>
+                     <td class="data">11/10/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">568</td>
+                     <td class="nome" width="14%">Hélton José Oliveira Fernandes</td>
+                     <td class="data">22/10/2024 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">573</td>
+                     <td class="nome" width="14%">Sérgio Augusto Dos Santos</td>
+                     <td class="data">23/10/2024 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">574</td>
+                     <td class="nome" width="14%">Mirella Beatriz Scheidt</td>
+                     <td class="data">23/10/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">567</td>
+                     <td class="nome" width="14%">Dora Plat </td>
+                     <td class="data">03/12/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">575</td>
+                     <td class="nome" width="14%">Tatiana Sofka Antunes Ferreira</td>
+                     <td class="data">03/12/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">576</td>
+                     <td class="nome" width="14%">Priscilla Lopes Ribeiro Ferreira</td>
+                     <td class="data">11/12/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">577</td>
+                     <td class="nome" width="14%">Rodrigo Zago Szortyka</td>
+                     <td class="data">16/12/2024 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">579</td>
+                     <td class="nome" width="14%">Guilherme Felipe Kubin Sardá</td>
+                     <td class="data">18/12/2024 </td>
+                     <td class="situacao">Irregular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">581</td>
+                     <td class="nome" width="14%">Maurício Gehm</td>
+                     <td class="data">11/02/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">582</td>
+                     <td class="nome" width="14%">Alexsandro Zatta</td>
+                     <td class="data">11/02/2025 </td>
+                     <td class="situacao">Cancelado </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">584</td>
+                     <td class="nome" width="14%">Andressa Rosa Obenaus</td>
+                     <td class="data">25/02/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">585</td>
+                     <td class="nome" width="14%">Juciane Hildebrando Dos Santos Pering</td>
+                     <td class="data">25/02/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">586</td>
+                     <td class="nome" width="14%">Guilherme Dantas De Aguiar Silva</td>
+                     <td class="data">25/02/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">593</td>
+                     <td class="nome" width="14%">Marcos Roberto Fracasso </td>
+                     <td class="data">24/03/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">594</td>
+                     <td class="nome" width="14%">Darlan Eduardo Moysés</td>
+                     <td class="data">24/03/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">596</td>
+                     <td class="nome" width="14%">Giovana Norma Bólico</td>
+                     <td class="data">25/04/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">598</td>
+                     <td class="nome" width="14%">Marinilce Viana Quadrado</td>
+                     <td class="data">25/04/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">604</td>
+                     <td class="nome" width="14%">Aline Maros</td>
+                     <td class="data">10/06/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">606</td>
+                     <td class="nome" width="14%">Conrado Augusto Carvalho De Magalhães</td>
+                     <td class="data">18/06/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">609</td>
+                     <td class="nome" width="14%">Emanuel Antonio Quaresma</td>
+                     <td class="data">22/07/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">610</td>
+                     <td class="nome" width="14%">Débora Regina Barz</td>
+                     <td class="data">22/07/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">611</td>
+                     <td class="nome" width="14%">Vivian Boldo Lopes Zibell</td>
+                     <td class="data">22/07/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">612</td>
+                     <td class="nome" width="14%">Fernando Miguel De Melo Mollmann </td>
+                     <td class="data">22/07/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">597</td>
+                     <td class="nome" width="14%">Rodrigo Gruber Bogo</td>
+                     <td class="data">05/08/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">614</td>
+                     <td class="nome" width="14%">Thais Silva Moreira De Sousa</td>
+                     <td class="data">05/08/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">615</td>
+                     <td class="nome" width="14%">Daniel Ribas Rosa Frahm</td>
+                     <td class="data">05/08/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">616</td>
+                     <td class="nome" width="14%">Euclides Maraschi Junior</td>
+                     <td class="data">19/08/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">618</td>
+                     <td class="nome" width="14%">Aurélia Maria Santos</td>
+                     <td class="data">19/08/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">619</td>
+                     <td class="nome" width="14%">Luciano De Bitencourt Goulart</td>
+                     <td class="data">19/08/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">625</td>
+                     <td class="nome" width="14%">Plinio Barroso De Castro Filho</td>
+                     <td class="data">09/09/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">627</td>
+                     <td class="nome" width="14%">Rodolfo Batista De Lima</td>
+                     <td class="data">09/09/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">629</td>
+                     <td class="nome" width="14%">Willian Cristi Levati De Aguiar</td>
+                     <td class="data">09/09/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">631</td>
+                     <td class="nome" width="14%">Regiane Soares Dos Santos Sabatini</td>
+                     <td class="data">16/09/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">637</td>
+                     <td class="nome" width="14%">Jaime Do Nascimento Maximiano Junior</td>
+                     <td class="data">13/10/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">640</td>
+                     <td class="nome" width="14%">Lígia Dias </td>
+                     <td class="data">20/10/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">635</td>
+                     <td class="nome" width="14%">Alex Sandro Vieira Felix</td>
+                     <td class="data">22/10/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">638</td>
+                     <td class="nome" width="14%">Juliana De Almeida Kurtz Schöntag</td>
+                     <td class="data">22/10/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">636</td>
+                     <td class="nome" width="14%">Odilson Fumagalli Avila</td>
+                     <td class="data">28/10/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">642</td>
+                     <td class="nome" width="14%">Elisa Brunken Da Silva</td>
+                     <td class="data">28/10/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">641</td>
+                     <td class="nome" width="14%">Amanda Priscila Pena Crepaldi</td>
+                     <td class="data">08/12/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">650</td>
+                     <td class="nome" width="14%">Alfeu Luiz  Brizolla</td>
+                     <td class="data">08/12/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">652</td>
+                     <td class="nome" width="14%">Emanuel Da Silva Gomes</td>
+                     <td class="data">09/12/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">653</td>
+                     <td class="nome" width="14%">Camila Padilha Presotto</td>
+                     <td class="data">18/12/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">655</td>
+                     <td class="nome" width="14%">Douglas Thainan Santin</td>
+                     <td class="data">18/12/2025 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">657</td>
+                     <td class="nome" width="14%">Glauber Roberto Schmit</td>
+                     <td class="data">03/02/2026 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">661</td>
+                     <td class="nome" width="14%">Tamara Kisner Roque</td>
+                     <td class="data">03/02/2026 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">663</td>
+                     <td class="nome" width="14%">Juliana Pereira</td>
+                     <td class="data">03/03/2026 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">668</td>
+                     <td class="nome" width="14%">Paulo Roberto Abujanra</td>
+                     <td class="data">19/03/2026 </td>
+                     <td class="situacao">Regular </td>
+               
+	
+			
+	<tr title="Clique para mais informações" class="row">
+                     <td class="aarc">670</td>
+                     <td class="nome" width="14%">Marcelo Marinho De Camargo</td>
+                     <td class="data">08/04/2026 </td>
+                     <td class="situacao">Regular </td>
+               
+      </tr></tbody></table>
+     </div> 
+</body>
+</html>

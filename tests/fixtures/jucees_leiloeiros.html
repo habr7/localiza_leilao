@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.1.2/tailwind.min.css"></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+
+    <style type="text/tailwindcss">
+        @layer base {
+            *{
+                box-sizing: border-box;
+            }
+            #card-img{
+                height: 121.7px;
+                max-width: auto;
+            }
+            #card-title{
+                white-space: nowrap; 
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .page-title{
+                color: #3276AE;
+            }
+            
+            a {
+                color: #3276AE;
+                border-color: #3276AE;
+            }
+
+            .button{
+                background-color: #3276AE;
+            }
+            .button:hover{
+                background-color: #2B5683;
+                cursor: pointer;
+            }
+            .leiloeiro-header-card{
+                background-color: #3276AE;
+            }
+            .document-list{
+
+            }
+            .document-item{
+                background-color: #3276AE;
+            }
+            .document-item:hover{
+                background-color: #2B5683;
+            }
+        }
+        /* Common Styles */
+        @layer components {
+            .slide{
+                @apply w-full h-full relative
+            }
+            .image{
+                @apply w-full h-full object-cover 
+            }
+            .arrow {
+                @apply md:text-xl sm:text-base text-xs 
+                font-bold absolute top-1/2 translate-y-[-50%] 
+                scale-[2] rounded-full
+            }
+            .prev{
+                @apply left-5 sm:px-2 px-1.5 py-0.5
+            }
+            .next{
+                @apply right-5 sm:px-2 px-1.5 py-0.5 
+            }
+        }
+    </style>
+
+    <title>JUCEES Leiloes</title>
+</head>
+
+<body class="m-0 p-0 h-full box-border text-gray-700">
+    <header class="border-b-2 align-middle text-sky-500 font-bold mb-12">
+        <nav class="pb-1.5 flex flex-col md:flex-row justify-around text-sky-500 text-2xl">
+            <div class="m-auto">
+                <a href="/">
+                    <img class="h-40 w-40" src="./src/images/jucees-logo.webp" alt="logo">
+                </a>
+            </div>
+            <div class="m-auto ">
+                <ul class="flex flex-col gap-5 md:flex-row">
+                    <li class="text-center"><a class="hover:border-b-4" href="/">Leilões</a></li>
+                    <li class="text-center"><a class="hover:border-b-4" href="/documentos">Documentação</a></li>
+                    <li class="text-center"><a class="hover:border-b-4 " href="/leiloeiros">Leiloeiros</a></li>
+                </ul>
+            </div>
+            <div class="mt-8 m-auto md:m-auto">
+                                    <a class="hover:border-b-4" href="/login">login</a>
+                
+            </div>
+        </nav>
+    </header>
+    <div class="flex flex-col">
+    <div class="mx-5 flex flex-wrap flex-col justify-center text-grey-700 gap-4 md:flex-row justify-between">
+        <h1 class="page-title text-center my-auto text-4xl font-extrabold leading-none tracking-tight">Leiloeiros</h1>
+
+        
+        <form class="flex justify-center gap-2" action="">
+            <select class="px-2 py-1  rounded border border-black bg-white focus:outline-none" id="situacao" name="situacao">
+                <!-- <option selected disabled value=""></option> -->
+                <option  value="regular">regular</option>
+                <option  value="irregular">irregular</option>
+            </select>
+            <button class="button px-2 py-1 rounded text-gray-50" type="submit">Filtrar</button>
+        </form>
+
+    </div>
+
+    <div id="separator" class="w-full h-[2px] my-5 bg-gray-200"></div>
+
+    <div class="flex flex-col gap-2 md:p-12 pt-6">
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 002/1976</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: DJANIR DA RÓS </p>
+                        <p>Endereço: Rua Cabo Aylson Simões, 429, , Centro, Vila Velha - ES / CEP: 29100320</p>
+                        <p>E-mail: ddr.djanir@hotmail.com</p>
+                        <p>Telefone(s): 27999822130 / </p>
+                        <p>Site: <a href="https://www.djanirleiloes.com.br" target="_blank">https://www.djanirleiloes.com.br</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 005/1978</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: ALEXANDRE BUAIZ NETO </p>
+                        <p>Endereço: Rodovia do Sol, 5000, Km 29,5, Praia do Sol, Guarapari - ES / CEP: 29222-500</p>
+                        <p>E-mail: alexandrebuaizn@gmail.com</p>
+                        <p>Telefone(s): (27) 3322-9999 / (27) 3342-1641</p>
+                        <p>Site: <a href="https://www.buaizleiloes.com.br/" target="_blank">https://www.buaizleiloes.com.br/</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 007/1984</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: ORLANDO LOPES FERNANDES </p>
+                        <p>Endereço: Rua Sebastião da Silva Rabello, 115, 203B, Ed. Vila Branca, Jardim Camburi, Vitória - ES / CEP: 29090800</p>
+                        <p>E-mail: lopes.fernandes@uol.com.br</p>
+                        <p>Telefone(s): (27) 99892-3207 / (27) 3337-5000</p>
+                        <p>Site: <a href="https://www.leilobras.lel.br/ " target="_blank">https://www.leilobras.lel.br/ </a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 008/1984</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: SÉRGIO DE PAULA PEREIRA </p>
+                        <p>Endereço: Av. Munir Hilal, 342, Edificio Alfredro Mamer, Jardim Camburi, Vitória - ES / CEP: 29090-430</p>
+                        <p>E-mail: sergiocascao2@gmail.com</p>
+                        <p>Telefone(s): (27) 99982-3998 / </p>
+                        <p>Site: <a href="https://www.esleiloes.com.br/" target="_blank">https://www.esleiloes.com.br/</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 019/1993</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: MARIA AMÉLIA DYNA DE SOUZA </p>
+                        <p>Endereço: Avenida Perimetral, s/n, , Coqueiral de Itaparica, Vila Velha - ES / CEP:  29102-903</p>
+                        <p>E-mail: ameliadyna@yahoo.com.br</p>
+                        <p>Telefone(s): (27) 3229-2291 / (27) 99878-3273</p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 037/1993</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: MAURO CESAR ROCHA </p>
+                        <p>Endereço: Av. Saturnino de Brito, 995, Aptº 1201,  Praia do Canto, Vitória - ES / CEP: 29055-180</p>
+                        <p>E-mail: mcesarrocha@terra.com.br</p>
+                        <p>Telefone(s): (27) 99982-8412 / (27) 3227-6959</p>
+                        <p>Site: <a href="http://www.leilofacil.lel.br/ " target="_blank">http://www.leilofacil.lel.br/ </a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 039/1993</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: SUED PETER BASTOS DYNA </p>
+                        <p>Endereço: Av. Santa Leopoldina, 2300-A, , Itaparica, Vila Velha - ES / CEP: 29102040</p>
+                        <p>E-mail: suedpeter@hotmail.com</p>
+                        <p>Telefone(s): (27) 99779-8227 / </p>
+                        <p>Site: <a href="https://www.suedpeterleiloes.com.br/" target="_blank">https://www.suedpeterleiloes.com.br/</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 051/2006</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: MAURO COLODETE </p>
+                        <p>Endereço: Rua Ademar Luiz Nepomoceno, 150,  Bloco C, Apto 302, Jardim Camburi, Vitória - ES / CEP:  29090-520</p>
+                        <p>E-mail: sac@colodeteleiloes.com.br</p>
+                        <p>Telefone(s): (27) 99955-5000 / (28) 3542-3333</p>
+                        <p>Site: <a href="https://colodeteleiloes.com.br/ " target="_blank">https://colodeteleiloes.com.br/ </a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 052/2007</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: HIDIRLENE DUSZEIKO </p>
+                        <p>Endereço: Rua Jurandir Ferreira, 10, , Barra do Jucu, Vila Velha - ES / CEP: 29125-065</p>
+                        <p>E-mail: hidirlene@hdleiloes.com.br</p>
+                        <p>Telefone(s): 0800 707 9339 / </p>
+                        <p>Site: <a href="https://www.hdleiloes.com.br/" target="_blank">https://www.hdleiloes.com.br/</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 055/2013</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: GABRIEL FARDIN PEREIRA </p>
+                        <p>Endereço: Rua Misael Pedreira da Silva, 70, Ed. Medical Center, sala 805, Praia do Sua, Vitória - ES / CEP: 29056-230</p>
+                        <p>E-mail: gabrielleiloes@gmail.com</p>
+                        <p>Telefone(s): (27) 3315-5148 / (27) 99892-5148</p>
+                        <p>Site: <a href="https://www.vixleiloes.com.br/" target="_blank">https://www.vixleiloes.com.br/</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 058/2014</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: AYRTON DE SOUZA PORTO FILHO </p>
+                        <p>Endereço: Av. Nossa Senhora da Penha, 356, sala 9, 2º piso, Shop. Boulevard da Praia do Canto, Praia do Canto, Vitória - ES / CEP: 29055-131</p>
+                        <p>E-mail: contato@emleilao.com.br</p>
+                        <p>Telefone(s): (27) 4141-4321 / (27) 98146-1234</p>
+                        <p>Site: <a href="https://www.emleilao.com.br" target="_blank">https://www.emleilao.com.br</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 061/2015</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: PIETRANGELO ROSALÉM </p>
+                        <p>Endereço: Rua Padre Antônio Ribeiro Pinto, 38, apto 310, Praia do Suá, Vitória - ES / CEP: 29960-000</p>
+                        <p>E-mail: pietrangelorosalem@gmail.com</p>
+                        <p>Telefone(s): (27) 99944-7575 / (27) 99944-0405</p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 062/2017</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: RENAN NERIS DA SILVA </p>
+                        <p>Endereço: Rodovia Adolfo Serra, 55, , Centro, Conceição da Barra - ES / CEP: 29960-000</p>
+                        <p>E-mail: renan290592@gmail.com</p>
+                        <p>Telefone(s): (27) 99640-6443 / </p>
+                        <p>Site: <a href="https://www.renannerisleiloeiro.com.br/" target="_blank">https://www.renannerisleiloeiro.com.br/</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 063/2018</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: FLÁVIA DE OLIVEIRA ROCHA </p>
+                        <p>Endereço: Av. Saturnino de Brito, 995,  Aptº 1201, Praia do Canto, Vitória - ES / CEP: 29055-180</p>
+                        <p>E-mail: fla.rocha@terra.com.br</p>
+                        <p>Telefone(s): (27) 98128-3929 / (27) 3227-6959</p>
+                        <p>Site: <a href="https://www.leilofacil.lel.br/ " target="_blank">https://www.leilofacil.lel.br/ </a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 064/2019</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: CAROLINE DE SOUSA RIBAS </p>
+                        <p>Endereço: Rua Deolinda Perim, 50 , Aptº 805, Ed. Corais de Parati, Itapuã, Vila Velha - ES / CEP: 29101-811</p>
+                        <p>E-mail: desousacarol79@gmail.com</p>
+                        <p>Telefone(s): (27) 99832-6223 / (27) 99854-9474</p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 065/2019</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: ALEXSANDER PRETTI DOMINGOS </p>
+                        <p>Endereço: Rua Antônio Pagani, 245, , Maria das Graças, Colatina - ES / CEP:  29705-092</p>
+                        <p>E-mail: alexsanderpretti@hotmail.com</p>
+                        <p>Telefone(s): (27) 99987-1003 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 066/2019</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: BRENNO DE FIGUEIREDO PORTO </p>
+                        <p>Endereço: Rua Dr Jairo de Matos, 600, loja 01, Praia da Costa, Vila Velha - ES / CEP: 29101-310</p>
+                        <p>E-mail: brenno@portoleiloes.com.br</p>
+                        <p>Telefone(s): (27) 99865-8986 / </p>
+                        <p>Site: <a href="https://www.portoleiloes.com.br/" target="_blank">https://www.portoleiloes.com.br/</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 068/2020</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: SANDRA DE FÁTIMA SANTOS </p>
+                        <p>Endereço: Rua Voluntário da Pátria, 198, Ed. Ouro , Centro, Visconde do Rio Branco - MG / CEP: 36520-000</p>
+                        <p>E-mail: sandrafsantosleiloeira@gmail.com</p>
+                        <p>Telefone(s): (32) 98809-4182 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 069/2020</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: RONALD DE FREITAS MOREIRA </p>
+                        <p>Endereço: Rua Paulo Roberto de Carvalho, 22, , Felipe Rachid, Visconde do Rio Branco - MG / CEP: 36520-000</p>
+                        <p>E-mail: ronaldfmoreira@gmail.com</p>
+                        <p>Telefone(s): (32) 99199-8124 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 070/2020</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: LUCAS RAFAEL ANTUNES MOREIRA </p>
+                        <p>Endereço: Avenida Atlântica,  1487, Apartamento 301,  Ed Nova Era, Praia do Morro, Guarapari - ES / CEP: 29216-100</p>
+                        <p>E-mail: lucasleiloeiro@yahoo.com.br</p>
+                        <p>Telefone(s): (27) 99991-8317 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 071/2020</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: FERNANDO CAETANO MOREIRA FILHO </p>
+                        <p>Endereço: Rua Um, 300 B, Box 15, Comercio, Contagem - MG / CEP: 32152-002</p>
+                        <p>E-mail: fernandoleiloeiro@yahoo.com.br</p>
+                        <p>Telefone(s): (37) 99862-5659 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 072/2020</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: JONAS GABRIEL ANTUNES MOREIRA </p>
+                        <p>Endereço: Rua Major Manoel Antonio, 08,  sala 101  CXP 83, Centro, Para de Minas - MG / CEP: 35660-010</p>
+                        <p>E-mail: jonasleiloeiro@yahoo.com.br</p>
+                        <p>Telefone(s): (37) 99862-5727 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 073/2020 </h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: GUSTAVO BOLZAN </p>
+                        <p>Endereço: Rua Domingos Lourencini Oliveira, 04, , Parque Laranjeiras, Cachoeiro de Itapemirim - ES / CEP: 29317-060</p>
+                        <p>E-mail: gustavo@gbleiloes.com.br</p>
+                        <p>Telefone(s): (28) 99956-5850 / </p>
+                        <p>Site: <a href="https://www.gbleiloes.com.br/" target="_blank">https://www.gbleiloes.com.br/</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 075/2020</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: ALEX WILLIAN HOPPE </p>
+                        <p>Endereço: Rua Alberto Tokarski, 11, , Centro, Canoinhas - SC / CEP: 89460-070</p>
+                        <p>E-mail: contato@hoppeleiloes.com.br</p>
+                        <p>Telefone(s): (47) 3622-5164 / </p>
+                        <p>Site: <a href="https://www.hoppeleiloes.com.br/" target="_blank">https://www.hoppeleiloes.com.br/</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 077/2021</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: RUDIVAL ALMEIDA GOMES JÚNIOR </p>
+                        <p>Endereço: Av. Luiz Viana Filho, 6442, Empresarial Wall Street, Torre A – East, Sala 509, Patamares, Salvador - BA / CEP: 41730-101</p>
+                        <p>E-mail: rudival@rjleiloes.com.br</p>
+                        <p>Telefone(s): (71) 98211-2013 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 078/2021</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: JOSÉ SÉRGIO DELLA GIUSTINA </p>
+                        <p>Endereço: Rua Felipe Schmidt, 303, sala 201, , Centro,  Florianópolis - SC / CEP: 88010-903</p>
+                        <p>E-mail: contato@macedoleiloes.com.br</p>
+                        <p>Telefone(s): (48) 3030-9600 / (48)99120-5753</p>
+                        <p>Site: <a href="https://www.macedoleiloes.com.br" target="_blank">https://www.macedoleiloes.com.br</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 081/2021</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: MARCUS ALLAIN DE OLIVEIRA BARBOSA </p>
+                        <p>Endereço: Rua Vasco Coutinho, 120, , Barra do Jucu, Vila Velha - ES / CEP:  29125-092</p>
+                        <p>E-mail: maleiloesro@gmail.com</p>
+                        <p>Telefone(s): (27) 99750-2672 / (69)  98464-9997</p>
+                        <p>Site: <a href="https://www.maleiloesro.com.br" target="_blank">https://www.maleiloesro.com.br</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 083/2022</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: PÂMELA DE SOUZA ALVES </p>
+                        <p>Endereço: Sitio Serrote, s/n, , Zona Rural,  Guiricema - MG / CEP: 36525-000</p>
+                        <p>E-mail: pamelaalvesleiloeira@gmail.com</p>
+                        <p>Telefone(s): (32) 99834-5630 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 084/2022</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: RUAM CARLOS CHAVES GOTARDO </p>
+                        <p>Endereço: Avenida Jerônimo Monteiro, 1000, SL 1106 Ed. Trade Center, Centro , Vitória - ES / CEP: 29010-935</p>
+                        <p>E-mail:  contato@leiloesnovaserrana.com.br</p>
+                        <p>Telefone(s): (27) 98825-4332 / </p>
+                        <p>Site: <a href="www.ruamgotardoleiloes.com.br" target="_blank">www.ruamgotardoleiloes.com.br</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 085/2022</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: TIAGO TESSLER BLECHER </p>
+                        <p>Endereço: QE 26, 05, Conjunto G, Casa 05, Conjunto G, Casa 05, Brasília - DF / CEP: 71060-071</p>
+                        <p>E-mail: credenciamento@webleiloes.com.br</p>
+                        <p>Telefone(s): (11) 3392-3446 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 087/2022</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: RENATO SCHLOBACH MOYSES </p>
+                        <p>Endereço: Rua Barão de Jaceguai, 1046, Apartamento 142, Campo Belo, São Paulo - SP / CEP: 04606-001</p>
+                        <p>E-mail: renato.moyses@majudicial.com.br</p>
+                        <p>Telefone(s): (11) 98111-1062 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 089/2023</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: GUSTAVO MORETTO GUIMARÃES DE OLIVEIRA </p>
+                        <p>Endereço: Estrada Municipal Teodor Condiev, 970, Sl1010, Jd. Marchissolo Sumaré, São Paulo - SP / CEP: 13.171-105</p>
+                        <p>E-mail: contato@gustavomorettoleiloeiro.com.br</p>
+                        <p>Telefone(s): (19) 3514-3740 / </p>
+                        <p>Site: <a href="www.gustavomorettoleiloeiro.com.br" target="_blank">www.gustavomorettoleiloeiro.com.br</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 090/2023</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: GUSTAVO MARTINS ROCHA </p>
+                        <p>Endereço: Orminda Machado Duarte, 235, , Praia das Gaivotas, Vila Velha - ES / CEP: 29102-568</p>
+                        <p>E-mail: grleiloes@grleiloes.com</p>
+                        <p>Telefone(s): (98) 4141-2441 / (27) 98144-4535</p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 092/2023</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: ALESSANDRO DE ASSIS TEIXEIRA </p>
+                        <p>Endereço: Maria Grazia Errico, 70, , Jardim Elvira Dias, Poços de Caldas - MG / CEP:  37718-104</p>
+                        <p>E-mail:  contato@alessandroteixeiraleiloes.com.br</p>
+                        <p>Telefone(s): (35) 99228-1011 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 096/2024</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: ERICK SOARES TELES </p>
+                        <p>Endereço: Avenida Francisco Matarazzo, 1752, Conj. 2305, Água Branca, São Paulo - SP / CEP: 05001-200</p>
+                        <p>E-mail: teles@teza.com.br</p>
+                        <p>Telefone(s): (11)99839-9041 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 097/2024</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: DANIEL MELO CRUZ </p>
+                        <p>Endereço:  Miguel Stefano, 3335/1319/1320, , Jardim Virgínia, Guarujá - SP / CEP: 11440-530</p>
+                        <p>E-mail: priscilla@grupolance.com.br</p>
+                        <p>Telefone(s): (13) 99665-0972 / (11) 3003-0577</p>
+                        <p>Site: <a href="http://www.grupolance.com.br" target="_blank">http://www.grupolance.com.br</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 099/2024</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: CARLA KARINE SANTOS AGOSTINHO </p>
+                        <p>Endereço: Ilacir Pereira Lima, 506, SALA 102B, Silveira, Belo Horizonte - MG / CEP: 31140-540</p>
+                        <p>E-mail: carlaleiloeira@gmail.com</p>
+                        <p>Telefone(s): (31) 99219-9258 / (31) 2555-0211 </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 100/2024</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: PAULO CESAR AGOSTINHO </p>
+                        <p>Endereço: Ilacir Pereira Lima, 506, SALA 102B, Silveira, Belo Horizonte - MG / CEP: 31140-540</p>
+                        <p>E-mail: agostinho@agostinholeiloes.com.br</p>
+                        <p>Telefone(s): (31) 98754-5246 / (31) 2555-0211</p>
+                        <p>Site: <a href="https://www.agostinholeiloes.com.br/" target="_blank">https://www.agostinholeiloes.com.br/</a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 101/2024</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome:  VICTOR DE ALMEIDA DOMINGUES CUNHA </p>
+                        <p>Endereço: Antônio Gil Vellozo, 400, Apartamento 904,  Praia da Costa, Vila Velha - ES / CEP: 29101-010</p>
+                        <p>E-mail: victor@almeidacunha.com</p>
+                        <p>Telefone(s): (27) 98811-4221 / (27) 3141-6460</p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 103/2024</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: DANIEL ELIAS GARCIA </p>
+                        <p>Endereço: R. Amélia da Cunha Ornelas, 89, , Bento Ferreira, Vitória - ES / CEP: 29050-620</p>
+                        <p>E-mail: contato@dgleiloes.com.br</p>
+                        <p>Telefone(s): 0800 278 7431 / </p>
+                        <p>Site: <a href="https://danielgarcialeiloes.com.br/ " target="_blank">https://danielgarcialeiloes.com.br/ </a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 104/2024</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: THIECO WAYNER MOZART MIGUEL GALVÃO </p>
+                        <p>Endereço: Rua Carlos Martins, Rua - Carlos Martins, , Jardim Camburi, Vitória - ES / CEP: 29090060</p>
+                        <p>E-mail: thiecowayner@hotmail.com</p>
+                        <p>Telefone(s): (27) 99829-3299 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 111/2024</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: LUIZ ROBERTO DE OLIVEIRA BRENNEKEN </p>
+                        <p>Endereço: Av. Brigadeiro Mário Epinghaus, 78 Sl 110, , Centro, Lauro de Freitas - BA / CEP: 42703-640</p>
+                        <p>E-mail: lubre@lubreleiloes.com.br</p>
+                        <p>Telefone(s): (71) 99175-9767 / </p>
+                        <p>Site: <a href="www.lubreleiloes.leilao.br " target="_blank">www.lubreleiloes.leilao.br </a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 113/2025</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: MANUELA MASAI VILAR VIEIRA DO NASCIMENTO </p>
+                        <p>Endereço: Rua Professor Antônio Dias de Souza, 73, segundo andar, Antônio Honório, Vitória - ES / CEP: 29070840</p>
+                        <p>E-mail: empresa.masai@gmail.com</p>
+                        <p>Telefone(s): (27) 997176911 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 114/2025</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: GIOVANA MARQUES COELHO BASTOS </p>
+                        <p>Endereço: Castelo Branco, 150, apto 603, Praia da Costa, Vitória - ES / CEP: 29101480</p>
+                        <p>E-mail: giovanamcb@hotmail.com</p>
+                        <p>Telefone(s): (27) 99798-1555 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 116/2025</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: SARA CORONA JUNQUEIRA </p>
+                        <p>Endereço: CELSO FRANCSICO BORGES, 120, , SANTA MONICA, Baixo Guandu - ES / CEP: 29730000</p>
+                        <p>E-mail: gestao.scj@gmail.com</p>
+                        <p>Telefone(s): (27) 99786-8593 / (27) 9786-8593</p>
+                        <p>Site: <a href="www.leiloescapixaba.com.br " target="_blank">www.leiloescapixaba.com.br </a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 117/2025</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: MARCELO SEPULCRI VALADARES </p>
+                        <p>Endereço: Sete de Setembro, 270, 406, Centro, Vitória - ES / CEP: 29015000</p>
+                        <p>E-mail: marcelosvaladares@gmail.com</p>
+                        <p>Telefone(s): (27) 99993-3300 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 118/2025</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: ELIZABETH DE CARVALHO BORGES </p>
+                        <p>Endereço: Santo Ignácio, 38, , Recanto, Cachoeiro de Itapemirim - ES / CEP: 29303125</p>
+                        <p>E-mail: betsy@vendaemgaragem.com</p>
+                        <p>Telefone(s): (28) 99258-1511 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 119/2025</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: LUIS OTAVIO MARCOLINO SHINKAWA </p>
+                        <p>Endereço: QUINTINO BOCAIUVA, 248, , CENTRO, Elói Mendes - MG / CEP: 37110000</p>
+                        <p>E-mail: luisotavioshinkawa@hotmail.com</p>
+                        <p>Telefone(s): (35) 99710-0861 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 120</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: COSME MARTINS </p>
+                        <p>Endereço: Carolina Leal, 14, , Olaria, Vila Velha - ES / CEP: 29100-510</p>
+                        <p>E-mail: cosmemartins666@gmail.com</p>
+                        <p>Telefone(s): (27) 99625-5454 / </p>
+                        <p>Site: <a href="" target="_blank"></a></p>
+                                            </div>
+                            </div>
+                    <div id="leiloeiro-row" class="leiloeiro-card border">
+
+                                    <div class="leiloeiro-header-card p-2 flex justify-center text-4xl">
+                        <h2 class="text-center textfont-bold text-neutral-50">matricula: 122</h2>
+                    </div>
+                    <div class="p-2">
+
+                        <p>Nome: IRANI FLORES </p>
+                        <p>Endereço: AV PAULISTA , 2421, SALA 28 2 ANDAR, BELA VISTA, SÃO PAULO - SP / CEP:  01311-300</p>
+                        <p>E-mail: irani.flores@leilaobrasil.com.br</p>
+                        <p>Telefone(s):  11 3965-0000 / </p>
+                        <p>Site: <a href="www.leilaobrasil.com.br " target="_blank">www.leilaobrasil.com.br </a></p>
+                                            </div>
+                            </div>
+            </div>
+</div>    <!-- <footer class="mt-12 fixed bottom-0 left-0 z-20 w-full bg-white border-t-2 p-5 flex justify-center">
+        <p>
+            &copy;JUCEES - 
+                    </p>
+    </footer> -->
+
+    <script src="main.js"></script>
+</body>
+
+
+</html>

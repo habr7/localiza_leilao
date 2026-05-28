@@ -7,9 +7,14 @@ import pytest
 from src.leiloeiros.juntas import (
     JUNTAS_DISPONIVEIS,
     JucebScraper,
+    JucecScraper,
+    JuceesScraper,
     JucegScraper,
     JucemgScraper,
+    JucemsScraper,
+    JuceparScraper,
     JucerjaScraper,
+    JucescScraper,
     JucespScraper,
 )
 
@@ -17,11 +22,20 @@ FIXTURES = Path(__file__).parent / "fixtures"
 
 
 def test_registro_de_juntas():
-    assert JUNTAS_DISPONIVEIS["JUCESP"].uf == "SP"
-    assert JUNTAS_DISPONIVEIS["JUCERJA"].uf == "RJ"
-    assert JUNTAS_DISPONIVEIS["JUCEMG"].uf == "MG"
-    assert JUNTAS_DISPONIVEIS["JUCEG"].uf == "GO"
-    assert JUNTAS_DISPONIVEIS["JUCEB"].uf == "BA"
+    esperado = {
+        "JUCESP": "SP",
+        "JUCERJA": "RJ",
+        "JUCEMG": "MG",
+        "JUCEG": "GO",
+        "JUCEB": "BA",
+        "JUCEPAR": "PR",
+        "JUCESC": "SC",
+        "JUCEC": "CE",
+        "JUCEMS": "MS",
+        "JUCEES": "ES",
+    }
+    for sigla, uf in esperado.items():
+        assert JUNTAS_DISPONIVEIS[sigla].uf == uf
 
 
 def test_fonte_cadastro_derivada():
@@ -98,3 +112,49 @@ def test_parse_juceb_extrai_leiloeiros():
     assert paulo.uf_matricula == "BA"
     assert paulo.site_oficial == "http://www.leiloesjudiciaisbahia.com.br"
     assert sum(1 for r in registros if r.site_oficial) > 20
+
+
+def test_parse_jucepar_com_site():
+    registros = JuceparScraper()._parse(
+        (FIXTURES / "jucepar_leiloeiros.html").read_text(encoding="utf-8")
+    )
+    assert len(registros) > 100
+    assert all(r.uf_matricula == "PR" for r in registros)
+    # A JUCEPAR traz site na maioria dos itens (alvo do scraper da Fase 3.2).
+    assert sum(1 for r in registros if r.site_oficial) > 50
+
+
+def test_parse_jucesc_tabela():
+    registros = JucescScraper()._parse(
+        (FIXTURES / "jucesc_leiloeiros.html").read_text(encoding="utf-8")
+    )
+    assert len(registros) > 100
+    assert all(r.uf_matricula == "SC" for r in registros)
+
+
+def test_parse_jucec_com_site():
+    registros = JucecScraper()._parse(
+        (FIXTURES / "jucec_leiloeiros.html").read_text(encoding="utf-8")
+    )
+    assert len(registros) > 30
+    assert all(r.uf_matricula == "CE" for r in registros)
+    assert any(r.site_oficial for r in registros)
+
+
+def test_parse_jucems_blocos_com_site():
+    registros = JucemsScraper()._parse(
+        (FIXTURES / "jucems_leiloeiros.html").read_text(encoding="utf-8")
+    )
+    assert len(registros) > 50
+    assert all(r.uf_matricula == "MS" for r in registros)
+    assert sum(1 for r in registros if r.site_oficial) > 20
+
+
+def test_parse_jucees_cards():
+    registros = JuceesScraper()._parse(
+        (FIXTURES / "jucees_leiloeiros.html").read_text(encoding="utf-8")
+    )
+    assert len(registros) > 30
+    assert all(r.uf_matricula == "ES" for r in registros)
+    por_nome = {r.nome: r for r in registros}
+    assert "DJANIR DA RÓS" in por_nome

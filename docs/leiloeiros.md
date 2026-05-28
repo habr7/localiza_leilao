@@ -44,8 +44,12 @@ Implementado em `src/leiloeiros/resolver.py` + `src/leiloeiros/matricula.py`:
   IP residencial/proxy/navegador.
 
 ### Cadastro atual (carga ao vivo)
-410 leiloeiros não-SP: MG 228, BA 96, GO 81, RJ 5. Muitos com `site_oficial` — é a
-lista de sites que o scraper de lotes-alvo (Fase 3.2, por plataforma) vai varrer.
+**1028 leiloeiros não-SP** em 9 UFs: SC 296, MG 228, PR 130, BA 96, MS 88, GO 81,
+CE 54, ES 50, RJ 5. Muitos com `site_oficial` (PR/MS/CE/ES/MG/GO/BA trazem site na
+lista) — é a relação de sites que o scraper de lotes-alvo (Fase 3.2, por plataforma)
+varre. Juntas novas implementadas: JUCEPAR (collapsible+site), JUCESC (tabela),
+JUCEC (tabela+site), JUCEMS (blocos+site), JUCEES (cards+site). Algumas exigem UA de
+navegador (WAF) — ver `BROWSER_UA` em `juntas/base.py`.
 
 ### Prioridade de UFs (de onde mais saem leiloeiros que atuam em SP)
 RJ, MG, PR, RS, SC, DF, GO primeiro; demais depois.
