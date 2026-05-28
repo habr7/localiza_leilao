@@ -115,3 +115,56 @@ uv run python -m src.scripts.fase3_identificar_imoveis --max-paginas 20
 > (o que agora acontece). O próximo ganho real de cobertura vem dos **sites
 > próprios de leiloeiros não-SP** e das **comunicações à JUCESP**, não de mais
 > agregadores.
+
+## 6. Sites próprios de leiloeiros não-SP — o que a varredura achou
+
+Cadastro populado a partir das Juntas (JUCEPAR + JUCEG): **328 leiloeiros não-SP,
+162 com site oficial**. A varredura heurística (`fase3_sites_proprios`) dos 162
+sites achou **571 indícios de SP em 37 sites**.
+
+### "Líder Leilões" desmistificado
+
+O site que dominava o CSV original — **`liderleiloes.com.br`** — é da leiloeira
+**CAROLINE DE SOUSA RIBAS, matriculada na JUCEPAR (PR)**. Ou seja: **não era
+artefato — é um verdadeiro alvo da tese** (leiloeira de fora com lotes em SP). O
+problema nunca foi "só ter o Líder"; foi **não ter os outros sites como o Líder**.
+A varredura encontrou mais 8 leiloeiros não-SP tocando em SP:
+
+| Leiloeiro | UF | Site | Cidades SP detectadas |
+|---|---|---|---|
+| Caroline de Sousa Ribas | PR | liderleiloes.com.br | Campinas, Santos, Guarujá, Santo André, S.B. Campo, Mauá, Diadema… |
+| Mauricio Sambugari A. | PR | andraleiloes.com.br | Andradina |
+| Spencer D'Avila Fogagnoli | PR | spencerleiloes.com.br | Diadema |
+| Catia F. Alievi Toporoski | PR | aleiloeira.leilao.br | Santo André |
+| Guilherme E. Stutz Toporoski | PR | topoleiloes.com.br | Santo André |
+| Felipe Guimarães Carrijo | GO | leilo.com.br | São Carlos (dados estruturados!) |
+| Davi Borges de Aquino | GO | alfaleiloes.com | Guarujá |
+| Edilson Lopes Rocha | GO | leilo.com.br | São Carlos |
+
+### Ressalva honesta: os indícios brutos precisam de triagem
+
+A heurística é boa para **descobrir** sites, não para extrair lote final. Os 571
+indícios misturam três coisas que ainda precisam ser separadas por um parser
+dedicado por site:
+
+1. **Imóvel real em SP** (o alvo) — ex.: `leilo.com.br` expõe JSON
+   `"localizacao":{"cidade":"SÃO CARLOS","estado":"SP"}`.
+2. **Endereço do próprio leiloeiro** — ex.: Andra Leilões "com escritório na
+   cidade de Andradina/SP" (ele é do PR, mas atua de SP — interessante, mas não é
+   um lote).
+3. **Lote de veículo/equipamento em SP** — ex.: no Líder, "Mauá-SP" era uma
+   *carregadeira Caterpillar*, não um imóvel.
+
+### Próximo passo recomendado (alto ROI)
+
+Escrever **parsers dedicados** para os leads mais promissores — começar por
+`leilo.com.br` (tem dados estruturados em JSON) e `liderleiloes.com.br` — extraindo
+o lote (endereço, tipo, lance, praça) e promovendo de "indício" a `lote` no banco,
+com `fonte_tipo='site_proprio'` (pontua mais no score). Esses são os imóveis-alvo
+de verdade da tese.
+
+Reproduzível com:
+```bash
+uv run python -m src.scripts.fase2_cadastrar_leiloeiros
+uv run python -m src.scripts.fase3_sites_proprios
+```
