@@ -65,9 +65,17 @@ Onde de fato moram os imóveis-alvo: o site do próprio leiloeiro de fora. Prime
 popule o cadastro a partir das Juntas (traz o `site_oficial`), depois varra:
 
 ```bash
-uv run python -m src.scripts.fase2_cadastrar_leiloeiros   # JUCEPAR + JUCEG -> 328 leiloeiros, 162 sites
-uv run python -m src.scripts.fase3_sites_proprios          # varre -> data/sites_proprios_sp.csv
+uv run python -m src.scripts.fase2_cadastrar_leiloeiros   # 5 Juntas -> ~530 leiloeiros, ~240 sites
+uv run python -m src.scripts.fase3_sites_proprios          # varredura heurística (descoberta)
+uv run python -m src.scripts.fase3_sites_dedicados         # parsers dedicados -> banco + CSV estruturado
 ```
+
+- **Descoberta** (`fase3_sites_proprios`): heurística sobre TODOS os sites do
+  cadastro → `data/sites_proprios_sp.csv` (indícios de imóvel em SP).
+- **Estruturado** (`fase3_sites_dedicados`): parsers dedicados por site
+  (`webleiloes`, `leiloariasmart`) que extraem o lote (tipo, cidade, lance, praça),
+  resolvem o leiloeiro dono e fazem upsert idempotente em `leiloes`/`lotes`/
+  `lote_fontes` → `data/imoveis_sp_sites_proprios.csv`.
 
 ## Status
 

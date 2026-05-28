@@ -93,6 +93,9 @@ class BaseScraper(abc.ABC):
 
     fonte_origem: str
     fonte_tipo: str
+    # Domínio do site, quando o scraper é dedicado a um site próprio (casa com o
+    # site_oficial do cadastro). Opcional: agregadores não usam.
+    dominio: str = ""
 
     def __init__(
         self,
