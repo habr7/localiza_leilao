@@ -15,6 +15,7 @@ import abc
 import asyncio
 import time
 import urllib.robotparser
+from typing import Self
 from dataclasses import dataclass, field
 from urllib.parse import urlsplit
 
@@ -105,7 +106,7 @@ class BaseScraper(abc.ABC):
         self._respeitar_robots = respeitar_robots
         self._robots: dict[str, urllib.robotparser.RobotFileParser | None] = {}
 
-    async def __aenter__(self) -> BaseScraper:
+    async def __aenter__(self) -> Self:
         if self._client is None:
             self._client = httpx.AsyncClient(
                 headers={"User-Agent": USER_AGENT}, timeout=30, follow_redirects=True
@@ -193,7 +194,3 @@ class BaseScraper(abc.ABC):
                 await asyncio.sleep(espera)
         log.error("fetch_falhou", fonte=self.fonte_origem, url=url)
         return None
-
-    @abc.abstractmethod
-    async def listar_lotes_sp(self, max_paginas: int | None = None) -> list[LoteRaw]:
-        """Lista os lotes de imóveis em SP da fonte."""

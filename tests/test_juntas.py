@@ -53,3 +53,36 @@ async def test_coletar_sem_url_lista_avisa_pendencia():
     """Sem URL de lista pública configurada, coletar sinaliza a pendência."""
     with pytest.raises(NotImplementedError):
         await JucespScraper().coletar()
+
+
+def test_jucepar_parse_extrai_nome_matricula_site():
+    """JUCEPAR: acordeão com nome, matrícula e site oficial."""
+    from pathlib import Path
+
+    from src.leiloeiros.juntas import JuceparScraper
+
+    html = (Path(__file__).parent / "fixtures" / "jucepar_lista.html").read_text(encoding="utf-8")
+    registros = JuceparScraper()._parse(html)
+    assert registros, "deveria extrair leiloeiros"
+    for r in registros:
+        assert r.nome and r.matricula
+        assert r.uf_matricula == "PR"
+        assert r.junta_comercial == "JUCEPAR"
+    # Ao menos um com site oficial detectado (o elo da Fase 3).
+    assert any(r.site_oficial and r.site_oficial.startswith("http") for r in registros)
+
+
+def test_juceg_parse_extrai_nome_matricula_site():
+    """JUCEG: texto corrido com cabeçalho de matrícula e site no bloco."""
+    from pathlib import Path
+
+    from src.leiloeiros.juntas import JucegScraper
+
+    html = (Path(__file__).parent / "fixtures" / "juceg_lista.html").read_text(encoding="utf-8")
+    registros = JucegScraper()._parse(html)
+    assert registros, "deveria extrair leiloeiros"
+    primeiro = registros[0]
+    assert primeiro.uf_matricula == "GO"
+    assert "/" in primeiro.matricula  # ex.: "008/95" (sem o " de DATA")
+    assert " de " not in primeiro.matricula
+    assert any(r.site_oficial for r in registros)

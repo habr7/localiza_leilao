@@ -91,6 +91,16 @@ def upsert_leiloeiros(session: Session, registros: list[LeiloeiroRaw]) -> Upsert
     if not valores:
         return stats
 
+    # Deduplica por (matricula, uf) dentro do mesmo lote: o PostgreSQL não aceita
+    # ON CONFLICT DO UPDATE atingindo a mesma linha duas vezes no mesmo comando.
+    # Mantém a última ocorrência (a lista pública pode repetir um leiloeiro).
+    unicos: dict[tuple[str, str], dict[str, object]] = {}
+    for v in valores:
+        chave = (str(v["matricula"]), str(v["uf_matricula"]))
+        if chave in unicos:
+            stats.ignorados += 1
+        unicos[chave] = v
+    valores = list(unicos.values())
     # Quais (matricula, uf) já existem? Para contar inseridos vs. atualizados.
     chaves = {(v["matricula"], v["uf_matricula"]) for v in valores}
     existentes_q = select(Leiloeiro.matricula, Leiloeiro.uf_matricula).where(

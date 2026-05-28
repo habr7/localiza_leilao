@@ -44,6 +44,22 @@ matrícula)**. Cruzar com o cadastro via `LeiloeiroResolver` e marcar `uf_leiloe
 Para cada leiloeiro não-SP do cadastro com `site_oficial`, varrer "leilões em
 andamento" e filtrar imóveis SP. `fonte_tipo = 'site_proprio'` (pontua mais no score).
 
+**Implementado** (`src/ingestao/sites_proprios/scanner.py` + script
+`fase3_sites_proprios`): como cada site tem estrutura própria (não há padrão), a
+varredura é **heurística e de descoberta** — baixa a home, segue links candidatos
+(imóveis/leilões/lotes) no mesmo domínio e procura sinais de imóvel em SP
+("Cidade/SP" ou "São Paulo" perto de palavra de imóvel), guardando o contexto para
+revisão. Os sites vêm do cadastro (Fase 2 — JUCEPAR/JUCEG já trazem 162 sites).
+
+Fluxo:
+```
+uv run python -m src.scripts.fase2_cadastrar_leiloeiros   # popula sites (Juntas)
+uv run python -m src.scripts.fase3_sites_proprios          # varre -> data/sites_proprios_sp.csv
+```
+
+Próximo passo natural: para os sites que derem indício de SP, escrever um parser
+dedicado (extrai lote estruturado) e promover de "indício" a `lote` no banco.
+
 ## Comunicações à JUCESP (fonte de ouro)
 Leiloeiro de fora é obrigado a comunicar leilão de bem em SP. Investigar lista
 pública; se não houver, protocolar LAI pedindo a relação mensal.

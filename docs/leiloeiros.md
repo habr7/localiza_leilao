@@ -21,13 +21,33 @@ Implementado em `src/leiloeiros/resolver.py` + `src/leiloeiros/matricula.py`:
   `coletar_csv(path)` (já funciona offline). Template de pedido LAI: ver abaixo.
 - **JUCESP** → coletar para excluir quem é de SP.
 
-### Pendência (sessão com rede)
-As URLs das listas públicas (`url_lista`) e os selectors de `_parse` precisam ser
-definidos inspecionando o HTML real. Hoje estão como `None` / `NotImplementedError`.
+### Status dos parsers de Junta (ao vivo)
+Investigadas as listas públicas das 7 Juntas não-SP. Situação:
+
+| Junta | UF | Lista pública | Parser | Leiloeiros | Com site |
+|---|---|---|---|---|---|
+| **JUCEPAR** | PR | acordeão HTML (`.collapsible-item`) | **feito** | 172 | 127 |
+| **JUCEG** | GO | texto corrido (`NOME (Matrícula: …)`) | **feito** | 156 | 35 |
+| JUCERJA | RJ | sem tabela navegável (JS) | pendente | — | — |
+| JUCEMG | MG | tabelas, mas sem site do leiloeiro | pendente | — | — |
+| JUCISRS | RS | conteúdo via JS / PDF (manual) | pendente | — | — |
+| JUCESC | SC | subportal `leiloeiros.jucesc.sc.gov.br` (frame) | pendente | — | — |
+| JUCISDF | DF | página WordPress comprometida (spam) | pendente | — | — |
+
+> **JUCEPAR e JUCEG são ouro**: publicam o **site oficial** de cada leiloeiro —
+> exatamente o que a Fase 3 (sites próprios) precisa. Rodar:
+> `uv run python -m src.scripts.fase2_cadastrar_leiloeiros`
+> (já carregou 328 leiloeiros não-SP, 162 com site).
+
+As demais Juntas (sem lista navegável com site) seguem pelo caminho LAI/CSV
+(`coletar_csv`) ou exigem PDF/JS — documentado para a próxima sessão.
+
 Homepages de referência:
-- JUCESP — https://www.jucesp.sp.gov.br
-- JUCERJA — https://www.jucerja.rj.gov.br
-- JUCEMG — https://www.jucemg.mg.gov.br
+- JUCESP — https://www.jucesp.sp.gov.br (lista de exclusão; pendente)
+- JUCERJA — https://www.jucerja.rj.gov.br/AuxiliaresComercio/Leiloeiros
+- JUCEMG — https://jucemg.mg.gov.br/pagina/139/leiloeiros-oficiais
+- JUCEPAR — https://www.juntacomercial.pr.gov.br/Pagina/LEILOEIROS-OFICIAIS-HABILITADOS
+- JUCEG — https://goias.gov.br/juceg/leiloeiros/
 
 ### Prioridade de UFs (de onde mais saem leiloeiros que atuam em SP)
 RJ, MG, PR, RS, SC, DF, GO primeiro; demais depois.
