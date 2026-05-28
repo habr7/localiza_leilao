@@ -22,22 +22,26 @@ Implementado em `src/leiloeiros/resolver.py` + `src/leiloeiros/matricula.py`:
 - **JUCESP** → coletar para excluir quem é de SP.
 
 ### Status dos parsers de Junta (ao vivo)
-Investigadas as listas públicas das 7 Juntas não-SP. Situação:
+Investigadas as listas públicas das Juntas não-SP. **5 Juntas com parser ao vivo**
+(todas publicam o site oficial do leiloeiro — o que a Fase 3 precisa):
 
 | Junta | UF | Lista pública | Parser | Leiloeiros | Com site |
 |---|---|---|---|---|---|
 | **JUCEPAR** | PR | acordeão HTML (`.collapsible-item`) | **feito** | 172 | 127 |
 | **JUCEG** | GO | texto corrido (`NOME (Matrícula: …)`) | **feito** | 156 | 35 |
+| **JUCEMAT** | MT | cartões (`.featured-box` + `ul.list-icons`) | **feito** | 135 | 63 |
+| **JUCEPB** | PB | texto rotulado (`Matrícula:`/`Site:`) | **feito** | 46 | 13 |
+| **JUCEPI** | PI | texto rotulado (`Matrícula:`/`Site:`) | **feito** | 26 | 3 |
 | JUCERJA | RJ | sem tabela navegável (JS) | pendente | — | — |
 | JUCEMG | MG | tabelas, mas sem site do leiloeiro | pendente | — | — |
 | JUCISRS | RS | conteúdo via JS / PDF (manual) | pendente | — | — |
-| JUCESC | SC | subportal `leiloeiros.jucesc.sc.gov.br` (frame) | pendente | — | — |
-| JUCISDF | DF | página WordPress comprometida (spam) | pendente | — | — |
+| JUCESC | SC | subportal (frame) | pendente | — | — |
+| JUCISDF | DF | WordPress comprometido (spam) | pendente | — | — |
 
-> **JUCEPAR e JUCEG são ouro**: publicam o **site oficial** de cada leiloeiro —
-> exatamente o que a Fase 3 (sites próprios) precisa. Rodar:
-> `uv run python -m src.scripts.fase2_cadastrar_leiloeiros`
-> (já carregou 328 leiloeiros não-SP, 162 com site).
+> Total no banco: **~530 leiloeiros não-SP em 5 UFs, ~240 com site oficial**.
+> Rodar: `uv run python -m src.scripts.fase2_cadastrar_leiloeiros`.
+> Juntas sem site na lista (JUCEMAT/JUCEES tinham nome+matrícula sem URL em
+> alguns layouts; RJ/MG/RS/SC/DF em JS/PDF) seguem por LAI/CSV ou parser dedicado.
 
 As demais Juntas (sem lista navegável com site) seguem pelo caminho LAI/CSV
 (`coletar_csv`) ou exigem PDF/JS — documentado para a próxima sessão.
