@@ -19,6 +19,7 @@ import urllib.robotparser
 from dataclasses import dataclass, field
 from datetime import datetime
 from decimal import Decimal
+from typing import Self
 from urllib.parse import urlparse, urlsplit, urlunsplit
 
 import httpx
@@ -98,19 +99,21 @@ class BaseScraper(abc.ABC):
         client: httpx.AsyncClient | None = None,
         rate_limiter: RateLimiter | None = None,
         intervalo_s: float = DELAY_PADRAO_S,
+        tentativas: int = MAX_TENTATIVAS,
+        timeout_s: float = 40.0,
     ) -> None:
         self._client = client
         self._client_proprio = client is None
         self._rate = rate_limiter or RateLimiter(intervalo_s)
+        # Em varreduras de muitos domínios (vários mortos), use poucas tentativas e
+        # timeout curto para falhar rápido em vez de gastar minutos em retries.
+        self._tentativas = max(1, tentativas)
+        self._timeout_s = timeout_s
         # Cache de robots.txt por domínio. None = liberar tudo (robots ausente).
         self._robots: dict[str, urllib.robotparser.RobotFileParser | None] = {}
 
-    async def __aenter__(self) -> BaseScraper:
-        if self._client is None:
-            self._client = httpx.AsyncClient(
-                headers={"User-Agent": USER_AGENT}, timeout=40, follow_redirects=True
-            )
-            self._client_proprio = True
+    async def __aenter__(self) -> Self:
+        self._get_client()
         return self
 
     async def __aexit__(self, *exc: object) -> None:
@@ -121,7 +124,7 @@ class BaseScraper(abc.ABC):
     def _get_client(self) -> httpx.AsyncClient:
         if self._client is None:
             self._client = httpx.AsyncClient(
-                headers={"User-Agent": USER_AGENT}, timeout=40, follow_redirects=True
+                headers={"User-Agent": USER_AGENT}, timeout=self._timeout_s, follow_redirects=True
             )
             self._client_proprio = True
         return self._client
@@ -145,16 +148,16 @@ class BaseScraper(abc.ABC):
         parser = self._robots[base]
         return True if parser is None else parser.can_fetch(USER_AGENT, url)
 
-    async def get(self, url: str) -> str:
+    async def get(self, url: str, headers: dict[str, str] | None = None) -> str:
         """Baixa uma URL respeitando robots.txt, throttling e retries com backoff."""
         if not await self._robots_permite(url):
             raise PermissionError(f"robots.txt proíbe acesso a {url}")
         dominio = urlparse(url).netloc
         ultimo_erro: Exception | None = None
-        for tentativa in range(1, MAX_TENTATIVAS + 1):
+        for tentativa in range(1, self._tentativas + 1):
             await self._rate.aguardar(dominio)
             try:
-                resp = await self._get_client().get(url)
+                resp = await self._get_client().get(url, headers=headers)
                 resp.raise_for_status()
                 return resp.text
             except (httpx.HTTPError, httpx.HTTPStatusError) as exc:
@@ -165,16 +168,12 @@ class BaseScraper(abc.ABC):
                     url=url,
                     tentativa=tentativa,
                     erro=str(exc),
-                    proxima_espera_s=espera if tentativa < MAX_TENTATIVAS else 0,
+                    proxima_espera_s=espera if tentativa < self._tentativas else 0,
                 )
-                if tentativa < MAX_TENTATIVAS:
+                if tentativa < self._tentativas:
                     await asyncio.sleep(espera)
         assert ultimo_erro is not None
         raise ultimo_erro
-
-    @abc.abstractmethod
-    async def listar_lotes_sp(self, limite: int | None = None) -> list[LoteRaw]:
-        """Lista os lotes de imóveis em SP da fonte (cru, antes de resolver UF)."""
 
 
 def canonical_url(url: str) -> str:

@@ -42,6 +42,29 @@ matrícula)**. Cruzar com o cadastro via `LeiloeiroResolver` e marcar `uf_leiloe
 Para cada leiloeiro não-SP do cadastro com `site_oficial`, varrer "leilões em
 andamento" e filtrar imóveis SP. `fonte_tipo = 'site_proprio'` (pontua mais no score).
 
+### Estratégia: scraper POR PLATAFORMA (não por leiloeiro)
+Sondando os ~189 `site_oficial` do cadastro, eles se agrupam em poucas plataformas
+(CMS/white-label) compartilhadas — então um scraper por plataforma cobre muitos
+leiloeiros (escalável para sites pequenos/obscuros, que é onde está a oportunidade).
+Clusters encontrados (por assinatura de assets):
+
+| Plataforma | Sites (na amostra) | Acesso aos dados | Status |
+|---|---|---|---|
+| **Suporte Leilões** | ~14 | `GET /api/buscadorMount?categoria=2` (JSON: imóveis por UF) + `GET /buscador?categoria=2&uf=SP&pagina=N` com header `X-Requested-With: XMLHttpRequest` (HTML renderizado, 12 lotes/página) | ✅ feito |
+| **vLance** (`/v3/js/vlance/…`) | ~9 | server-rendered + AJAX de lotes (endpoint a mapear) | a fazer |
+| **Superbid white-label** (`api.s4bdigital.net`) | ~11 | API Superbid; porém são white-labels do agregador (lotes também na Superbid → menos assimetria) | adiar |
+| Wix / outros | ~6 | heterogêneo | a fazer |
+
+> **Achado da Suporte Leilões (survey via buscadorMount):** 6 sites de leiloeiros
+> não-SP com imóveis em SP — liderleiloes (150), e-confianca (45), valeroleiloes
+> (32), marcoantonio (2), rodrigo (2). A carga ao vivo persistiu **179 lotes-alvo**
+> de 4 desses sites (liderleiloes 143, valero 32, marco 2, rodrigo 2); e-confianca
+> caiu por timeout intermitente (retentar). Os lotes-alvo (imóvel SP + leiloeiro
+> não-SP) entram com `fonte_tipo='site_proprio'` e são consultados via
+> `src/scripts/consultar_lotes_alvo.py` (CSV em `data/lotes_alvo.csv`).
+> Observação: nesta amostra todos vieram como `judicial` (eventos tipo TRT); filtrar
+> `--tipo extrajudicial` para focar na maior assimetria da tese.
+
 ## Comunicações à JUCESP (fonte de ouro)
 Leiloeiro de fora é obrigado a comunicar leilão de bem em SP. Investigar lista
 pública; se não houver, protocolar LAI pedindo a relação mensal.
