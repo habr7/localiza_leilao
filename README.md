@@ -46,11 +46,28 @@ A Fase 1 foi pulada (tese assumida como válida), mas o script segue disponível
 ferramenta de backtest: preencha `data/fase1_input.csv` e rode
 `uv run python -m src.scripts.fase1_validar_tese` (veredito em `data/fase1_output.md`).
 
+## Identificar imóveis-alvo (Fase 3)
+
+Coleta imóveis em SP num agregador, resolve a UF do leiloeiro e separa os alvos
+(leiloeiro **não-JUCESP**):
+
+```bash
+uv run python -m src.scripts.fase3_identificar_imoveis --max-paginas 20
+# gera data/imoveis_sp.csv (tudo) e data/imoveis_alvo.csv (só não-SP)
+```
+
+Por que tão poucos alvos saem dos agregadores grandes (e por que um CSV "só de um
+site" não é o retrato do mercado): ver [`docs/cobertura_diagnostico.md`](./docs/cobertura_diagnostico.md).
+
 ## Status
 
 - **Fase 1** — pulada (tese assumida válida); script mantido como backtest.
 - **Fase 2** (cadastro de leiloeiros) — núcleo pronto: modelo de dados, resolvedor de
   UF (`src/leiloeiros/resolver.py`), cadastro com upsert idempotente e import CSV, e a
-  interface dos scrapers de Junta. **Pendente:** parsers ao vivo das Juntas (precisam de
-  rede liberada — ver [`docs/fontes.md`](./docs/fontes.md)).
-- **Fases 3–5** — planejadas (ver `docs/plano_desenvolvimento.md`).
+  interface dos scrapers de Junta para **8 Juntas** (JUCESP de exclusão + JUCERJA, JUCEMG,
+  JUCEPAR, JUCERGS, JUCESC, JUCEDF, JUCEG). **Pendente:** parsers ao vivo das listas
+  públicas das Juntas (ver [`docs/fontes.md`](./docs/fontes.md)).
+- **Fase 3** (ingestão) — iniciada: `BaseScraper` (`src/ingestao/base.py`) + agregador
+  **Mega Leilões** (`src/ingestao/agregadores/megaleiloes.py`) + script de identificação
+  de imóveis-alvo. **A fazer:** mais agregadores, sites próprios não-SP e comunicações JUCESP.
+- **Fases 4–5** — planejadas (ver `docs/plano_desenvolvimento.md`).

@@ -21,16 +21,24 @@ Para cada um: listar imóveis `uf=SP`, extrair leilão (tipo, datas, edital), lo
 (endereço, cidade, tipo, lances mínimos, fotos, ocupação) e **leiloeiro (nome +
 matrícula)**. Cruzar com o cadastro via `LeiloeiroResolver` e marcar `uf_leiloeiro`.
 
-| Portal | Domínio | Notas de estrutura | Status |
-|---|---|---|---|
-| Mega Leilões | megaleiloes.com.br | — | a fazer |
-| Sodré Santoro / Sold | sodresantoro.com.br | — | a fazer |
-| Zukerman / Zuk | zukerman.com.br, portalzuk.com.br | leiloeiros JUCESP (719/744) | a fazer |
-| Superbid | superbid.net | — | a fazer |
-| Leilão VIP | leilaovip.com.br | — | a fazer |
-| Frazão | frazaoleiloes.com.br | — | a fazer |
-| Biasi | biasileiloes.com.br | — | a fazer |
-| Lance Já | — | — | a fazer |
+| Portal | Domínio | HTTP (teste ao vivo) | Notas de estrutura | Status |
+|---|---|---|---|---|
+| Mega Leilões | megaleiloes.com.br | 200 | Listagem SP em `/sp?pagina=N` (cards `.card`); detalhe com `.batch-type` e blocos `.author.item` (Comitente/Leiloeiro). Leiloeiro exibe N matrículas. | **feito** (`agregadores/megaleiloes.py`) |
+| Sodré Santoro / Sold | sodresantoro.com.br | **403** | anti-bot: exige navegador/proxy | a fazer (exceção) |
+| Zukerman / Zuk | portalzuk.com.br | 200 | leiloeiros JUCESP (719/744) | a fazer |
+| Superbid | superbid.net | 200 | — | a fazer |
+| Leilão VIP | leilaovip.com.br | 200 | — | a fazer |
+| Frazão | frazaoleiloes.com.br | 200 | — | a fazer |
+| Biasi | biasileiloes.com.br | 200 | — | a fazer |
+| Lance Já | — | — | — | a fazer |
+
+> **Achado importante (multi-matrícula).** No Mega Leilões, o mesmo leiloeiro
+> costuma exibir VÁRIAS matrículas — tipicamente uma **JUCESP** e outra de fora
+> (ex.: "JUCESP Nº 844" + "JUCEMG Nº 1192"). Pela tese, ter JUCESP ⇒ é SP (pode
+> atuar livremente, sem assimetria). Resolvido em `uf_efetiva_de_matriculas`
+> ("SP vence"). Efeito prático: **quase nenhum alvo não-SP sai dos agregadores
+> grandes** — os alvos estão em sites próprios/regionais. Ver
+> `docs/cobertura_diagnostico.md`.
 
 ## Sites próprios de leiloeiros não-SP (ALTA assimetria — prioridade do produto)
 Para cada leiloeiro não-SP do cadastro com `site_oficial`, varrer "leilões em

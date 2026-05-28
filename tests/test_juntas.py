@@ -3,12 +3,37 @@
 import pytest
 
 from src.leiloeiros.juntas import JUNTAS_DISPONIVEIS, JucerjaScraper, JucespScraper
+from src.leiloeiros.matricula import JUNTA_TO_UF
 
 
 def test_registro_de_juntas():
     assert JUNTAS_DISPONIVEIS["JUCESP"].uf == "SP"
     assert JUNTAS_DISPONIVEIS["JUCERJA"].uf == "RJ"
     assert JUNTAS_DISPONIVEIS["JUCEMG"].uf == "MG"
+
+
+def test_juntas_nao_sp_cadastradas():
+    """As 7 Juntas não-SP de maior prioridade estão registradas com a UF correta."""
+    esperado = {
+        "JUCERJA": "RJ",
+        "JUCEMG": "MG",
+        "JUCEPAR": "PR",
+        "JUCERGS": "RS",
+        "JUCESC": "SC",
+        "JUCEDF": "DF",
+        "JUCEG": "GO",
+    }
+    for junta, uf in esperado.items():
+        assert junta in JUNTAS_DISPONIVEIS, f"{junta} não registrada"
+        assert JUNTAS_DISPONIVEIS[junta].uf == uf
+        # A sigla precisa ser reconhecida pelo resolvedor (mapa Junta -> UF).
+        assert JUNTA_TO_UF.get(junta) == uf
+
+
+def test_juntas_sp_apenas_jucesp():
+    """Só a JUCESP é de SP; todas as demais são alvos não-SP da tese."""
+    de_sp = [j for j, s in JUNTAS_DISPONIVEIS.items() if s.uf == "SP"]
+    assert de_sp == ["JUCESP"]
 
 
 def test_fonte_cadastro_derivada():

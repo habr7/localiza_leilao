@@ -21,6 +21,28 @@ from src.leiloeiros.matricula import parse_matricula
 # Limiar de similaridade para casar nomes (0..1).
 LIMIAR_NOME = 0.87
 
+
+def uf_efetiva_de_matriculas(matriculas: list[str | None]) -> str | None:
+    """Resolve a UF efetiva de um leiloeiro que exibe VÁRIAS matrículas.
+
+    Muitos portais (ex.: Mega Leilões) listam o mesmo leiloeiro com mais de uma
+    matrícula — tipicamente uma JUCESP e outra de fora (ex.: "JUCESP Nº 844" +
+    "JUCEMG Nº 1192"). Para a tese isso importa: se o leiloeiro tem matrícula
+    **JUCESP**, ele pode atuar livremente em SP e NÃO há assimetria — tratamos
+    como SP (excluído). Só é alvo quem é exclusivamente de fora.
+
+    Regra: SP "vence" se aparecer em qualquer matrícula; senão, retorna a
+    primeira UF não-SP reconhecida; se nada for reconhecido, None.
+    """
+    ufs = [parse_matricula(m).uf for m in matriculas]
+    ufs_validas = [uf for uf in ufs if uf]
+    if not ufs_validas:
+        return None
+    if "SP" in ufs_validas:
+        return "SP"
+    return ufs_validas[0]
+
+
 # Termos que poluem o nome do leiloeiro nos portais.
 _RUIDO_NOME = re.compile(
     r"\b(leiloeir[oa]\s+oficial|leiloeir[oa]|oficial|sr[a]?\.?|dr[a]?\.?)\b",
