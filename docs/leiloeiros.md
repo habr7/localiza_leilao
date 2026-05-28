@@ -21,13 +21,35 @@ Implementado em `src/leiloeiros/resolver.py` + `src/leiloeiros/matricula.py`:
   `coletar_csv(path)` (já funciona offline). Template de pedido LAI: ver abaixo.
 - **JUCESP** → coletar para excluir quem é de SP.
 
-### Pendência (sessão com rede)
-As URLs das listas públicas (`url_lista`) e os selectors de `_parse` precisam ser
-definidos inspecionando o HTML real. Hoje estão como `None` / `NotImplementedError`.
-Homepages de referência:
-- JUCESP — https://www.jucesp.sp.gov.br
-- JUCERJA — https://www.jucerja.rj.gov.br
-- JUCEMG — https://www.jucemg.mg.gov.br
+### Status das listas públicas (inspeção ao vivo)
+- **JUCEMG** ✅ — lista alfabética estática em
+  `https://jucemg.mg.gov.br/pagina/140/Leiloeiros+Ordem+Alfabética`. ~228
+  leiloeiros, cada um num bloco `<strong>Nome</strong>` + `Matrícula: <n> de <data>`.
+  Parser e fixture (`tests/fixtures/jucemg_leiloeiros.html`) prontos.
+- **JUCERJA** ⚠️ — lista em `https://www.jucerja.rj.gov.br/AuxiliaresComercio/Leiloeiros`
+  (`section.ats-listaLeiloeiros`, itens `li.ats-listaLnks-item`). O servidor
+  entrega só a **1ª página (5 leiloeiros)**; as demais carregam via AJAX/JS
+  (paginação `data-value`, endpoint ainda não mapeado). Site é intermitente (503).
+  Parser/fixture prontos para a 1ª página; o resto vem por LAI ou Playwright.
+- **JUCEG** ✅ (GO) — lista pública em `https://goias.gov.br/juceg/leiloeiros/`
+  (WordPress, tabelas aninhadas; cada leiloeiro num `<h6>NOME (Matrícula: 007/90 …)`
+  + `<pre>` com site/endereço). ~81 leiloeiros, ~33 com site próprio. Parser/fixture/teste.
+- **JUCEB** ✅ (BA) — tabela única em
+  `https://www.ba.gov.br/juceb/home/matriculas-e-carteira-profissional/leiloeiros`
+  (colunas Nome|Contatos|Endereço|Nomeação|Matrícula|Portaria|Situação; site no link
+  http de Contatos). ~96 leiloeiros, ~52 com site próprio. Parser/fixture/teste.
+- **JUCESP** ⛔ — `www.jucesp.sp.gov.br` e `jucesponline.sp.gov.br` retornam **503**
+  a clientes automatizados (provável WAF/anti-bot para IP de datacenter). Sem lista
+  pública acessível por aqui. Usar `coletar_csv` (LAI) ou reavaliar em produção com
+  IP residencial/proxy/navegador.
+
+### Cadastro atual (carga ao vivo)
+**1028 leiloeiros não-SP** em 9 UFs: SC 296, MG 228, PR 130, BA 96, MS 88, GO 81,
+CE 54, ES 50, RJ 5. Muitos com `site_oficial` (PR/MS/CE/ES/MG/GO/BA trazem site na
+lista) — é a relação de sites que o scraper de lotes-alvo (Fase 3.2, por plataforma)
+varre. Juntas novas implementadas: JUCEPAR (collapsible+site), JUCESC (tabela),
+JUCEC (tabela+site), JUCEMS (blocos+site), JUCEES (cards+site). Algumas exigem UA de
+navegador (WAF) — ver `BROWSER_UA` em `juntas/base.py`.
 
 ### Prioridade de UFs (de onde mais saem leiloeiros que atuam em SP)
 RJ, MG, PR, RS, SC, DF, GO primeiro; demais depois.

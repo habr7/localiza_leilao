@@ -1,0 +1,2699 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-br">
+<head>
+
+    <!-- Controller/Acao: AuxiliaresComercio/Leiloeiros -->
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'nonce-XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=';" />
+
+    <title>JUCERJA - Leiloeiros</title>
+    <link href="/Content/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/Content/Fonts/Rawline/Rawline.css" rel="stylesheet">
+
+        <script type="text/javascript" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=">
+            var isDebug = false;
+        </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-30875690-1" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+    <script type="text/javascript" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=">
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-30875690-1');
+    </script>
+
+
+    <script type="text/javascript" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=">
+        var absoluteUrl = "/";
+        var absoluteUrlFull = "https://www.jucerja.rj.gov.br/";
+        var timeoutEmSegundos = 3600000;
+    </script>
+
+    
+    <link href="/Content/foundation/foundation.css" rel="stylesheet"/>
+<link href="/Content/foundation/foundation.mvc.css" rel="stylesheet"/>
+
+    <link href="/Content/Customs/animacoes.css" rel="stylesheet"/>
+<link href="/Content/Customs/StyleIcomoon.css" rel="stylesheet"/>
+<link href="/Content/Customs/header.css" rel="stylesheet"/>
+<link href="/Content/Customs/formulario.css" rel="stylesheet"/>
+<link href="/Content/Customs/footer.css" rel="stylesheet"/>
+<link href="/Content/Customs/estrutura.css" rel="stylesheet"/>
+<link href="/Content/Customs/acesso-rapido.css" rel="stylesheet"/>
+<link href="/Content/Customs/formatacao-texto.css" rel="stylesheet"/>
+<link href="/Content/Customs/utilitarios.css" rel="stylesheet"/>
+<link href="/Content/Customs/tabela.css" rel="stylesheet"/>
+<link href="/Content/Customs/breadcrumb.css" rel="stylesheet"/>
+<link href="/Content/Customs/box-informacoes.css" rel="stylesheet"/>
+<link href="/Content/Customs/listas-btns-lnks.css" rel="stylesheet"/>
+<link href="/Content/Tooltipster/tooltipster.bundle.min.css" rel="stylesheet"/>
+<link href="/Content/Tooltipster/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet"/>
+<link href="/Content/ResponsiveTables/responsive-tables.css" rel="stylesheet"/>
+<link href="/Content/Customs/loading.css" rel="stylesheet"/>
+<link href="/Content/Customs/mensagens-ui.css" rel="stylesheet"/>
+
+    
+    <link href="/Content/Componentes/aside-nav.css" rel="stylesheet"/>
+
+
+
+    <script src="/Scripts/jquery-3.1.1.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/jquery-3.7.1.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/jquery.validate.min.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/jquery.numeric.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/jquery.extension.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/numeral/numeral.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/Tooltipster/tooltipster.bundle.min.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+
+    <script src="/Scripts/moment.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+
+
+    
+    
+
+    
+    <link href="/Content/CustomsGovBr/variaveis-govbr.css" rel="stylesheet" />
+    <link href="/Content/CustomsGovBr/sidenav.css" rel="stylesheet" />
+    <link href="/Content/FontAwesome/css/all.min.css" rel="stylesheet" />
+    <link href="/Content/CustomsGovBr/LayoutPage/estrutura-layout-page-govbr.css" rel="stylesheet" />
+    <link href="/Content/CustomsGovBr/LayoutPage/header-layout-page-govbr.css" rel="stylesheet" />
+    <link href="/Content/CustomsGovBr/LayoutPage/header-mobile-layout-page-govbr.css" rel="stylesheet" />
+    <link href="/Content/CustomsGovBr/estrutura-govbr.css" rel="stylesheet" />
+</head>
+
+<body id="body" class="ats-body-layoutpage">
+
+
+
+    <input type="hidden" id="urlBase" value="https://www.jucerja.rj.gov.br/" />
+
+    
+    
+
+    
+    
+    
+    
+
+
+<input type="checkbox" name="nav" id="main-nav-check" />
+
+<label id="label-menu" class="close-all">&times;</label>
+<nav id="menu-principal" class="ats-menu no-print">
+    <ul id="lista-menu" class="ats-menu-lista ats-menu-lista-items">
+        <li class="ats-menu-item">
+            <ul id="lista-menu" class="ats-menu-lista">
+                <li id="itemMenu1" class="ats-menu-item">
+                    <a id="menu-institucional" class="ats-menu-lnk">Institucional</a>
+                    <label for="lnk-institucional" class="ats-menu-label">Institucional</label>
+                    <input type="checkbox" name="nav" id="lnk-institucional" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="institucional-submenu" class="submenu1 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Institucional
+                                <label for="lnk-institucional" class="toggle" title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Institucional/ConhecaPresidente">
+                                        Conhe&#231;a o Presidente
+                                        <p class="ats-menu-submenuDescricao">
+                                            Um pouco da biografia de nosso gestor, sua trajet&#243;ria e atua&#231;&#227;o
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Institucional/Estrutura">
+                                        Estrutura
+                                        <p class="ats-menu-submenuDescricao">
+                                            Entenda a organiza&#231;&#227;o da JUCERJA, sua estrutura, chefias e vogais
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Institucional/Fluxograma">
+                                        Fluxograma
+                                        <p class="ats-menu-submenuDescricao">
+                                            Conhe&#231;a aqui o nosso fluxo de funcionamento do processo de registro empresarial
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Institucional/Organograma">
+                                        Organograma
+                                        <p class="ats-menu-submenuDescricao">
+                                            este gr&#225;fico voc&#234; visualiza o diagrama organizacional do &#243;rg&#227;o e dos setores
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+                <li id="itemMenu2" class="ats-menu-item">
+                    <a id="menu-transparencia" class="ats-menu-lnk">Transparência</a>
+                    <label for="lnk-transparencia" class="ats-menu-label" >Transparência</label>
+                    <input type="checkbox" name="nav" id="lnk-transparencia" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="transparencia-submenu" class="submenu2 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Transparência
+                                <label for="lnk-transparencia" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/Institucional" >
+                                        Institucional
+                                        <p class="ats-menu-submenuDescricao">
+                                            Conhe&#231;a aqui sobre esta Autarquia Estadual, suas atribui&#231;&#245;es e hist&#243;ria
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/AcoesProgramas" >
+                                        A&#231;&#245;es e Programas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Projetos de responsabilidade social
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/ParticipacaoSocial" >
+                                        Participa&#231;&#227;o Social
+                                        <p class="ats-menu-submenuDescricao">
+                                            Informa&#231;&#245;es sobre os projetos Aprendiz de Sucesso e Centro de Atendimento ao Empreendedor
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/RelatorioAuditoria" >
+                                        Auditorias
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse aqui a rela&#231;&#227;o de Relat&#243;rios de Auditorias
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/ConveniosTransferencias" >
+                                        Conv&#234;nios e Transfer&#234;ncias
+                                        <p class="ats-menu-submenuDescricao">
+                                            Listagem de conv&#234;nios realizados pela JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/ReceitasDespesas" >
+                                        Receitas e Despesas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse as contas de &#225;gua e energia e o link externo de receitas e despesas
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/Licitacoes" >
+                                        Licita&#231;&#245;es e Contratos
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulte editais, contratos, termos de refer&#234;ncia e Preg&#245;es Eletr&#244;nicos
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/Servidores" >
+                                        Servidores
+                                        <p class="ats-menu-submenuDescricao">
+                                            Link para consulta de remunera&#231;&#227;o dos servidores do Estado do Rio de Janeiro
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/InformacoesClassificadas" >
+                                        Informa&#231;&#245;es Classificadas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesso a informa&#231;&#245;es classificadas da JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/ServicoInformacaoCidadao" >
+                                        Servi&#231;o de Informa&#231;&#227;o ao Cidad&#227;o - SIC
+                                        <p class="ats-menu-submenuDescricao">
+                                            Entre em contato para solicita&#231;&#227;o de informa&#231;&#245;es
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/PerguntasFrequentes" >
+                                        Perguntas Frequentes
+                                        <p class="ats-menu-submenuDescricao">
+                                            Veja se algumas das perguntas j&#225; est&#227;o respondidas aqui
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/DadosAbertos" >
+                                        Dados Abertos
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse o portal de dados abertos do RJ
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/PlanoIntegridade"  target=&#39;_blank&#39;>
+                                        Plano de Integridade
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulte as medidas estabelecidas de preven&#231;&#227;o &#224; corrup&#231;&#227;o
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/POSIC"  target=&#39;_blank&#39;>
+                                        POSIC
+                                        <p class="ats-menu-submenuDescricao">
+                                            Pol&#237;tica da Seguran&#231;a da Informa&#231;&#227;o e Comunica&#231;&#227;o
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/Procuradoria" >
+                                        Procuradoria
+                                        <p class="ats-menu-submenuDescricao">
+                                            Pesquise sobre pareceres e posicionamentos da Procuradoria Geral e Adjunta
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+                <li id="itemMenu3" class="ats-menu-item">
+                    <a id="menu-informacoes" class="ats-menu-lnk">Informações</a>
+                    <label for="lnk-informacoes" class="ats-menu-label" >Informações</label>
+                    <input type="checkbox" name="nav" id="lnk-informacoes" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="informacoes-submenu" class="submenu3 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Informações
+                                <label for="lnk-informacoes" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/ArtigosCronicas" >
+                                        Artigos e Cr&#244;nicas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acompanhe a vis&#227;o de especialistas sobre temas t&#233;cnicos
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/EmpreendedorIndividual" >
+                                        Empreendedor Individual
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse o Portal do Empreendedor. Tamb&#233;m consulte o andamento de seu MEI junto &#224;s Prefeituras Conveniadas ao REGIN
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/EmpresasPublicas" >
+                                        Empresas P&#250;blicas e Sociedades de Economia Mista
+                                        <p class="ats-menu-submenuDescricao">
+                                            Rela&#231;&#227;o de Empresas - Instru&#231;&#227;o Normativa DREI N&#186;53, de 7 de Dezembro de 2018.
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/ListaEstatais"  target=&#39;_blank&#39;>
+                                        Estatais
+                                        <p class="ats-menu-submenuDescricao">
+                                            Rela&#231;&#227;o das Estatais - Artigo 92 da Lei 13.303/2016
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/Estatistica" >
+                                        Estat&#237;stica
+                                        <p class="ats-menu-submenuDescricao">
+                                            Diversos relat&#243;rios com tipos de consulta empresarial
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/InscricaoEstadual" >
+                                        Inscri&#231;&#227;o Estadual
+                                        <p class="ats-menu-submenuDescricao">
+                                            Encaminhamento para a SEFAZ-RJ
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/Manuais" >
+                                        Manuais
+                                        <p class="ats-menu-submenuDescricao">
+                                            Espa&#231;o destinado para manuais &#250;teis ao usu&#225;rio
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/Modelos" >
+                                        Modelos
+                                        <p class="ats-menu-submenuDescricao">
+                                            Baixa alguns documentos importantes e usuais relacionados ao registro empresarial
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/Noticias" >
+                                        Not&#237;cias
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acompanhe aqui as novidades e atualidades da JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/PublicacoesJulgamento" >
+                                        Publica&#231;&#245;es
+                                        <p class="ats-menu-submenuDescricao">
+                                            Publica&#231;&#227;o das empresas/agentes ACF com processos deferidos, em exig&#234;ncia e indeferidos.
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/TabelaCnae"  target=&#39;_blank&#39;>
+                                        Tabela CNAE
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesso o Concla/IBGE e confira a classifica&#231;&#227;o nacional de atividades econ&#244;micas
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/TabelaPrecos" >
+                                        Tabela de Pre&#231;os
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulte os valores de nossos emolumentos
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/Inea"  target=&#39;_blank&#39;>
+                                        INEA
+                                        <p class="ats-menu-submenuDescricao">
+                                            Declara&#231;&#227;o de CNAEs inexig&#237;veis.
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+                <li id="itemMenu4" class="ats-menu-item">
+                    <a id="menu-servicos" class="ats-menu-lnk">Serviços</a>
+                    <label for="lnk-servicos" class="ats-menu-label" >Serviços</label>
+                    <input type="checkbox" name="nav" id="lnk-servicos" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="servicos-submenu" class="submenu4 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Serviços
+                                <label for="lnk-servicos" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/AndamentoProcessos" >
+                                        Andamento de Processos
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulte o protocolo de seu processo na JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/BuscaEmpresasArtigo60" >
+                                        Busca de Empresas Artigo 60
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulta das empresas j&#225; inativadas ou a serem inativadas pelo disposto no Art. 60 da lei 8.934/94
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/Certidao" >
+                                        Certid&#227;o Online
+                                        <p class="ats-menu-submenuDescricao">
+                                            Solicite e baixe suas certid&#245;es aqui
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/ChancelaDigital" >
+                                        Chancela Digital
+                                        <p class="ats-menu-submenuDescricao">
+                                            Confer&#234;ncia das imagens das vias &#250;nicas dos arquivamentos mediante consulta online
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/DocumentoDigital" >
+                                        Documento Digital
+                                        <p class="ats-menu-submenuDescricao">
+                                            Baixe a via de confirma&#231;&#227;o de seus arquivamentos registrados na JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/EmissaoCertificado" >
+                                        Emita Aqui Seu Certificado Digital
+                                        <p class="ats-menu-submenuDescricao">
+                                            O certificado digital &#233; a identidade eletr&#244;nica de uma pessoa f&#237;sica ou pessoa jur&#237;dica.
+                                        </p>
+                                    </a>
+                                        <a href="https://www.youtube.com/watch?v=vy15RTtvByI" style="padding-top:0; color: red;" target="_blank">Saiba mais</a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/Extranet" >
+                                        Extranet
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesso diferenciado exclusivo aos &#243;rg&#227;os conveniados
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/GuiaBancaria" >
+                                        Guia Banc&#225;ria
+                                        <p class="ats-menu-submenuDescricao">
+                                            Gere as guias dos emolumentos desta Autarquia nesta sess&#227;o
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/LivroMercantilSocietario" >
+                                        Livro Mercantil e Societ&#225;rio
+                                        <p class="ats-menu-submenuDescricao">
+                                            Legisla&#231;&#227;o que regula os instrumentos de escritura&#231;&#227;o dos empres&#225;rios e das sociedades empres&#225;rias
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/MapaEmpresarial" >
+                                        Mapa Empresarial
+                                        <p class="ats-menu-submenuDescricao">
+                                            Encontre informa&#231;&#245;es de empresas de forma r&#225;pida e personalizada
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/MonitoramentoEmpresarial" >
+                                        Monitoramento Empresarial
+                                        <p class="ats-menu-submenuDescricao">
+                                            Contrate o servi&#231;o de Monitoramento Empresarial na JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/Oficio" >
+                                        Of&#237;cio
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulte aqui a resposta do seu Of&#237;cio
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/PortalAssinatura"  target=&#39;_blank&#39;>
+                                        Portal de Assinaturas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse aqui o Portal de Assinaturas JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/ProtecaoCPF" >
+                                        Prote&#231;&#227;o de CPF
+                                        <p class="ats-menu-submenuDescricao">
+                                            Contrate o servi&#231;o de Prote&#231;&#227;o do seu CPF na JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/Protocolo" >
+                                        Protocolo Web
+                                        <p class="ats-menu-submenuDescricao">
+                                            Constitua, Altere e Extingue sua empresa pela internet atrav&#233;s desta funcionalidade
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/Regin" >
+                                        Regin
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse aqui a lista de servi&#231;os do REGIN (Pedido de Viabilidade dentre outros)
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/SituacaoCadastralEmpresas" >
+                                        Situa&#231;&#227;o Cadastral de Empresas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Verifique a situa&#231;&#227;o atual de uma sociedade empres&#225;ria
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/validadorassinatura"  target=&#39;_blank&#39;>
+                                        Validador de Assinaturas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse aqui o validador de assinaturas web da JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/Certidao/Validar" >
+                                        Validar Certid&#227;o
+                                        <p class="ats-menu-submenuDescricao">
+                                            Link para confer&#234;ncia, por parte de terceiros e &#243;rg&#227;os interessados, da validade das informa&#231;&#245;es referentes a certid&#245;es emitidas pela JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/VinculoEmpresarial" >
+                                        V&#237;nculo Empresarial
+                                        <p class="ats-menu-submenuDescricao">
+                                            Pesquise se h&#225; registros dos seus dados vinculados a alguma empresa
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+                <li id="itemMenu5" class="ats-menu-item">
+                    <a id="menu-legislacao" class="ats-menu-lnk">Legislação</a>
+                    <label for="lnk-legislacao" class="ats-menu-label" >Legislação</label>
+                    <input type="checkbox" name="nav" id="lnk-legislacao" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="legislacao-submenu" class="submenu5 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Legislação
+                                <label for="lnk-legislacao" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Legislacao/Administrativa" >
+                                        Administrativa
+                                        <p class="ats-menu-submenuDescricao">
+                                            Decretos e leis que versam sobre nossa atividade fim: o registro empresarial
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Legislacao/Deliberacoes" >
+                                        Delibera&#231;&#245;es
+                                        <p class="ats-menu-submenuDescricao">
+                                            Normativos discricion&#225;rios que versam sobre assuntos do registro
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Legislacao/Enunciados" >
+                                        Enunciados
+                                        <p class="ats-menu-submenuDescricao">
+                                            Compilado de Delibera&#231;&#245;es Plen&#225;rias expressas, cogentes por for&#231;a do art. 8&#186; da Lei Federal n&#186;9.934/1994
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Legislacao/Portarias" >
+                                        Portarias
+                                        <p class="ats-menu-submenuDescricao">
+                                            Colet&#226;nea de Portarias promulgadas por esta Autarquia
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Legislacao/RegistroEmpresas" >
+                                        Registro de Empresas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Instru&#231;&#245;es Normativas do DREI e Legisla&#231;&#227;o B&#225;sica do Registro de Empresas Mercantis
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Legislacao/Resolucoes" >
+                                        Resolu&#231;&#245;es
+                                        <p class="ats-menu-submenuDescricao">
+                                            Apanhado de Resolu&#231;&#245;es sobre a atividade-fim
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+                <li id="itemMenu6" class="ats-menu-item">
+                    <a id="menu-plenaria" class="ats-menu-lnk">Plenária</a>
+                    <label for="lnk-plenaria" class="ats-menu-label" >Plenária</label>
+                    <input type="checkbox" name="nav" id="lnk-plenaria" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="plenaria-submenu" class="submenu6 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Plenária
+                                <label for="lnk-plenaria" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Plenaria/Atas">
+                                        Atas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesso ao texto dos documentos arquivados das reuni&#245;es plen&#225;rias ordenados cronologicamente
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Plenaria/OrdemDoDia">
+                                        Ordem do dia
+                                        <p class="ats-menu-submenuDescricao">
+                                            As Sess&#245;es Plen&#225;rias ocorrem &#224;s 13h. Suas Pautas s&#227;o previamente divulgadas, nesta p&#225;gina, nos termos da Portaria JUCERJA n&#186; 1778 de 28 de Outubro de 2020
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li id="itemMenu7" class="ats-menu-item">
+                    <a id="menu-auxiliaresComercio" class="ats-menu-lnk">Auxiliares de Comércio</a>
+                    <label for="lnk-auxiliaresComercio" class="ats-menu-label" >Auxiliares de Comércio</label>
+                    <input type="checkbox" name="nav" id="lnk-auxiliaresComercio" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="auxiliaresComercio-submenu" class="submenu6 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                auxiliaresComercio
+                                <label for="lnk-auxiliaresComercio" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/AuxiliaresComercio/Leiloeiros" >
+                                        Leiloeiros
+                                        <p class="ats-menu-submenuDescricao">
+                                            Material legal sobre Leiloeiros (INs, Decretos, Delibera&#231;&#245;es, etc.)
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/AuxiliaresComercio/Tradutores" >
+                                        Tradutores
+                                        <p class="ats-menu-submenuDescricao">
+                                            Lista de Tradutores P&#250;blicos, Tabela de Emolumentos e legisla&#231;&#227;o
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/AuxiliaresComercio/Notificacoes" >
+                                        Notifica&#231;&#245;es
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulta de notifica&#231;&#245;es para Leiloeiros P&#250;blicos, Tradutores P&#250;blicos, Int&#233;rpretes Comerciais, Trapicheiros e Administradores de Armaz&#233;ns Gerais
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/AuxiliaresComercio/AdministradoresArmazem" >
+                                        Administradores de Armaz&#233;m
+                                        <p class="ats-menu-submenuDescricao">
+                                            Obtenha aqui importantes orienta&#231;&#245;es de procedimentos a serem cumpridos pelos administradores de armaz&#233;m.
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li id="itemMenu8" class="ats-menu-item">
+                    <a id="menu-contato" class="ats-menu-lnk">Contato</a>
+                    <label for="lnk-contato" class="ats-menu-label" >Contato</label>
+                    <input type="checkbox" name="nav" id="lnk-contato" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="contato-submenu" class="submenu6 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Contato
+                                <label for="lnk-contato" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Contato/FaleConosco" >
+                                        Fale Conosco
+                                        <p class="ats-menu-submenuDescricao">
+                                            Canal de contato para nosso atendimento, separado por assunto, a fim de ter suas d&#250;vidas melhor atendidas
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Contato/LocaisAtendimento" >
+                                        Locais de Atendimento
+                                        <p class="ats-menu-submenuDescricao">
+                                            Confira aqui os nossos postos de atendimento presencial
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Contato/FaleComOuvidoria" >
+                                        Ouvidoria
+                                        <p class="ats-menu-submenuDescricao">
+                                            Canal de contato com a nossa ouvidoria
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Contato/ContatoDPO" >
+                                        Contato com DPO
+                                        <p class="ats-menu-submenuDescricao">
+                                            Em caso de d&#250;vidas sobre o tratamento dos seus dados ou para exercer qualquer um dos seus direitos, entre em contato diretamente como nosso DPO
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li id="ats-menu-item-notificacoes" class="ats-menu-item">
+            <button id="btnNotificacoes" class="ats-menu-item ats-menu-notificacoes">
+                <i class="fa-solid fa-bell"></i>
+            </button>
+        </li>
+        <li id="ats-menu-item-area-login-usuario" class="ats-menu-item">
+            <ul id="lista-menu-cadastrar" class="ats-menu-lista">
+                    <li id="btnCadastrar" class="ats-menu-item u-floatRight">
+        <a class="ats-menu-lnk ats-menu-lnk--cadastrar">
+            <img src="/Content/Images/svg/person.svg" /> Cadastrar / Acessar
+        </a>
+    </li>
+
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<script type="text/javascript" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=">
+
+    $(document).on('click', '.close-all', function () {
+        uncheckboxes('nav');
+    });
+
+    $(document).on('click', '#btnNotificacoes', function () {
+        FuncoesGovBr.AbreModalNoticias();
+    });
+
+</script>
+
+
+    <div id="ats-menu-overlay-govbr" class="ats-menu-overlay-govbr"></div>
+
+    <div id="sidenav-menu-govbr" class="sidenav-menu-govbr">
+        <div class="sidenav-logo-content">
+            <a href="/" class="ats-header-jucerja-logo-link">
+                <img src="/Content/Images/svg/logo-header.svg" height="48" width="260" />
+            </a>
+            <p>Junta Comercial do Estado do Rio de Janeiro</p>
+        </div>
+        <div class="sidenav-menu-govbr-separador"></div>
+        
+
+
+<input type="checkbox" name="nav" id="main-nav-check" />
+
+<label id="label-menu" class="close-all">&times;</label>
+<nav id="menu-principal" class="ats-menu no-print">
+    <ul id="lista-menu" class="ats-menu-lista ats-menu-lista-items">
+        <li class="ats-menu-item">
+            <ul id="lista-menu" class="ats-menu-lista">
+                <li id="itemMenu1" class="ats-menu-item">
+                    <a id="menu-institucional" class="ats-menu-lnk">Institucional</a>
+                    <label for="lnk-institucional" class="ats-menu-label">Institucional</label>
+                    <input type="checkbox" name="nav" id="lnk-institucional" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="institucional-submenu" class="submenu1 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Institucional
+                                <label for="lnk-institucional" class="toggle" title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Institucional/ConhecaPresidente">
+                                        Conhe&#231;a o Presidente
+                                        <p class="ats-menu-submenuDescricao">
+                                            Um pouco da biografia de nosso gestor, sua trajet&#243;ria e atua&#231;&#227;o
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Institucional/Estrutura">
+                                        Estrutura
+                                        <p class="ats-menu-submenuDescricao">
+                                            Entenda a organiza&#231;&#227;o da JUCERJA, sua estrutura, chefias e vogais
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Institucional/Fluxograma">
+                                        Fluxograma
+                                        <p class="ats-menu-submenuDescricao">
+                                            Conhe&#231;a aqui o nosso fluxo de funcionamento do processo de registro empresarial
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Institucional/Organograma">
+                                        Organograma
+                                        <p class="ats-menu-submenuDescricao">
+                                            este gr&#225;fico voc&#234; visualiza o diagrama organizacional do &#243;rg&#227;o e dos setores
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+                <li id="itemMenu2" class="ats-menu-item">
+                    <a id="menu-transparencia" class="ats-menu-lnk">Transparência</a>
+                    <label for="lnk-transparencia" class="ats-menu-label" >Transparência</label>
+                    <input type="checkbox" name="nav" id="lnk-transparencia" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="transparencia-submenu" class="submenu2 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Transparência
+                                <label for="lnk-transparencia" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/Institucional" >
+                                        Institucional
+                                        <p class="ats-menu-submenuDescricao">
+                                            Conhe&#231;a aqui sobre esta Autarquia Estadual, suas atribui&#231;&#245;es e hist&#243;ria
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/AcoesProgramas" >
+                                        A&#231;&#245;es e Programas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Projetos de responsabilidade social
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/ParticipacaoSocial" >
+                                        Participa&#231;&#227;o Social
+                                        <p class="ats-menu-submenuDescricao">
+                                            Informa&#231;&#245;es sobre os projetos Aprendiz de Sucesso e Centro de Atendimento ao Empreendedor
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/RelatorioAuditoria" >
+                                        Auditorias
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse aqui a rela&#231;&#227;o de Relat&#243;rios de Auditorias
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/ConveniosTransferencias" >
+                                        Conv&#234;nios e Transfer&#234;ncias
+                                        <p class="ats-menu-submenuDescricao">
+                                            Listagem de conv&#234;nios realizados pela JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/ReceitasDespesas" >
+                                        Receitas e Despesas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse as contas de &#225;gua e energia e o link externo de receitas e despesas
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/Licitacoes" >
+                                        Licita&#231;&#245;es e Contratos
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulte editais, contratos, termos de refer&#234;ncia e Preg&#245;es Eletr&#244;nicos
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/Servidores" >
+                                        Servidores
+                                        <p class="ats-menu-submenuDescricao">
+                                            Link para consulta de remunera&#231;&#227;o dos servidores do Estado do Rio de Janeiro
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/InformacoesClassificadas" >
+                                        Informa&#231;&#245;es Classificadas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesso a informa&#231;&#245;es classificadas da JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/ServicoInformacaoCidadao" >
+                                        Servi&#231;o de Informa&#231;&#227;o ao Cidad&#227;o - SIC
+                                        <p class="ats-menu-submenuDescricao">
+                                            Entre em contato para solicita&#231;&#227;o de informa&#231;&#245;es
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/PerguntasFrequentes" >
+                                        Perguntas Frequentes
+                                        <p class="ats-menu-submenuDescricao">
+                                            Veja se algumas das perguntas j&#225; est&#227;o respondidas aqui
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/DadosAbertos" >
+                                        Dados Abertos
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse o portal de dados abertos do RJ
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/PlanoIntegridade"  target=&#39;_blank&#39;>
+                                        Plano de Integridade
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulte as medidas estabelecidas de preven&#231;&#227;o &#224; corrup&#231;&#227;o
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/POSIC"  target=&#39;_blank&#39;>
+                                        POSIC
+                                        <p class="ats-menu-submenuDescricao">
+                                            Pol&#237;tica da Seguran&#231;a da Informa&#231;&#227;o e Comunica&#231;&#227;o
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Transparencia/Procuradoria" >
+                                        Procuradoria
+                                        <p class="ats-menu-submenuDescricao">
+                                            Pesquise sobre pareceres e posicionamentos da Procuradoria Geral e Adjunta
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+                <li id="itemMenu3" class="ats-menu-item">
+                    <a id="menu-informacoes" class="ats-menu-lnk">Informações</a>
+                    <label for="lnk-informacoes" class="ats-menu-label" >Informações</label>
+                    <input type="checkbox" name="nav" id="lnk-informacoes" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="informacoes-submenu" class="submenu3 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Informações
+                                <label for="lnk-informacoes" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/ArtigosCronicas" >
+                                        Artigos e Cr&#244;nicas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acompanhe a vis&#227;o de especialistas sobre temas t&#233;cnicos
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/EmpreendedorIndividual" >
+                                        Empreendedor Individual
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse o Portal do Empreendedor. Tamb&#233;m consulte o andamento de seu MEI junto &#224;s Prefeituras Conveniadas ao REGIN
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/EmpresasPublicas" >
+                                        Empresas P&#250;blicas e Sociedades de Economia Mista
+                                        <p class="ats-menu-submenuDescricao">
+                                            Rela&#231;&#227;o de Empresas - Instru&#231;&#227;o Normativa DREI N&#186;53, de 7 de Dezembro de 2018.
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/ListaEstatais"  target=&#39;_blank&#39;>
+                                        Estatais
+                                        <p class="ats-menu-submenuDescricao">
+                                            Rela&#231;&#227;o das Estatais - Artigo 92 da Lei 13.303/2016
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/Estatistica" >
+                                        Estat&#237;stica
+                                        <p class="ats-menu-submenuDescricao">
+                                            Diversos relat&#243;rios com tipos de consulta empresarial
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/InscricaoEstadual" >
+                                        Inscri&#231;&#227;o Estadual
+                                        <p class="ats-menu-submenuDescricao">
+                                            Encaminhamento para a SEFAZ-RJ
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/Manuais" >
+                                        Manuais
+                                        <p class="ats-menu-submenuDescricao">
+                                            Espa&#231;o destinado para manuais &#250;teis ao usu&#225;rio
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/Modelos" >
+                                        Modelos
+                                        <p class="ats-menu-submenuDescricao">
+                                            Baixa alguns documentos importantes e usuais relacionados ao registro empresarial
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/Noticias" >
+                                        Not&#237;cias
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acompanhe aqui as novidades e atualidades da JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/PublicacoesJulgamento" >
+                                        Publica&#231;&#245;es
+                                        <p class="ats-menu-submenuDescricao">
+                                            Publica&#231;&#227;o das empresas/agentes ACF com processos deferidos, em exig&#234;ncia e indeferidos.
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/TabelaCnae"  target=&#39;_blank&#39;>
+                                        Tabela CNAE
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesso o Concla/IBGE e confira a classifica&#231;&#227;o nacional de atividades econ&#244;micas
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/TabelaPrecos" >
+                                        Tabela de Pre&#231;os
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulte os valores de nossos emolumentos
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Informacoes/Inea"  target=&#39;_blank&#39;>
+                                        INEA
+                                        <p class="ats-menu-submenuDescricao">
+                                            Declara&#231;&#227;o de CNAEs inexig&#237;veis.
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+                <li id="itemMenu4" class="ats-menu-item">
+                    <a id="menu-servicos" class="ats-menu-lnk">Serviços</a>
+                    <label for="lnk-servicos" class="ats-menu-label" >Serviços</label>
+                    <input type="checkbox" name="nav" id="lnk-servicos" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="servicos-submenu" class="submenu4 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Serviços
+                                <label for="lnk-servicos" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/AndamentoProcessos" >
+                                        Andamento de Processos
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulte o protocolo de seu processo na JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/BuscaEmpresasArtigo60" >
+                                        Busca de Empresas Artigo 60
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulta das empresas j&#225; inativadas ou a serem inativadas pelo disposto no Art. 60 da lei 8.934/94
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/Certidao" >
+                                        Certid&#227;o Online
+                                        <p class="ats-menu-submenuDescricao">
+                                            Solicite e baixe suas certid&#245;es aqui
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/ChancelaDigital" >
+                                        Chancela Digital
+                                        <p class="ats-menu-submenuDescricao">
+                                            Confer&#234;ncia das imagens das vias &#250;nicas dos arquivamentos mediante consulta online
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/DocumentoDigital" >
+                                        Documento Digital
+                                        <p class="ats-menu-submenuDescricao">
+                                            Baixe a via de confirma&#231;&#227;o de seus arquivamentos registrados na JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/EmissaoCertificado" >
+                                        Emita Aqui Seu Certificado Digital
+                                        <p class="ats-menu-submenuDescricao">
+                                            O certificado digital &#233; a identidade eletr&#244;nica de uma pessoa f&#237;sica ou pessoa jur&#237;dica.
+                                        </p>
+                                    </a>
+                                        <a href="https://www.youtube.com/watch?v=vy15RTtvByI" style="padding-top:0; color: red;" target="_blank">Saiba mais</a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/Extranet" >
+                                        Extranet
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesso diferenciado exclusivo aos &#243;rg&#227;os conveniados
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/GuiaBancaria" >
+                                        Guia Banc&#225;ria
+                                        <p class="ats-menu-submenuDescricao">
+                                            Gere as guias dos emolumentos desta Autarquia nesta sess&#227;o
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/LivroMercantilSocietario" >
+                                        Livro Mercantil e Societ&#225;rio
+                                        <p class="ats-menu-submenuDescricao">
+                                            Legisla&#231;&#227;o que regula os instrumentos de escritura&#231;&#227;o dos empres&#225;rios e das sociedades empres&#225;rias
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/MapaEmpresarial" >
+                                        Mapa Empresarial
+                                        <p class="ats-menu-submenuDescricao">
+                                            Encontre informa&#231;&#245;es de empresas de forma r&#225;pida e personalizada
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/MonitoramentoEmpresarial" >
+                                        Monitoramento Empresarial
+                                        <p class="ats-menu-submenuDescricao">
+                                            Contrate o servi&#231;o de Monitoramento Empresarial na JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/Oficio" >
+                                        Of&#237;cio
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulte aqui a resposta do seu Of&#237;cio
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/PortalAssinatura"  target=&#39;_blank&#39;>
+                                        Portal de Assinaturas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse aqui o Portal de Assinaturas JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/ProtecaoCPF" >
+                                        Prote&#231;&#227;o de CPF
+                                        <p class="ats-menu-submenuDescricao">
+                                            Contrate o servi&#231;o de Prote&#231;&#227;o do seu CPF na JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/Protocolo" >
+                                        Protocolo Web
+                                        <p class="ats-menu-submenuDescricao">
+                                            Constitua, Altere e Extingue sua empresa pela internet atrav&#233;s desta funcionalidade
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/Regin" >
+                                        Regin
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse aqui a lista de servi&#231;os do REGIN (Pedido de Viabilidade dentre outros)
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/SituacaoCadastralEmpresas" >
+                                        Situa&#231;&#227;o Cadastral de Empresas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Verifique a situa&#231;&#227;o atual de uma sociedade empres&#225;ria
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/validadorassinatura"  target=&#39;_blank&#39;>
+                                        Validador de Assinaturas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesse aqui o validador de assinaturas web da JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/Certidao/Validar" >
+                                        Validar Certid&#227;o
+                                        <p class="ats-menu-submenuDescricao">
+                                            Link para confer&#234;ncia, por parte de terceiros e &#243;rg&#227;os interessados, da validade das informa&#231;&#245;es referentes a certid&#245;es emitidas pela JUCERJA
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" style="padding-bottom:0" href="/Servicos/VinculoEmpresarial" >
+                                        V&#237;nculo Empresarial
+                                        <p class="ats-menu-submenuDescricao">
+                                            Pesquise se h&#225; registros dos seus dados vinculados a alguma empresa
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+                <li id="itemMenu5" class="ats-menu-item">
+                    <a id="menu-legislacao" class="ats-menu-lnk">Legislação</a>
+                    <label for="lnk-legislacao" class="ats-menu-label" >Legislação</label>
+                    <input type="checkbox" name="nav" id="lnk-legislacao" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="legislacao-submenu" class="submenu5 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Legislação
+                                <label for="lnk-legislacao" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Legislacao/Administrativa" >
+                                        Administrativa
+                                        <p class="ats-menu-submenuDescricao">
+                                            Decretos e leis que versam sobre nossa atividade fim: o registro empresarial
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Legislacao/Deliberacoes" >
+                                        Delibera&#231;&#245;es
+                                        <p class="ats-menu-submenuDescricao">
+                                            Normativos discricion&#225;rios que versam sobre assuntos do registro
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Legislacao/Enunciados" >
+                                        Enunciados
+                                        <p class="ats-menu-submenuDescricao">
+                                            Compilado de Delibera&#231;&#245;es Plen&#225;rias expressas, cogentes por for&#231;a do art. 8&#186; da Lei Federal n&#186;9.934/1994
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Legislacao/Portarias" >
+                                        Portarias
+                                        <p class="ats-menu-submenuDescricao">
+                                            Colet&#226;nea de Portarias promulgadas por esta Autarquia
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Legislacao/RegistroEmpresas" >
+                                        Registro de Empresas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Instru&#231;&#245;es Normativas do DREI e Legisla&#231;&#227;o B&#225;sica do Registro de Empresas Mercantis
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Legislacao/Resolucoes" >
+                                        Resolu&#231;&#245;es
+                                        <p class="ats-menu-submenuDescricao">
+                                            Apanhado de Resolu&#231;&#245;es sobre a atividade-fim
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+                <li id="itemMenu6" class="ats-menu-item">
+                    <a id="menu-plenaria" class="ats-menu-lnk">Plenária</a>
+                    <label for="lnk-plenaria" class="ats-menu-label" >Plenária</label>
+                    <input type="checkbox" name="nav" id="lnk-plenaria" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="plenaria-submenu" class="submenu6 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Plenária
+                                <label for="lnk-plenaria" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Plenaria/Atas">
+                                        Atas
+                                        <p class="ats-menu-submenuDescricao">
+                                            Acesso ao texto dos documentos arquivados das reuni&#245;es plen&#225;rias ordenados cronologicamente
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Plenaria/OrdemDoDia">
+                                        Ordem do dia
+                                        <p class="ats-menu-submenuDescricao">
+                                            As Sess&#245;es Plen&#225;rias ocorrem &#224;s 13h. Suas Pautas s&#227;o previamente divulgadas, nesta p&#225;gina, nos termos da Portaria JUCERJA n&#186; 1778 de 28 de Outubro de 2020
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li id="itemMenu7" class="ats-menu-item">
+                    <a id="menu-auxiliaresComercio" class="ats-menu-lnk">Auxiliares de Comércio</a>
+                    <label for="lnk-auxiliaresComercio" class="ats-menu-label" >Auxiliares de Comércio</label>
+                    <input type="checkbox" name="nav" id="lnk-auxiliaresComercio" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="auxiliaresComercio-submenu" class="submenu6 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                auxiliaresComercio
+                                <label for="lnk-auxiliaresComercio" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/AuxiliaresComercio/Leiloeiros" >
+                                        Leiloeiros
+                                        <p class="ats-menu-submenuDescricao">
+                                            Material legal sobre Leiloeiros (INs, Decretos, Delibera&#231;&#245;es, etc.)
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/AuxiliaresComercio/Tradutores" >
+                                        Tradutores
+                                        <p class="ats-menu-submenuDescricao">
+                                            Lista de Tradutores P&#250;blicos, Tabela de Emolumentos e legisla&#231;&#227;o
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/AuxiliaresComercio/Notificacoes" >
+                                        Notifica&#231;&#245;es
+                                        <p class="ats-menu-submenuDescricao">
+                                            Consulta de notifica&#231;&#245;es para Leiloeiros P&#250;blicos, Tradutores P&#250;blicos, Int&#233;rpretes Comerciais, Trapicheiros e Administradores de Armaz&#233;ns Gerais
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/AuxiliaresComercio/AdministradoresArmazem" >
+                                        Administradores de Armaz&#233;m
+                                        <p class="ats-menu-submenuDescricao">
+                                            Obtenha aqui importantes orienta&#231;&#245;es de procedimentos a serem cumpridos pelos administradores de armaz&#233;m.
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li id="itemMenu8" class="ats-menu-item">
+                    <a id="menu-contato" class="ats-menu-lnk">Contato</a>
+                    <label for="lnk-contato" class="ats-menu-label" >Contato</label>
+                    <input type="checkbox" name="nav" id="lnk-contato" class="sub-nav-check" />
+
+                    <div class="ats-submenu-content">
+                        <ul id="contato-submenu" class="submenu6 ats-menu-submenu">
+                            <li class="ats-menu-submenuCabecalho sub-heading">
+                                Contato
+                                <label for="lnk-contato" class="toggle"  title="Back">&#xab; voltar</label>
+                            </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Contato/FaleConosco" >
+                                        Fale Conosco
+                                        <p class="ats-menu-submenuDescricao">
+                                            Canal de contato para nosso atendimento, separado por assunto, a fim de ter suas d&#250;vidas melhor atendidas
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Contato/LocaisAtendimento" >
+                                        Locais de Atendimento
+                                        <p class="ats-menu-submenuDescricao">
+                                            Confira aqui os nossos postos de atendimento presencial
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Contato/FaleComOuvidoria" >
+                                        Ouvidoria
+                                        <p class="ats-menu-submenuDescricao">
+                                            Canal de contato com a nossa ouvidoria
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="ats-menu-submenuItem">
+                                    <a class="ats-menu-submenuLnk" href="/Contato/ContatoDPO" >
+                                        Contato com DPO
+                                        <p class="ats-menu-submenuDescricao">
+                                            Em caso de d&#250;vidas sobre o tratamento dos seus dados ou para exercer qualquer um dos seus direitos, entre em contato diretamente como nosso DPO
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li id="ats-menu-item-notificacoes" class="ats-menu-item">
+            <button id="btnNotificacoes" class="ats-menu-item ats-menu-notificacoes">
+                <i class="fa-solid fa-bell"></i>
+            </button>
+        </li>
+        <li id="ats-menu-item-area-login-usuario" class="ats-menu-item">
+            <ul id="lista-menu-cadastrar" class="ats-menu-lista">
+                    <li id="btnCadastrar" class="ats-menu-item u-floatRight">
+        <a class="ats-menu-lnk ats-menu-lnk--cadastrar">
+            <img src="/Content/Images/svg/person.svg" /> Cadastrar / Acessar
+        </a>
+    </li>
+
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<script type="text/javascript" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=">
+
+    $(document).on('click', '.close-all', function () {
+        uncheckboxes('nav');
+    });
+
+    $(document).on('click', '#btnNotificacoes', function () {
+        FuncoesGovBr.AbreModalNoticias();
+    });
+
+</script>
+
+    </div>
+
+    <div class="container-site">
+
+        <div id="loading" class="u-esconder"></div>
+
+        <div class="ats-header-principal-container-homepage">
+            <div class="ats-header-principal-content-homepage">
+<header class="ats-header-container no-print">
+    <div class="ats-header-content">
+        <div class="ats-header-jucerja-logo-content">
+            <button id="btnAbreSideNav" class="btn-ats-menu-mobile-drawer">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"></path>
+                </svg>
+            </button>
+            <a href="/" class="ats-header-jucerja-logo-link">
+                <img src="/Content/Images/svg/logo-jucerja-preto.svg" height="48" width="260" />
+            </a>
+        </div>
+        <img class="ats-header-logotipo" src="/Content/Images/svg/logo-governorj-preto.svg" alt="logotipo do governo do Rio de Janeiro" />
+    </div>
+</header>
+<script type="text/javascript" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=">
+    $(document).on('click', '#btnAbreSideNav', function () {
+        HeaderGovBr.AbreSideNav()
+    });
+</script><div id="primeiroModalLoginInterno" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h3 id="modalTitle" class="u-sm-cabecalho u-corAzul u-txtCentralizado">Cadastrar / Acessar</h3>
+    <form id="formLogin" action="/Conta/Entrar?returnUrl=%2FAuxiliaresComercio%2FLeiloeiros&amp;login=jucerja" method="post">
+        <input name="__RequestVerificationToken" type="hidden" value="A_uUTi5xk7Q2R8n54pb0x5IkMaEuXu9K3Gr1vr7D-nZFo31rXprg-iDo2UMY4xV6oqLRGYjoVbp2TtJjBMo1QXuAK7Y1" />
+        <div class="row">
+            <div class="small-12 columns ats-containerFormulario-campos">
+                <label class="ats-containerFormulario-label u-md-label" id="labelUsuarioMenuCadastrar">Usuário:</label>
+                <input id="Usuario" name="Usuario" type="text" class="ats-containerFormulario-input u-semTextTransform" maxlength="100" />
+            </div>
+            <div class="small-12 columns ats-containerFormulario-campos">
+                <label class="ats-containerFormulario-label u-md-label" id="labelSenhaMenuCadastrar">Senha:</label>
+                <input id="Senha" name="Senha" type="password" class="ats-containerFormulario-input u-semTextTransform" maxlength="30" />
+            </div>
+            <div class="small-12 columns u-esconder u-msg-validacao">
+                <section class="ats-alerta u-msg-validacao">
+                    <div class="ats-alertaBox--erro ats-alertaBox alert-box">
+                        <span class="ats-alertaBox-icone ats-alertaBox-icone--erro icon-blocked"></span>
+                        <section class="ats-alertaBox-conteudo">
+                            <p class="ats-alertaBox-txt ats-alertaBox-txtErro">Informe um caractere válido para os campos acima. Não inclua símbolos como "&#60;", "&#62;", "/" ou "$".</p>
+                            <a href="#" class="close">&times;</a>
+                        </section>
+                    </div>
+                </section>
+            </div>
+            <div class="small-12 columns u-txtCentralizado u-sm-margemTop">
+                <a class="ats-btn ats-botao--cinza u-md-txtBtn u-sm-margemRight" href="/Conta/Cadastrar" id="btnCadastrarUsuario">Cadastrar</a>
+                <button type="submit" class="ats-btn ats-botao--azul u-md-txtBtn" id="btnEntrarUsuario">Entrar</button>
+            </div>
+            <div class="small-12 columns u-txtCentralizado u-sm-margemBottom">
+                <a class="u-md-link" href="/Conta/EsqueciSenha">Esqueceu a senha?</a>
+            </div>
+        </div>
+        <div class="row u-xsm-margemTop">
+            <div class="columns medium-4 small-12">
+                <a href="/Conta/ReenviarChave" class="u-md-link">
+                    <span class="icon-loop2 u-xsm-paddingRight u-inlineBlock"></span>Reenviar E-mail de Ativação
+                </a>
+            </div>
+            <div class="columns medium-4 small-12 u-txtDireita">
+                <a href="/Conta/Ativar" class="u-md-link">
+                    <span class="icon-checkmark u-xsm-paddingRight u-inlineBlock"></span> Ativar Cadastro
+                </a>
+            </div>
+            <div class="columns medium-4 small-12 u-txtDireita">
+                <a href="/Conta/RecuperarCadastro" class="u-md-link">
+                    <span class="icon-person u-xsm-paddingRight u-inlineBlock"></span>Recuperar Cadastro
+                </a>
+            </div>
+        </div>
+    </form>
+    <a  id="fechaModalLoginJucerja" class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+<script type="text/javascript" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=">
+    $(document).on('click', '#fechaModalLoginJucerja', function () {
+        FuncoesGovBr.FechaModalLoginJucerja();
+    });
+</script><div id="primeiroModal" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h3 id="modalTitle" class="u-sm-cabecalho u-corAzul u-txtCentralizado">Como deseja acessar?</h3>
+    <div class="row">
+        &nbsp;
+    </div>
+    <div id="row-btns-acesso-cadastrar-acessar" class="row">
+        <div id="column-btn-acesso-govbr-cadastrar-acessar" class="columns u-txtCentralizado">
+            <a id="btn-acesso-govbr-cadastrar-acessar" href="/Conta/LoginGovBr" class="ats-btn ats-botao--cinza medium-6 small-6 large-6">
+                <img src="/Content/Images/govbr_original_transparente.png" width="100">
+            </a>
+        </div>
+        <div id="column-btn-acesso-logininterno-cadastrar-acessar" class="columns u-txtCentralizado">
+            <a id="btn-acesso-logininterno-cadastrar-acessar" href="#" class="ats-btn ats-botao--cinza medium-6 small-6 large-6">
+                <img src="/Content/Images/LogoJUCERA.png" width="150">
+            </a>
+        </div>
+        <div id="column-btn-acesso-sem-cadastro-cadastrar-acessar" class="columns u-txtCentralizado medium-12 small-12 large-12 u-sm-margemBottom">
+            <a id="btn-acesso-sem-cadastro-cadastrar-acessar" class="u-corAzul u-md-link u-lg-texto" href="/Conta/Cadastrar">
+                Não tem cadastro no site da JUCERJA ainda? <b>Cadastre-se</b>
+            </a>
+        </div>
+    </div>
+    <div id="row-acesso-acoes-cadastrar-acessar" class="row u-xsm-margemTop">
+        <div id="acesso-esqueceu-senha-cadastrar-acessar" class="columns medium-3 small-12 u-txtCentralizado">
+            <a class="u-md-link" href="/Conta/EsqueciSenha">Esqueceu a senha?</a>
+        </div>
+        <div id="acesso-reenviar-email-cadastrar-acessar" class="columns medium-3 small-12 u-txtCentralizado">
+            <a href="/Conta/ReenviarChave" class="u-md-link">
+                <span class="icon-loop2 u-xsm-paddingRight u-inlineBlock"></span>Reenviar E-mail de Ativação
+            </a>
+        </div>
+        <div id="acesso-ativar-cadastro-cadastrar-acessar" class="columns medium-3 small-12 u-txtCentralizado">
+            <a href="/Conta/Ativar" class="u-md-link">
+                <span class="icon-checkmark u-xsm-paddingRight u-inlineBlock"></span>Ativar Cadastro
+            </a>
+        </div>
+        <div id="acesso-recuperar-cadastro-cadastrar-acessar" class="columns medium-3 small-12 u-txtCentralizado">
+            <a href="/Conta/RecuperarCadastro" class="u-md-link">
+                <span class="icon-person u-xsm-paddingRight u-inlineBlock"></span>Recuperar Cadastro
+            </a>
+        </div>
+    </div>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+<script type="text/javascript" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=">
+
+    $(document).on('click', '#btn-acesso-logininterno-cadastrar-acessar', function () {
+        FuncoesGovBr.AbreModalLoginJucerja();
+    });
+
+</script>                <div class="ats-header-principal-homepage-menu">
+                    <div class="ats-header-principal-content-homepage-menu"></div>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+
+
+<section class="ats-breadcrumb--paginasInternas no-print">
+    <div class="row">
+        <div class="small-12 columns">
+            <section id="breadcrumb" class="ats-breadcrumb">
+                
+
+        <a class="ats-breadcrumb-lnk" href="/" title="Home">Home</a>
+        
+
+    <h6 class="ats-breadcrumb--titulo">Leiloeiros</h6>
+
+            </section>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="ats-container--paginaInterna ats-margemInterna">
+    <div class="row">
+        <div class="columns medium-12 small-12 large-12">
+            <div class="ats-govbr-page-titulo">
+                <h1>LEILOEIROS</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ats-container--paginaInterna">
+    <div class="row">
+        <section id="secMensagensUi">
+
+</section>
+
+
+        <div class="columns large-10 medium-12 small-12">
+
+            
+            <form id="formPesquisa" class="ats-containerFormulario-formulario" method="GET">
+    <div id="tablePublicacao" class="row">
+        <div class="columns small-12">
+
+                <div class="row">
+                    <div class="columns large-10 medium-10 small-12">
+                        <ul class="ats-listaLnks">
+                            
+
+                                <p><br /></p>
+                                        <h class="u-xsm-subcabecalho u-corAzul">Informa&#231;&#245;es</h>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+
+                                                        <a class="ats-listaLnks-lnk" href="https://www.jucerja.rj.gov.br/Contato/FaleConosco/
+" target="_blank">
+                                                            <div class="columns small-11">
+                                                                <p class="u-md-texto u-bold u-xsm-margemBottom  u-corCinzaEscuro">FALE CONOSCO (ACF)</p>
+                                                                <p class="u-margemBottomZero">Entre em contato conosco preenchendo o formulário para abrir uma solicitação. Você também pode acompanhar o andamento e visualizar as respostas diretamente por aqui.</p>
+                                                            </div>
+                                                            <div class="columns small-1">
+                                                                <span class="ats-listaLnks-ico icon-external-link u-corAzul"></span>
+                                                            </div>
+                                                        </a>
+
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+
+                                                        <a class="ats-listaLnks-lnk" href="https://www.jucerja.rj.gov.br/Transparencia/PerguntasFrequentes#17" target="_blank">
+                                                            <div class="columns small-11">
+                                                                <p class="u-md-texto u-bold u-xsm-margemBottom  u-corCinzaEscuro">PERGUNTAS FREQUENTES E SOLU&#199;&#213;ES</p>
+                                                                <p class="u-margemBottomZero">Consulte respostas às dúvidas mais comuns e orientações úteis para casos específicos. </p>
+                                                            </div>
+                                                            <div class="columns small-1">
+                                                                <span class="ats-listaLnks-ico icon-external-link u-corAzul"></span>
+                                                            </div>
+                                                        </a>
+
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+
+                                                        <a class="ats-listaLnks-lnk" href="https://www.jucerja.rj.gov.br/Legislacao/Portarias" target="_blank">
+                                                            <div class="columns small-11">
+                                                                <p class="u-md-texto u-bold u-xsm-margemBottom  u-corCinzaEscuro">PORTARIAS</p>
+                                                                <p class="u-margemBottomZero">Ato oficial que regulamenta procedimentos e organiza a atividade interna do órgão.</p>
+                                                            </div>
+                                                            <div class="columns small-1">
+                                                                <span class="ats-listaLnks-ico icon-external-link u-corAzul"></span>
+                                                            </div>
+                                                        </a>
+
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+
+                                                        <a class="ats-listaLnks-lnk" href="https://www.jucerja.rj.gov.br/Transparencia/Download/11548" target="_blank">
+                                                            <div class="columns small-11">
+                                                                <p class="u-md-texto u-bold u-xsm-margemBottom  u-corCinzaEscuro">CARTA DE SERVI&#199;OS</p>
+                                                                <p class="u-margemBottomZero">Carta de serviços ao cidadão</p>
+                                                            </div>
+                                                            <div class="columns small-1">
+                                                                <span class="ats-listaLnks-ico icon-external-link u-corAzul"></span>
+                                                            </div>
+                                                        </a>
+
+                                            </div>
+                                        </li>
+                                            <p class="u-margemBottomZero"><br /></p>
+                                        <h class="u-xsm-subcabecalho u-corAzul">Legisla&#231;&#227;o</h>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+
+                                                        <a class="ats-listaLnks-lnk" href="https://www.gov.br/empresas-e-negocios/pt-br/drei/legislacao/instrucoes-normativas/arquivos-instrucoes-normativas-em-vigor/INSTRUONORMATIVADREIMEN52DE29DEJULHODE2022ALTERADAdecisojudicial02.10.2024emnotaderodap.pdf" target="_blank">
+                                                            <div class="columns small-11">
+                                                                <p class="u-md-texto u-bold u-xsm-margemBottom  u-corCinzaEscuro">INSTRU&#199;&#195;O NORMATIVA DREI N&#186; 52/2022</p>
+                                                                <p class="u-margemBottomZero">Dispõe sobre o exercício das profissões de agente auxiliar do comércio, incluindo a de leiloeiro oficial. </p>
+                                                            </div>
+                                                            <div class="columns small-1">
+                                                                <span class="ats-listaLnks-ico icon-external-link u-corAzul"></span>
+                                                            </div>
+                                                        </a>
+
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+
+                                                        <a class="ats-listaLnks-lnk" href="http://www.planalto.gov.br/ccivil_03/decreto/1930-1949/D21981.htm" target="_blank">
+                                                            <div class="columns small-11">
+                                                                <p class="u-md-texto u-bold u-xsm-margemBottom  u-corCinzaEscuro">DECRETO N&#186; 21.981 DE 19 DE OUTUBRO DE 1932</p>
+                                                                <p class="u-margemBottomZero">Regula a profissão de Leiloeiro ao território da República.</p>
+                                                            </div>
+                                                            <div class="columns small-1">
+                                                                <span class="ats-listaLnks-ico icon-external-link u-corAzul"></span>
+                                                            </div>
+                                                        </a>
+
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12055>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">DELIBERA&#199;&#195;O JUCERJA 173 DE 25 MAIO DE 2026</p>
+                                                        <p class="u-margemBottomZero">Dispõe sobre as regras referentes à atuação dos leiloeiros públicos no âmbito da Junta Comercial do Estado do Rio de Janeiro – JUCERJA.</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                            <p class="u-margemBottomZero"><br /></p>
+                                        <h class="u-xsm-subcabecalho u-corAzul">Manuais</h>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=11924>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">VISUALIZA&#199;&#195;O E CUMPRIMENTO DAS EXIG&#202;NCIAS</p>
+                                                        <p class="u-margemBottomZero">Este documento descreve os procedimentos para cumprir a sua exigência no protocolo web</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12031>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">MATR&#205;CULA DE LEILOEIRO</p>
+                                                        <p class="u-margemBottomZero">Manual para solicitação de matrícula de leiloeiro</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12032>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">CANCELAMENTO DE MATR&#205;CULA DE LEILOEIRO</p>
+                                                        <p class="u-margemBottomZero">Manual para solicitação de cancelamento de matrícula de leiloeiro</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12033>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">LICEN&#199;A DE LEILOEIRO</p>
+                                                        <p class="u-margemBottomZero">Manual para solicitação da Licença de Leiloeiro</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12034>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">IMPOSTOS ANUAIS</p>
+                                                        <p class="u-margemBottomZero">Manual para solicitação de Impostos Anuais</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12035>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">CERTID&#195;O ESPEC&#205;FICA</p>
+                                                        <p class="u-margemBottomZero">Manual para solicitação de Certidão Específica</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12044>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">CAU&#199;&#195;O DE LEILOEIRO</p>
+                                                        <p class="u-margemBottomZero">Manual para solicitação da Caução de Leiloeiro</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12067>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">RECADASTRAMENTO DE LEILOEIRO E PREPOSTO </p>
+                                                        <p class="u-margemBottomZero">Os Leiloeiros Públicos e seus prepostos matriculados na Junta Comercial do Estado do Rio de Janeiro – JUCERJA deverão promover, até o dia 31 de maio, o seu recadastramento</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12071>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">RECADASTRAMENTO ANUAL DO LEILOEIRO OFICIAL - FORMUL&#193;RIO</p>
+                                                        <p class="u-margemBottomZero">Recadastramento anual de leiloeiros e prepostos é obrigatório. Acesse o modelo sugestivo que atende a deliberação Jucerja 172/2026 e parte do Ofício Circular SEI nº 608/2025/MEMP.</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12072>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">INDICA&#199;&#195;O DE PREPOSTO </p>
+                                                        <p class="u-margemBottomZero">O preposto age como mandatário, substituindo o leiloeiro mediante comunicação à Junta Comercial, assumindo responsabilidade legal pelos atos praticados.</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12073>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">DISPENSA DE PREPOSTO</p>
+                                                        <p class="u-margemBottomZero">A solicitação de dispensa geralmente é acompanhada da indicação de um novo substituto, se necessário</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12080>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">MATR&#205;CULA DE LEILOEIRO – SUPLEMENTAR</p>
+                                                        <p class="u-margemBottomZero">Trata-se da autorização para o exercício legal da profissão de Leiloeiro Público em Estado da Federação diverso do Estado em que foi dada a primeira Matrícula de Leiloeiro</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12133>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">AUTENTICA&#199;&#195;O DE LIVROS - LEILOEIRO</p>
+                                                        <p class="u-margemBottomZero">Manual para solicitação de autenticação de livros de leiloeiro</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="ats-listaLnks-item">
+                                            <div class="row">
+                                                <a class="ats-listaLnks-lnk" href=Download?id=12144>
+                                                    <div class="columns small-11">
+                                                        <p class="u-md-texto u-bold  u-xsm-margemBottom u-corCinzaEscuro">RECADASTRAMENTO ANUAL DO PREPOSTO - FORMUL&#193;RIO</p>
+                                                        <p class="u-margemBottomZero">Recadastramento anual de leiloeiros e prepostos é obrigatório. Acesse o modelo sugestivo que atende a deliberação Jucerja 172/2026 e parte do Ofício Circular SEI nº 608/2025/MEMP.</p>
+                                                    </div>
+                                                    <div class="columns small-1">
+                                                        <span class="ats-listaLnks-ico icon-arrow-right u-corAzul"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    </div>
+</form>
+
+
+
+            
+            <section class="ats-containerFormulario">
+                <header class="ats-containerFormulario-header">
+                    <h4 id="pesquisa" class="u-xsm-subcabecalho u-corCinzaEscuro"> Pesquisar</h4>
+                </header>
+                <div class="row">
+                    <div class="ats-containerFormulario-campos columns small-12">
+                        <div class="columns medium-6 small-12">
+                            <label class="ats-containerFormulario-label u-md-label" for="pesquisarpornome" id="labelNomeLeiloeiro">Pesquisar por Nome:</label>
+                            <input class="ats-containerFormulario-input" id="pesquisarpornome" name="NomeLeiloeiro" placeholder="Nome do Leiloeiro" type="text" value="" />
+                            <span id="mensagemErroLeiloeiro" class="u-msg-validacao erro-formulario u-esconder">Informe um filtro válido. Não inclua símbolos como "<", ">", "\" ou "$".</span>
+                        </div>
+                        
+                        <div class="columns medium-4 small-12">
+                            <label class="ats-containerFormulario-label u-md-label" for="situacaofuncional">Situação Funcional</label>
+                            <select class="ats-containerFormulario-select" id="situacaofuncional" name="SituacoesFuncionais"><option value="">Selecione uma Situa&#231;&#227;o Funcional</option>
+<option value="7">Irregular</option>
+<option value="2">Licenciado</option>
+<option value="3">Matr&#237;cula cancelada</option>
+<option selected="selected" value="1">Regular</option>
+<option value="6">Suspenso</option>
+</select>
+                        </div>
+                        <div class="columns medium-2 small-12">
+                            <button type="button" id="Pesquisar" class="ats-btn--tamanhoCampo ats-botao--azul u-md-txtBtn ats-btn postfix">
+                                Pesquisar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ats-listaLeiloeiros">
+                <header id="listaLeiloeiros" class="ats-containerFormulario-header">
+                    <h5 class="u-xsm-subcabecalho u-corCinzaEscuro">Lista de Leiloeiros</h5>
+                </header>
+
+                <div class="row">
+                    <div class="ats-containerFormulario-campos columns medium-9 small-12">
+                        <label class="ats-containerFormulario-label u-md-label" for="organizarpor">Organizar por</label>
+                        <select class="ats-containerFormulario-select" id="organizarpor" name="Ordenacao"><option value="nome">Nome</option>
+<option value="municipio">Munic&#237;pio</option>
+<option value="bairro">Bairro</option>
+<option selected="selected" value="matricula">Data de Matr&#237;cula</option>
+</select>
+                    </div>
+                    
+                    <div class="columns medium-3 small-12 leilao-form-busca">
+                        <a class="ats-btn ats-botao--cinza u-md-txtBtn u-corAzul ats-btn--tamanhoCampo" href="/AuxiliaresComercio/ImprimirListaLeiloeiro?Length=18" id="Leiloeiro-Baixar-Lista">Imprimir</a>
+
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="columns small-12 listagemLeiloeiros">
+                            <ul class="ats-listaLnks ats-container--estrutura">
+            <li class="ats-listaLnks-item">
+                <div class="row">
+                        <div class="columns medium-12 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Leiloeiro:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">MURILO CARDOZO CHAVES</h6>
+                        </div>
+
+                    <div class="columns medium-12 small-12">
+                        <div class="u-block informacoes-content">
+                                <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Situação Funcional:</h5>
+                                <h6 class="u-md-texto u-bold u-corAzul u-inlineBlock">Regular</h6>
+                        </div>
+                    </div>
+
+
+
+                    <div class="columns medium-2 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Nº Matrícula:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">8</h6>
+                    </div>
+
+                    <div class="columns medium-3 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Data Matrícula:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">02/08/1978</h6>
+                    </div>
+                    <div class="columns medium-3 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Data da Posse:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">02/08/1978</h6>
+                    </div>
+
+                        <div class="columns medium-4 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Telefone:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">(21) 25334430</h6>
+                        </div>
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">E-mail:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">leilao@murilochaves.com.br</h6>
+                        </div>
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Site:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">N&#227;o cadastrado</h6>
+                        </div>
+                        <div class="columns medium-12 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Endereço:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">Avenida Presidente Antonio Carlos N&#186; 607 / 10&#186; - Centro - Rio de Janeiro - RJ - CEP: 20020010</h6>
+                        </div>
+
+                </div>
+
+            </li>
+            <li class="ats-listaLnks-item">
+                <div class="row">
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Leiloeiro:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">LUIZ TEN&#211;RIO DE PAULA </h6>
+                        </div>
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Preposto:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">Marilena de Lima de Paula</h6>
+                        </div>
+
+                    <div class="columns medium-12 small-12">
+                        <div class="u-block informacoes-content">
+                                <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Situação Funcional:</h5>
+                                <h6 class="u-md-texto u-bold u-corAzul u-inlineBlock">Regular</h6>
+                        </div>
+                    </div>
+
+
+
+                    <div class="columns medium-2 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Nº Matrícula:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">19</h6>
+                    </div>
+
+                    <div class="columns medium-3 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Data Matrícula:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">02/10/1980</h6>
+                    </div>
+                    <div class="columns medium-3 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Data da Posse:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">02/10/1980</h6>
+                    </div>
+
+                        <div class="columns medium-4 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Telefone:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">(21) 25240545</h6>
+                        </div>
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">E-mail:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">LEILOEIROSDEPAULA@GMAIL.COM</h6>
+                        </div>
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Site:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">www.depaulaonline.com.br</h6>
+                        </div>
+                        <div class="columns medium-12 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Endereço:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">Rua da Assembl&#233;ia N&#186; 93 / GR. 1103 - Centro - Rio de Janeiro - RJ - CEP: 20011001</h6>
+                        </div>
+
+                </div>
+
+            </li>
+            <li class="ats-listaLnks-item">
+                <div class="row">
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Leiloeiro:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">EDGAR DE CARVALHO JUNIOR  </h6>
+                        </div>
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Preposto:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">Margarida Sevidanes Afonso Rodrigues</h6>
+                        </div>
+
+                    <div class="columns medium-12 small-12">
+                        <div class="u-block informacoes-content">
+                                <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Situação Funcional:</h5>
+                                <h6 class="u-md-texto u-bold u-corAzul u-inlineBlock">Regular</h6>
+                        </div>
+                    </div>
+
+
+
+                    <div class="columns medium-2 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Nº Matrícula:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">32</h6>
+                    </div>
+
+                    <div class="columns medium-3 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Data Matrícula:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">08/03/1983</h6>
+                    </div>
+                    <div class="columns medium-3 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Data da Posse:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">08/03/1983</h6>
+                    </div>
+
+                        <div class="columns medium-4 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Telefone:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">(21) 22206452</h6>
+                        </div>
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">E-mail:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">edgardecarvalhojr@hotmail.com</h6>
+                        </div>
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Site:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">N&#227;o cadastrado</h6>
+                        </div>
+                        <div class="columns medium-12 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Endereço:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">Avenida 13 de Maio N&#186; 47 / Sala 912 - Centro - Rio de Janeiro - RJ - CEP: 20031007</h6>
+                        </div>
+
+                </div>
+
+            </li>
+            <li class="ats-listaLnks-item">
+                <div class="row">
+                        <div class="columns medium-12 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Leiloeiro:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">NORMA MARIA MACHADO </h6>
+                        </div>
+
+                    <div class="columns medium-12 small-12">
+                        <div class="u-block informacoes-content">
+                                <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Situação Funcional:</h5>
+                                <h6 class="u-md-texto u-bold u-corAzul u-inlineBlock">Regular</h6>
+                        </div>
+                    </div>
+
+
+
+                    <div class="columns medium-2 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Nº Matrícula:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">36</h6>
+                    </div>
+
+                    <div class="columns medium-3 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Data Matrícula:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">14/06/1983</h6>
+                    </div>
+                    <div class="columns medium-3 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Data da Posse:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">14/06/1983</h6>
+                    </div>
+
+                        <div class="columns medium-4 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Telefone:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">(21) 22629004</h6>
+                        </div>
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">E-mail:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">normamachado@uol.com.br</h6>
+                        </div>
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Site:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">N&#227;o cadastrado</h6>
+                        </div>
+                        <div class="columns medium-12 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Endereço:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">Avenida Erasmo Braga N&#186; 227 / Sala 704 - Centro - Rio de Janeiro - RJ - CEP: 20024000</h6>
+                        </div>
+
+                </div>
+
+            </li>
+            <li class="ats-listaLnks-item">
+                <div class="row">
+                        <div class="columns medium-12 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Leiloeiro:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">SILVANI DAS GRA&#199;AS LOPES DIAS </h6>
+                        </div>
+
+                    <div class="columns medium-12 small-12">
+                        <div class="u-block informacoes-content">
+                                <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Situação Funcional:</h5>
+                                <h6 class="u-md-texto u-bold u-corAzul u-inlineBlock">Regular</h6>
+                        </div>
+                    </div>
+
+
+
+                    <div class="columns medium-2 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Nº Matrícula:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">41</h6>
+                    </div>
+
+                    <div class="columns medium-3 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Data Matrícula:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">06/05/1985</h6>
+                    </div>
+                    <div class="columns medium-3 small-12">
+                        <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Data da Posse:</h5>
+                        <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">02/05/1985</h6>
+                    </div>
+
+                        <div class="columns medium-4 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Telefone:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">(21) 22201461</h6>
+                        </div>
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">E-mail:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">leiloeirassilvani@ig.com.br</h6>
+                        </div>
+                        <div class="columns medium-6 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Site:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">N&#227;o cadastrado</h6>
+                        </div>
+                        <div class="columns medium-12 small-12">
+                            <h5 class="u-md-texto u-bold u-corCinzaEscuro u-inlineBlock">Endereço:</h5>
+                            <h6 class="u-md-texto u-semBold u-corCinzaClaro u-inlineBlock">Avenida 13 de Maio N&#186; 13 / Gr 1801 - Cinelandia - Rio de Janeiro - RJ - CEP: 20031007</h6>
+                        </div>
+
+                </div>
+
+            </li>
+    </ul>
+        <div class="row">
+            <div class="columns small-12 ats-margemInterna">
+                <div class="pagination-centered ats-paginacao">
+                    <ul class="pagination">
+                                <li data-value="1" class=" active ats-paginacao-tabela-padrao">
+                                    <a>1</a>
+                                </li>
+                                <li data-value="2" class=" ats-paginacao-tabela-padrao">
+                                    <a>2</a>
+                                </li>
+                                <li data-value="3" class=" ats-paginacao-tabela-padrao">
+                                    <a>3</a>
+                                </li>
+                                <li class="arrow foward">
+                                    <a>próxima &raquo;</a>
+                                </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="large-2 medium-12 small-12 columns ats-navSide ats-navSideDesktop">
+            <ul class="ats-navSide-lista">
+
+                                    <li class="ats-navSide-item ats-navSide-item--active">
+                                        <a href="#informacoes" class="ats-navSide-lnk scrollAside">Informa&#231;&#245;es</a>
+                                    </li>
+                                    <li class="ats-navSide-item">
+                                        <a href="#legislacao" class="ats-navSide-lnk scrollAside">Legisla&#231;&#227;o</a>
+                                    </li>
+                                    <li class="ats-navSide-item">
+                                        <a href="#manuais" class="ats-navSide-lnk scrollAside">Manuais</a>
+                                    </li>
+
+
+                <!-- <ul class="ats-navSide-lista ats-navSide-lista-fixed"> -->               
+                <li class="ats-navSide-item">
+                    <a href="#pesquisa" class="ats-navSide-lnk scrollAside">Pesquisa</a>
+                </li>
+                <li class="ats-navSide-item">
+                    <a href="#listaLeiloeiros" class="ats-navSide-lnk scrollAside">Lista de Leiloeiros</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+        <script src="/Scripts/plugins/chart.umd.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/plugins/jquery.tablesorter.min.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/plugins/ofi.browser.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/ResponsiveTables/responsive-tables.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+
+        <script src="/Scripts/foundation/fastclick.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/foundation/foundation.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/foundation/foundation.accordion.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/foundation/foundation.alert.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/foundation/foundation.reveal.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+
+        <script src="/Scripts/Funcoes/ErrorHandling.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/Funcoes/header.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/Funcoes/jucerja-tooltip.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/Funcoes/request.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/Funcoes/Validadores.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+
+        <script src="/Scripts/plugins/spin.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/Views/_Layout.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/jquery.mask.min.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+<script src="/Scripts/componentes/dropdown.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+
+
+        <div class="ats-acessoRapido ats-ocultar" id="containerDropDownAcessoRapido">
+    <div class="row">
+        <div class="columns small-12">
+            <a class="right ats-fechar ats-fechar-dropdown" id="acessoRapidoFechar"><i class="fa-solid fa-xmark"></i></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="columns small-12">
+            <div class="row">
+                <div class="columns small-12 medium-12 large-12">
+                    <div id="acesso-rapido-row">
+                        <div class="acesso-rapido-content-form">
+                            <div class="acesso-rapido-form-busca">
+                                <input class="ats-footer-input" name="campoPesquisa" autofocus="autofocus" type="text" placeholder="Busque por Servicos e etc..." id="inputAcessoRapido" style="font-size:1em;" />
+                                <small id="mensagemBuscaAcessoRapido" class="erro-formulario u-esconder">Não encontramos resultado para a sua busca</small>
+                            </div>
+                            <a class="ats-btn-acesso-rapido-busca postfix" id="btnBuscarAcessoRapido"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="ats-acessoRapido-header">
+        <div class="row">
+            <p class="ats-acessoRapido-Label">Acesso Rápido</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="columns small-12">
+            <section class="ats-acessoRapido-content">
+                <ul class="small-block-grid-2 medium-block-grid-5 large-block-grid-6 ats-acessoRapido-lista" id="listaAcessoRapido">
+                    
+
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">A</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Transparencia/AcoesProgramas" id="999++" target="_blank" class="ats-acessoRapido-lnk">A&#231;&#245;es e Programas</a>
+                                    <a href="/AuxiliaresComercio/AdministradoresArmazem" id="999++" target="_blank" class="ats-acessoRapido-lnk">Administradores de Armaz&#233;m</a>
+                                    <a href="/Legislacao/Administrativa" id="999++" target="_blank" class="ats-acessoRapido-lnk">Administrativa</a>
+                                    <a href="/Conta/Alterar" id="999++" target="_blank" class="ats-acessoRapido-lnk">Alterar Dados Cadastro</a>
+                                    <a href="/Conta/AlterarSenha" id="999++" target="_blank" class="ats-acessoRapido-lnk">Alterar Senha</a>
+                                    <a href="/Servicos/AndamentoProcessos" id="999++" target="_blank" class="ats-acessoRapido-lnk">Andamento de Processos</a>
+                                    <a href="/Informacoes/ArtigosCronicas" id="999++" target="_blank" class="ats-acessoRapido-lnk">Artigos e Cr&#244;nicas</a>
+                                    <a href="/Plenaria/Atas" id="999++" target="_blank" class="ats-acessoRapido-lnk">Atas</a>
+                                    <a href="/Conta/Ativar" id="999++" target="_blank" class="ats-acessoRapido-lnk">Ativar Cadastro</a>
+                                    <a href="/Conta/AtivarIntegracaoGovBr" id="999++" target="_blank" class="ats-acessoRapido-lnk">Ativar Cadastro</a>
+                                    <a href="/Transparencia/RelatorioAuditoria" id="999++" target="_blank" class="ats-acessoRapido-lnk">Auditorias</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">B</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Servicos/BuscaEmpresasArtigo60" id="999++" target="_blank" class="ats-acessoRapido-lnk">Busca de Empresas Artigo 60</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">C</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Conta/CadastrarNovaSenha" id="999++" target="_blank" class="ats-acessoRapido-lnk">Cadastrar Nova Senha</a>
+                                    <a href="/Servicos/Certidao" id="999++" target="_blank" class="ats-acessoRapido-lnk">Certid&#227;o Online</a>
+                                    <a href="/Servicos/ChancelaDigital" id="999++" target="_blank" class="ats-acessoRapido-lnk">Chancela Digital</a>
+                                    <a href="/Conta/Exclusao" id="999++" target="_blank" class="ats-acessoRapido-lnk">Confirmar Exclus&#227;o de Cadastro</a>
+                                    <a href="/Institucional/ConhecaPresidente" id="999++" target="_blank" class="ats-acessoRapido-lnk">Conhe&#231;a o Presidente</a>
+                                    <a href="/Contato/ContatoDPO" id="999++" target="_blank" class="ats-acessoRapido-lnk">Contato com DPO</a>
+                                    <a href="/Transparencia/ConveniosTransferencias" id="999++" target="_blank" class="ats-acessoRapido-lnk">Conv&#234;nios e Transfer&#234;ncias</a>
+                                    <a href="/Conta/Cadastrar" id="999++" target="_blank" class="ats-acessoRapido-lnk">Criar Cadastro</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">D</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Transparencia/DadosAbertos" id="999++" target="_blank" class="ats-acessoRapido-lnk">Dados Abertos</a>
+                                    <a href="/Legislacao/Deliberacoes" id="999++" target="_blank" class="ats-acessoRapido-lnk">Delibera&#231;&#245;es</a>
+                                    <a href="/Servicos/DocumentoDigital" id="999++" target="_blank" class="ats-acessoRapido-lnk">Documento Digital</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">E</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Servicos/EmissaoCertificado" id="999++" target="_blank" class="ats-acessoRapido-lnk">Emita Aqui Seu Certificado Digital</a>
+                                    <a href="/Informacoes/EmpreendedorIndividual" id="999++" target="_blank" class="ats-acessoRapido-lnk">Empreendedor Individual</a>
+                                    <a href="/Informacoes/EmpresasPublicas" id="999++" target="_blank" class="ats-acessoRapido-lnk">Empresas P&#250;blicas e Sociedades de Economia Mista</a>
+                                    <a href="/Conta/Entrar" id="999++" target="_blank" class="ats-acessoRapido-lnk">Entrar</a>
+                                    <a href="/Legislacao/Enunciados" id="999++" target="_blank" class="ats-acessoRapido-lnk">Enunciados</a>
+                                    <a href="/Conta/EsqueciSenha" id="999++" target="_blank" class="ats-acessoRapido-lnk">Esqueci Minha Senha</a>
+                                    <a href="/Informacoes/ListaEstatais" id="999++" target="_blank" class="ats-acessoRapido-lnk">Estatais</a>
+                                    <a href="/Informacoes/Estatistica" id="999++" target="_blank" class="ats-acessoRapido-lnk">Estat&#237;stica</a>
+                                    <a href="/Institucional/Estrutura" id="999++" target="_blank" class="ats-acessoRapido-lnk">Estrutura</a>
+                                    <a href="/Conta/Excluir" id="999++" target="_blank" class="ats-acessoRapido-lnk">Excluir Cadastro</a>
+                                    <a href="/Servicos/Extranet" id="999++" target="_blank" class="ats-acessoRapido-lnk">Extranet</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">F</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Contato/FaleConosco/" id="999++" target="_blank" class="ats-acessoRapido-lnk">Fale Conosco</a>
+                                    <a href="/Institucional/Fluxograma" id="999++" target="_blank" class="ats-acessoRapido-lnk">Fluxograma</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">G</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Servicos/GuiaBancaria" id="999++" target="_blank" class="ats-acessoRapido-lnk">Guia Banc&#225;ria</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">I</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Informacoes/Inea" id="999++" target="_blank" class="ats-acessoRapido-lnk">INEA</a>
+                                    <a href="/Transparencia/InformacoesClassificadas" id="999++" target="_blank" class="ats-acessoRapido-lnk">Informa&#231;&#245;es Classificadas</a>
+                                    <a href="/Home/informacoesEmpresas" id="999++" target="_blank" class="ats-acessoRapido-lnk">Informa&#231;&#245;es sobre Empresas</a>
+                                    <a href="/Informacoes/InscricaoEstadual" id="999++" target="_blank" class="ats-acessoRapido-lnk">Inscri&#231;&#227;o Estadual</a>
+                                    <a href="/Transparencia/Institucional" id="999++" target="_blank" class="ats-acessoRapido-lnk">Institucional</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">L</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/AuxiliaresComercio/Leiloeiros" id="999++" target="_blank" class="ats-acessoRapido-lnk">Leiloeiros</a>
+                                    <a href="/Home/LGPD" id="999++" target="_blank" class="ats-acessoRapido-lnk">LGPD</a>
+                                    <a href="/Transparencia/Licitacoes" id="999++" target="_blank" class="ats-acessoRapido-lnk">Licita&#231;&#245;es e Contratos</a>
+                                    <a href="/Servicos/LivroMercantilSocietario" id="999++" target="_blank" class="ats-acessoRapido-lnk">Livro Mercantil e Societ&#225;rio</a>
+                                    <a href="/Contato/LocaisAtendimento" id="999++" target="_blank" class="ats-acessoRapido-lnk">Locais de Atendimento</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">M</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Informacoes/Manuais" id="999++" target="_blank" class="ats-acessoRapido-lnk">Manuais</a>
+                                    <a href="/Servicos/MapaEmpresarial" id="999++" target="_blank" class="ats-acessoRapido-lnk">Mapa Empresarial</a>
+                                    <a href="/Informacoes/Modelos" id="999++" target="_blank" class="ats-acessoRapido-lnk">Modelos</a>
+                                    <a href="/Servicos/MonitoramentoEmpresarial" id="999++" target="_blank" class="ats-acessoRapido-lnk">Monitoramento Empresarial</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">N</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Informacoes/Noticias" id="999++" target="_blank" class="ats-acessoRapido-lnk">Not&#237;cias</a>
+                                    <a href="/AuxiliaresComercio/Notificacoes" id="999++" target="_blank" class="ats-acessoRapido-lnk">Notifica&#231;&#245;es</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">O</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Servicos/Oficio" id="999++" target="_blank" class="ats-acessoRapido-lnk">Of&#237;cio</a>
+                                    <a href="/Plenaria/OrdemDoDia" id="999++" target="_blank" class="ats-acessoRapido-lnk">Ordem do dia</a>
+                                    <a href="/Institucional/Organograma" id="999++" target="_blank" class="ats-acessoRapido-lnk">Organograma</a>
+                                    <a href="/Contato/FaleComOuvidoria" id="999++" target="_blank" class="ats-acessoRapido-lnk">Ouvidoria</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">P</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Transparencia/ParticipacaoSocial" id="999++" target="_blank" class="ats-acessoRapido-lnk">Participa&#231;&#227;o Social</a>
+                                    <a href="/Transparencia/PerguntasFrequentes" id="999++" target="_blank" class="ats-acessoRapido-lnk">Perguntas Frequentes</a>
+                                    <a href="/Transparencia/PlanoIntegridade" id="999++" target="_blank" class="ats-acessoRapido-lnk">Plano de Integridade</a>
+                                    <a href="/Servicos/PortalAssinatura" id="999++" target="_blank" class="ats-acessoRapido-lnk">Portal de Assinaturas</a>
+                                    <a href="/Legislacao/Portarias" id="999++" target="_blank" class="ats-acessoRapido-lnk">Portarias</a>
+                                    <a href="/Transparencia/POSIC" id="999++" target="_blank" class="ats-acessoRapido-lnk">POSIC</a>
+                                    <a href="/Transparencia/Procuradoria" id="999++" target="_blank" class="ats-acessoRapido-lnk">Procuradoria</a>
+                                    <a href="/Servicos/ProtecaoCPF" id="999++" target="_blank" class="ats-acessoRapido-lnk">Prote&#231;&#227;o de CPF</a>
+                                    <a href="/Servicos/Protocolo" id="999++" target="_blank" class="ats-acessoRapido-lnk">Protocolo Web</a>
+                                    <a href="/Informacoes/PublicacoesJulgamento" id="999++" target="_blank" class="ats-acessoRapido-lnk">Publica&#231;&#245;es</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">R</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Transparencia/ReceitasDespesas" id="999++" target="_blank" class="ats-acessoRapido-lnk">Receitas e Despesas</a>
+                                    <a href="/Conta/RecuperarCadastro" id="999++" target="_blank" class="ats-acessoRapido-lnk">Recuperar Cadastro</a>
+                                    <a href="/Conta/ReenviarChave" id="999++" target="_blank" class="ats-acessoRapido-lnk">Reenviar Chave de Acesso</a>
+                                    <a href="/Servicos/Regin" id="999++" target="_blank" class="ats-acessoRapido-lnk">Regin</a>
+                                    <a href="/Legislacao/RegistroEmpresas" id="999++" target="_blank" class="ats-acessoRapido-lnk">Registro de Empresas</a>
+                                    <a href="/Legislacao/Resolucoes" id="999++" target="_blank" class="ats-acessoRapido-lnk">Resolu&#231;&#245;es</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">S</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Transparencia/ServicoInformacaoCidadao" id="999++" target="_blank" class="ats-acessoRapido-lnk">Servi&#231;o de Informa&#231;&#227;o ao Cidad&#227;o - SIC</a>
+                                    <a href="/Transparencia/Servidores" id="999++" target="_blank" class="ats-acessoRapido-lnk">Servidores</a>
+                                    <a href="/Servicos/SituacaoCadastralEmpresas" id="999++" target="_blank" class="ats-acessoRapido-lnk">Situa&#231;&#227;o Cadastral de Empresas</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">T</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Informacoes/TabelaCnae" id="999++" target="_blank" class="ats-acessoRapido-lnk">Tabela CNAE</a>
+                                    <a href="/Informacoes/TabelaPrecos" id="999++" target="_blank" class="ats-acessoRapido-lnk">Tabela de Pre&#231;os</a>
+                                    <a href="/AuxiliaresComercio/Tradutores" id="999++" target="_blank" class="ats-acessoRapido-lnk">Tradutores</a>
+                            </div>
+                        </li>
+                        <li class="ats-acessoRapido-item">
+                            <p class="ats-acessoRapido-categoria">V</p>
+                            <div class="ats-acessoRapido-containerLnks">
+                                    <a href="/Servicos/validadorassinatura" id="999++" target="_blank" class="ats-acessoRapido-lnk">Validador de Assinaturas</a>
+                                    <a href="/Servicos/Certidao/Validar" id="999++" target="_blank" class="ats-acessoRapido-lnk">Validar Certid&#227;o</a>
+                                    <a href="/Servicos/VinculoEmpresarial" id="999++" target="_blank" class="ats-acessoRapido-lnk">V&#237;nculo Empresarial</a>
+                            </div>
+                        </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<link href="/Content/CustomsGovBr/footer-govbr.css" rel="stylesheet" />
+
+<footer class="ats-footer-content-govbr no-print">
+    <div class="ats-footer-govbr">
+        <img src="/Content/Images/svg/logo-jucerja-branco.svg" class="ats-footer-img-logo-jucerja" />
+        <div class="ats-footer-content-columns">
+            <div class="ats-footer-acesso-rapido">
+                <h3 class="ats-footer-acesso-rapido-titulo">Acesso Rápido</h3>
+                <p class="ats-footer-acesso-rapido-descricao">Não encontrou o que deseja? Faça uma busca!</p>
+                <form id="ativadorDropDownAcessoRapidoFooter" class="ats-footer-acesso-rapido-form ats-acessoRapido--ativador">
+                    
+                    <button class="ats-footer-acesso-rapido-form-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+            <div class="ats-footer-localizacao">
+                <div class="ats-footer-localizacao-item-titulo">LOCALIZAÇÃO</div>
+                <div class="ats-footer-localizacao-item"><i class="fa-solid fa-location-dot"></i> Avenida Rio Branco, 10 - Centro - RJ CEP: 20090-000</div>
+                <div class="ats-footer-localizacao-item"><i class="fa-solid fa-headset"></i> Atendimento do Protocolo de 09h às 16h. De Segunda à Sexta</div>
+                <a class="ats-footer-localizacao-item ats-footer-localizacao-item-contato-localizacao" href="/Contato/LocaisAtendimento"><i class="fa-solid fa-location-dot"></i> Todos os pontos de atendimento</a>
+                <div class="ats-footer-localizacao-maps">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14701.34899068693!2d-43.1795499!3d-22.9009285!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997f5a33126b35%3A0xd2360a88e0916d4f!2sJUCERJA%20-%20Junta%20Comercial%20do%20Estado%20do%20Rio%20de%20Janeiro!5e0!3m2!1sen!2sbr!4v1707877479208!5m2!1sen!2sbr"
+                            style="width: 100%; height: 210px; border: 0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+        <div class="ats-footer-subcolumns">
+            <div class="ats-footer-redes-sociais">
+                <a href="https://www.instagram.com/jucerjarj" rel="noopener noreferrer" target="_blank" class="ats-footer-rede-social-link"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/%40JucerjaTV" rel="noopener noreferrer" target="_blank" class="ats-footer-rede-social-link"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://br.linkedin.com/company/jucerja" rel="noopener noreferrer" target="_blank" class="ats-footer-rede-social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <img src="/Content/Images/logo-governorj-branco.png" class="ats-footer-img-logo-governorj" />
+        </div>
+    </div>
+    <div class="ats-footer-govbr-copyright">© Junta Comercial do Estado do Rio de Janeiro. Todos os Direitos Reservados. Copyright 2016. Versão: 0.0.0.0</div>
+</footer><script src="/Scripts/Funcoes/pesquisarAcessoRapido.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=" defer></script>
+            <script type="text/javascript" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=">
+                $(function () {
+                    dropDown(ativadorDropDownAcessoRapidoFooter, containerDropDownAcessoRapido);
+
+                })
+            </script>
+
+        
+
+
+
+
+        
+        
+    <script src="/Scripts/Views/AuxiliaresComercio/Leiloeiro/Leiloeiro.js"></script>
+<script src="/Scripts/plugins/scroll-aside.js"></script>
+
+
+
+        <script type="text/javascript" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=">
+            $(document).foundation();
+        </script>
+    </div>
+    <script type="text/javascript" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE=">
+        function obterUrlBase() {
+            return ($("#urlBase").val());
+        }
+
+        $(document).on('click', '#ats-menu-overlay-govbr', function () {
+            HeaderGovBr.FechaSideNav();
+        });
+    </script>
+    <script src="/Content/CustomsGovBr/funcoes-govbr.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+    <script src="/Content/CustomsGovBr/LayoutPage/layoutpage-govbr.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+
+    <script src="/Scripts/modernizr-custom.js" nonce="XNkVNUX+gOS/FwUSeo528tiGHwqFRiMgfmc1AZV/OxE="></script>
+
+</body>
+
+</html>
+
+
+
+
+
