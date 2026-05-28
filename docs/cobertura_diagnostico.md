@@ -168,3 +168,45 @@ Reproduzível com:
 uv run python -m src.scripts.fase2_cadastrar_leiloeiros
 uv run python -m src.scripts.fase3_sites_proprios
 ```
+
+## 7. Expansão: +3 Juntas (MT, PB, PI) e varredura de 240 sites
+
+Adicionadas 3 Juntas com parser ao vivo (todas publicam o **site** do leiloeiro):
+**JUCEMAT (MT)**, **JUCEPB (PB)**, **JUCEPI (PI)** — somadas a JUCEPAR (PR) e
+JUCEG (GO). Cadastro: **~530 leiloeiros não-SP em 5 UFs, ~240 com site oficial**.
+
+Varredura dos **240 sites**: **1.327 indícios de SP em 53 sites**. Filtrando por
+cidade paulista confirmada e **removendo os agregadores nacionais** (cujos
+leiloeiros costumam ter também JUCESP — megaleiloes, portalzuk, lanceja, sfrazao),
+sobram **14 sites próprios genuínos** de leiloeiros de fora com imóvel em SP:
+
+| UF | Site | Leiloeiro | nº cidades SP |
+|---|---|---|---|
+| MT | leiloariasmart.com.br | Lucas Andreatta de Oliveira | **25** |
+| MT | webleiloes.com.br | Tiago Tessler Blecher | **21** |
+| PR | liderleiloes.com.br | Tatiana/Caroline (Líder) | 10 |
+| PR | valeroleiloes.com.br | José Valéro Santos Junior | 6 |
+| PR | e-confianca.com.br | Marilaine Borges de Paula | 2 |
+| PR | aleiloeira.leilao.br | Catia F. Alievi Toporoski | 1 |
+| PR | topoleiloes.com.br | Guilherme Stutz Toporoski | 1 |
+| PR | andraleiloes.com.br | Mauricio Sambugari | 1 |
+| PR | spencerleiloes.com.br | Spencer D'Avila Fogagnoli | 1 |
+| GO | alfaleiloes.com | Davi Borges de Aquino | 1 |
+| GO | leilo.com.br | Sérgio Fleury Batista | 1 |
+| MT | bastonleiloes.com.br | Mouzar Baston Filho | 1 |
+| MT | leilomaster.com.br | Sergio Fleury Batista | 1 |
+| MT | leilaobrasil.com.br | Irani Flores | 1 |
+
+> **Mato Grosso foi o achado**: `leiloariasmart` e `webleiloes` estão carregados de
+> imóveis em SP. A varredura cobre **todos** os sites do cadastro (não só os
+> promissores), conforme pedido.
+
+### Ressalva final (filtro que ainda falta)
+
+A varredura confirma *imóvel em SP no site de leiloeiro de fora*, mas falta o
+**cross-check de JUCESP**: um leiloeiro pode estar numa Junta não-SP **e também**
+na JUCESP (ex.: Fernando Cerello aparece na JUCEMAT, mas tem JUCESP Nº 844 → não é
+assimetria). O alvo "puro" é quem **não** tem matrícula JUCESP. Próximo passo:
+cruzar cada leiloeiro com a lista JUCESP (pendente) e, para os ~14 sites genuínos,
+escrever parser dedicado que extraia o lote estruturado (endereço, lance, praça) e
+o promova de "indício" a `lote` no banco com `fonte_tipo='site_proprio'`.
