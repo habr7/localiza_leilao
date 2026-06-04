@@ -87,10 +87,15 @@ class LeiloariaSmartScraper(BaseScraper):
     dominio = "leiloariasmart.com.br"  # casa com o site_oficial do cadastro
 
     async def listar_lotes_sp(self, max_paginas: int = 1) -> list[LoteRaw]:
-        html = await self.fetch(BASE, tentativas=2)
-        if not html:
-            return []
-        todos = parse_lotes(html)
-        sp = [lo for lo in todos if lo.uf == "SP"]
-        log.info("leiloariasmart", lotes=len(todos), sp=len(sp))
-        return sp
+        # "/leiloes/proximos" traz o catálogo ativo completo (não só os destaques
+        # da home). Agregamos por URL para não duplicar.
+        por_url: dict[str, LoteRaw] = {}
+        for caminho in ("", "/leiloes/proximos", "/leiloes/extrajudiciais"):
+            html = await self.fetch(BASE + caminho, tentativas=2)
+            if not html:
+                continue
+            for lo in parse_lotes(html):
+                if lo.uf == "SP":
+                    por_url[lo.fonte_url] = lo
+        log.info("leiloariasmart", sp=len(por_url))
+        return list(por_url.values())

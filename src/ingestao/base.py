@@ -15,8 +15,8 @@ import abc
 import asyncio
 import time
 import urllib.robotparser
-from typing import Self
 from dataclasses import dataclass, field
+from typing import Self
 from urllib.parse import urlsplit
 
 import httpx

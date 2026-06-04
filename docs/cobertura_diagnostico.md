@@ -201,12 +201,37 @@ sobram **14 sites próprios genuínos** de leiloeiros de fora com imóvel em SP:
 > imóveis em SP. A varredura cobre **todos** os sites do cadastro (não só os
 > promissores), conforme pedido.
 
-### Ressalva final (filtro que ainda falta)
+## 8. Cross-check de JUCESP — o filtro que separa o alvo puro
 
-A varredura confirma *imóvel em SP no site de leiloeiro de fora*, mas falta o
-**cross-check de JUCESP**: um leiloeiro pode estar numa Junta não-SP **e também**
-na JUCESP (ex.: Fernando Cerello aparece na JUCEMAT, mas tem JUCESP Nº 844 → não é
-assimetria). O alvo "puro" é quem **não** tem matrícula JUCESP. Próximo passo:
-cruzar cada leiloeiro com a lista JUCESP (pendente) e, para os ~14 sites genuínos,
-escrever parser dedicado que extraia o lote estruturado (endereço, lance, praça) e
-o promova de "indício" a `lote` no banco com `fonte_tipo='site_proprio'`.
+Um leiloeiro pode estar numa Junta de fora **e também** na JUCESP — e aí não há
+assimetria. A forma confiável de saber é o **próprio site do leiloeiro**, que lista
+todas as matrículas ("JUCESP nº ..., JUCEMAT nº ..."). Implementado em
+`src/ingestao/sites_proprios/verificacao.py` (`pagina_tem_jucesp`) e integrado ao
+pipeline (`fase3_sites_dedicados` pula quem tem JUCESP; `fase3_verificar_jucesp`
+marca cada site).
+
+### Resultado da verificação dos 14 sites genuínos
+
+**TÊM JUCESP (excluídos — não são alvo):**
+
+| Site | Matrículas observadas |
+|---|---|
+| webleiloes.com.br | …JUCEMAT, **JUCESP n°1098**, … (≈20 juntas) |
+| valeroleiloes.com.br | JUCESP, JUCEMG, JUCEPAR, JUCESC |
+| e-confianca.com.br | JUCESP, JUCEMG, JUCEPAR |
+| bastonleiloes.com.br | JUCEMS, JUCEMG, **JUCESP**, JUCESC, JUCEMAT, JUCEG |
+
+**SEM JUCESP (alvos puros):** leiloariasmart (JUCISRS/RS), liderleiloes,
+aleiloeira, topoleiloes, andraleiloes, spencerleiloes (PR), alfaleiloes,
+leilo.com.br (GO), leilomaster, leilaobrasil (MT).
+
+> Impacto: o maior volume (webleiloes, 19 imóveis SP) **caiu** por ter JUCESP — a
+> suspeita do Humberto estava certa. Entre os limpos, cada site tem **poucos**
+> imóveis em SP no momento (ex.: leiloariasmart = 2, leilo.com.br = 2): o ruído da
+> heurística inflava a contagem. O `fase3_sites_dedicados` agora só persiste os
+> imóveis de sites **verificados sem JUCESP**.
+
+### Próximo passo
+
+Parser dedicado para os demais sites **limpos** com imóveis (leilo.com.br tem JSON;
+liderleiloes), e completar a lista de exclusão com o scraper da própria JUCESP.

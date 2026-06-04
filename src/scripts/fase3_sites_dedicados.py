@@ -27,6 +27,7 @@ from src.core.models import Leiloeiro
 from src.ingestao.base import LoteRaw
 from src.ingestao.persistencia import upsert_lotes
 from src.ingestao.sites_proprios import SCRAPERS_DEDICADOS
+from src.ingestao.sites_proprios.verificacao import VerificadorJucesp
 
 log = structlog.get_logger()
 
@@ -60,6 +61,11 @@ async def _coletar(scraper_cls: type) -> list[LoteRaw]:
         return await scraper.listar_lotes_sp()
 
 
+async def _tem_jucesp(site: str) -> bool | None:
+    async with VerificadorJucesp() as v:
+        return await v.tem_jucesp(site)
+
+
 def _linha(lote: LoteRaw, nome: str | None, uf: str | None) -> dict[str, object]:
     return {
         "fonte": lote.fonte_origem,
@@ -82,6 +88,12 @@ def main() -> None:
     for scraper_cls in SCRAPERS_DEDICADOS:
         dominio = scraper_cls.dominio
         leiloeiro_id, nome, uf = _resolver_dono(dominio)
+        # Filtro da tese: pula sites cujo leiloeiro também tem matrícula JUCESP.
+        site_url = f"https://www.{dominio}"
+        jucesp = asyncio.run(_tem_jucesp(site_url))
+        if jucesp:
+            log.warning("site_excluido_jucesp", dominio=dominio, leiloeiro=nome)
+            continue
         lotes = asyncio.run(_coletar(scraper_cls))
         sp = [lo for lo in lotes if lo.uf == "SP" and lo.cidade]
         with get_session() as session:

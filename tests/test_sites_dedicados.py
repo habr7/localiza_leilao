@@ -35,3 +35,12 @@ def test_leiloariasmart_extrai_lotes_e_cidade_limpa():
         # Cidade começa em maiúscula e não traz unidades de medida (m², ha).
         assert lo.cidade[0].isupper()
         assert "m²" not in lo.cidade and " ha" not in lo.cidade
+
+
+def test_verificacao_jucesp_detecta():
+    from src.ingestao.sites_proprios.verificacao import pagina_tem_jucesp
+
+    com = "<html><body>Leiloeiro: JUCEMAT nº 4, JUCESP n°1098, JUCEG nº 9</body></html>"
+    sem = "<html><body>Leiloeira matriculada na JUCISRS sob o nº 382</body></html>"
+    assert pagina_tem_jucesp(com) is True
+    assert pagina_tem_jucesp(sem) is False
