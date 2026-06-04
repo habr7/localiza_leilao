@@ -28,6 +28,8 @@ from src.ingestao.base import LoteRaw
 from src.ingestao.persistencia import upsert_lotes
 from src.ingestao.sites_proprios import SCRAPERS_DEDICADOS
 from src.ingestao.sites_proprios.verificacao import VerificadorJucesp
+from src.leiloeiros.jucesp_exclusao import carregar_nomes_jucesp
+from src.leiloeiros.resolver import normalizar_nome
 
 log = structlog.get_logger()
 
@@ -85,14 +87,20 @@ def _linha(lote: LoteRaw, nome: str | None, uf: str | None) -> dict[str, object]
 def main() -> None:
     linhas: list[dict[str, object]] = []
     total_ins = total_atu = 0
+    # Cross-check oficial: nomes da JUCESP (lista do D.O.E.) para exclusão por nome.
+    with get_session() as session:
+        nomes_jucesp = carregar_nomes_jucesp(session)
     for scraper_cls in SCRAPERS_DEDICADOS:
         dominio = scraper_cls.dominio
         leiloeiro_id, nome, uf = _resolver_dono(dominio)
-        # Filtro da tese: pula sites cujo leiloeiro também tem matrícula JUCESP.
+        # Filtro da tese (dois sinais): nome na lista oficial da JUCESP OU
+        # matrícula JUCESP lida no próprio site.
+        if nome and normalizar_nome(nome) in nomes_jucesp:
+            log.warning("site_excluido_jucesp", dominio=dominio, leiloeiro=nome, via="nome")
+            continue
         site_url = f"https://www.{dominio}"
-        jucesp = asyncio.run(_tem_jucesp(site_url))
-        if jucesp:
-            log.warning("site_excluido_jucesp", dominio=dominio, leiloeiro=nome)
+        if asyncio.run(_tem_jucesp(site_url)):
+            log.warning("site_excluido_jucesp", dominio=dominio, leiloeiro=nome, via="site")
             continue
         lotes = asyncio.run(_coletar(scraper_cls))
         sp = [lo for lo in lotes if lo.uf == "SP" and lo.cidade]
