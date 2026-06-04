@@ -18,7 +18,7 @@ def test_juntas_nao_sp_cadastradas():
         "JUCERJA": "RJ",
         "JUCEMG": "MG",
         "JUCEPAR": "PR",
-        "JUCERGS": "RS",
+        "JUCISRS": "RS",
         "JUCESC": "SC",
         "JUCEDF": "DF",
         "JUCEG": "GO",
@@ -51,10 +51,19 @@ def test_coletar_csv_aplica_defaults_da_junta(tmp_path):
 
 async def test_coletar_sem_url_lista_avisa_pendencia():
     """Sem URL de lista pública configurada, coletar sinaliza a pendência."""
-    from src.leiloeiros.juntas import JucerjaScraper
+    from src.leiloeiros.cadastro import LeiloeiroRaw
+    from src.leiloeiros.juntas.base import JuntaScraper
+
+    class _SemLista(JuntaScraper):
+        junta = "XX"
+        uf = "XX"
+        url_lista = None
+
+        def _parse(self, html: str) -> list[LeiloeiroRaw]:
+            return []
 
     with pytest.raises(NotImplementedError):
-        await JucerjaScraper().coletar()
+        await _SemLista().coletar()
 
 
 def test_jucepar_parse_extrai_nome_matricula_site():
@@ -128,3 +137,48 @@ def test_jucepi_parse_rotulada():
     assert r.uf_matricula == "PI"
     assert "n.º" not in r.matricula and "," not in r.matricula
     assert any(x.site_oficial for x in registros)
+
+
+def test_parse_tabela_com_site_e_matricula_numero():
+    from src.leiloeiros.juntas._util import parse_tabela
+
+    html = """<table>
+      <tr><th>Mat</th><th>Nome</th><th>Contato</th></tr>
+      <tr><td>Matrícula - 01 22/08/1984</td><td>Fernando Castelo</td>
+          <td>Site: www.montenegroleiloes.com.br E-MAIL: x@y.com</td></tr>
+    </table>"""
+    regs = parse_tabela(
+        html, "CE", "JUCEC", "junta:jucec", 1, 0, idx_site=2, matricula_so_numero=True
+    )
+    assert len(regs) == 1
+    assert regs[0].nome == "Fernando Castelo"
+    assert regs[0].matricula == "01"
+    assert regs[0].site_oficial == "https://www.montenegroleiloes.com.br"
+
+
+def test_parse_tabela_ordem_antiguidade():
+    from src.leiloeiros.juntas._util import parse_tabela
+
+    html = "<table><tr><td>1 - Ângela Bechara</td><td>77</td></tr></table>"
+    regs = parse_tabela(html, "MG", "JUCEMG", "junta:jucemg", 0, 1)
+    assert regs[0].nome == "Ângela Bechara" and regs[0].matricula == "77"
+
+
+def test_parse_blocos_rotulados_df():
+    from src.leiloeiros.juntas._util import parse_blocos_rotulados
+
+    html = (
+        "<p><strong>DENISE ARAÚJO DOS SANTOS</strong><br>Matrícula: 117<br>"
+        "Site: dearaujoleiloes.com.br<br>Situação Funcional: Regular</p>"
+    )
+    regs = parse_blocos_rotulados(html, "DF", "JUCEDF", "junta:jucedf", "p")
+    assert regs[0].nome == "DENISE ARAÚJO DOS SANTOS"
+    assert regs[0].matricula == "117"
+    assert regs[0].site_oficial == "https://dearaujoleiloes.com.br"
+
+
+def test_cobertura_minima_de_juntas():
+    """O registro cobre SP (exclusão) + >=16 UFs não-SP com parser ao vivo."""
+    ufs_nao_sp = {s.uf for s in JUNTAS_DISPONIVEIS.values() if s.uf != "SP"}
+    assert "SP" in {s.uf for s in JUNTAS_DISPONIVEIS.values()}
+    assert len(ufs_nao_sp) >= 16

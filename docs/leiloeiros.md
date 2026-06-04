@@ -21,6 +21,30 @@ Implementado em `src/leiloeiros/resolver.py` + `src/leiloeiros/matricula.py`:
   `coletar_csv(path)` (já funciona offline). Template de pedido LAI: ver abaixo.
 - **JUCESP** → coletar para excluir quem é de SP.
 
+### Cobertura nacional (sessão de expansão)
+
+Cobertura atual: **SP (exclusão) + 18 UFs não-SP com parser ao vivo**. Carga típica:
+~2.700 leiloeiros (623 JUCESP + ~2.080 não-SP), ~700 com site oficial.
+
+| UF | Junta | Estrutura | Site | UF | Junta | Estrutura | Site |
+|---|---|---|---|---|---|---|---|
+| SP | JUCESP | PDF (D.O.E.) | — | PR | JUCEPAR | acordeão | sim |
+| GO | JUCEG | texto-bloco | sim | MT | JUCEMAT | cards | sim |
+| PB | JUCEPB | rotulada | sim | PI | JUCEPI | rotulada | sim |
+| RJ | JUCERJA | AJAX paginado | nao | MG | JUCEMG | tabela | nao |
+| RS | JUCISRS | POST | sim | SC | JUCESC | tabela | nao |
+| DF | JUCEDF | blocos `<p>` | sim | AM | JUCEA | rotulada | sim |
+| BA | JUCEB | tabela | sim | CE | JUCEC | tabela | sim |
+| RO | JUCER | `<dl>` | sim | SE | JUCESE | `<li>` | sim |
+| AC | JUCEAC | cards | parc. | ES | JUCEES | cards | sim |
+| MS | JUCEMS | rotulada | sim | PA | JUCEPA | rotulada | sim |
+
+**Faltam (servidor fora do ar / SPA inacessível no momento):** AL (JUCEAL 503),
+AP (JUCAP 503), MA (JUCEMA 503), RN (JUCERN 503 no proxy), TO (JUCETINS 503 no
+proxy), PE (JUCEPE — SPA com API na porta `:3005` bloqueada), RR (JUCERR — Ninja
+Tables via `admin-ajax.php`, a implementar). Reexecutar quando os servidores
+voltarem; o registro já está pronto para recebê-las.
+
 ### Status dos parsers de Junta (ao vivo)
 Investigadas as listas públicas das Juntas não-SP. **5 Juntas com parser ao vivo**
 (todas publicam o site oficial do leiloeiro — o que a Fase 3 precisa):

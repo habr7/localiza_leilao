@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import re
 
+from selectolax.parser import HTMLParser
+
 from src.leiloeiros.cadastro import LeiloeiroRaw
 
 _SITE_VAZIO = {"-", "--", "n/a", "na", "não", "nao", "x", "site"}
@@ -20,6 +22,25 @@ _NAO_NOME = re.compile(
     r"|fone|site|e-?mail|data)\b",
     re.IGNORECASE,
 )
+
+
+# Rótulo de site e um domínio "pelado" (sem www/http), ex.: "dearaujoleiloes.com.br".
+_RE_SITE_LABEL = re.compile(r"(?:Site|S[íi]tio\s+Eletr[ôo]nico)\s*:?\s*([^\s<,;]+)", re.IGNORECASE)
+_RE_DOMINIO = re.compile(r"\b[\w.\-]+\.(?:com|net|org)(?:\.br)?\b", re.IGNORECASE)
+
+
+def extrair_site(texto: str) -> str | None:
+    """Acha o site num bloco: 1º pelo rótulo "Site:/Sítio Eletrônico:", senão URL.
+
+    Captura também domínios "pelados" (sem www/http), comuns em algumas Juntas.
+    """
+    m = _RE_SITE_LABEL.search(texto)
+    if m:
+        cand = m.group(1).strip()
+        if "@" not in cand and _RE_DOMINIO.search(cand):
+            return normalizar_site(cand)
+    url = _RE_URL.search(texto)
+    return normalizar_site(url.group(0)) if url else None
 
 
 def normalizar_site(site: str | None) -> str | None:
@@ -71,14 +92,105 @@ def parse_lista_rotulada(body: str, uf: str, junta: str, fonte_cadastro: str) ->
             continue
         fim = indices[pos + 1] if pos + 1 < len(indices) else min(len(linhas), i + 14)
         bloco = "\n".join(linhas[i:fim])
-        site_m = _RE_URL.search(bloco)
         registros.append(
             LeiloeiroRaw(
                 nome=nome,
                 matricula=matricula,
                 uf_matricula=uf,
                 junta_comercial=junta,
-                site_oficial=normalizar_site(site_m.group(0) if site_m else None),
+                site_oficial=extrair_site(bloco),
+                fonte_cadastro=fonte_cadastro,
+            )
+        )
+    return registros
+
+
+# Prefixo de ordem de antiguidade: "1 - Nome", "12 – Nome".
+_RE_ORDEM = re.compile(r"^\s*\d+\s*[-–]\s*")
+
+
+def parse_tabela(
+    html: str,
+    uf: str,
+    junta: str,
+    fonte_cadastro: str,
+    idx_nome: int,
+    idx_matricula: int,
+    idx_site: int | None = None,
+    matricula_so_numero: bool = False,
+    pular_cabecalho: bool = True,
+) -> list[LeiloeiroRaw]:
+    """Extrai leiloeiros de uma tabela HTML (nome e matrícula em colunas dadas).
+
+    Trata o prefixo de ordem de antiguidade no nome ("1 - Fulano" -> "Fulano").
+    ``idx_site`` (opcional) indica a coluna onde está o site (extrai a 1ª URL).
+    ``matricula_so_numero`` extrai apenas o número da célula de matrícula (ex.:
+    "Matrícula - 01 22/08/1984" -> "01"). Linhas sem matrícula são ignoradas.
+    """
+    registros: list[LeiloeiroRaw] = []
+    tree = HTMLParser(html)
+    cols_max = max(i for i in (idx_nome, idx_matricula, idx_site) if i is not None)
+    for i, tr in enumerate(tree.css("tr")):
+        if pular_cabecalho and i == 0 and tr.css("th"):
+            continue
+        celulas = tr.css("td")
+        if len(celulas) <= cols_max:
+            continue
+        textos = [re.sub(r"\s+", " ", c.text()).strip() for c in celulas]
+        nome = _RE_ORDEM.sub("", textos[idx_nome]).strip()
+        matricula = textos[idx_matricula].strip()
+        if matricula_so_numero:
+            num = re.search(r"\d[\d/\-]*", matricula)
+            matricula = num.group(0) if num else ""
+        if not nome or not re.search(r"\d", matricula):
+            continue
+        site = None
+        if idx_site is not None:
+            site = extrair_site(celulas[idx_site].text())
+        registros.append(
+            LeiloeiroRaw(
+                nome=nome,
+                matricula=matricula,
+                uf_matricula=uf,
+                junta_comercial=junta,
+                site_oficial=site,
+                fonte_cadastro=fonte_cadastro,
+            )
+        )
+    return registros
+
+
+def parse_blocos_rotulados(
+    html: str, uf: str, junta: str, fonte_cadastro: str, sep_css: str = "p"
+) -> list[LeiloeiroRaw]:
+    """Extrai leiloeiros de blocos HTML (um por elemento ``sep_css``) rotulados.
+
+    Cada bloco tem o nome (1ª linha, normalmente em <strong>) e rótulos
+    ``Matrícula:`` e ``Site:``. Usado quando a Junta publica um <p> por leiloeiro.
+    """
+    registros: list[LeiloeiroRaw] = []
+    tree = HTMLParser(html)
+    for bloco in tree.css(sep_css):
+        texto = bloco.text(separator="\n")
+        m = re.search(r"Matr[íi]cula:\s*([\w/\-.]+)", texto, re.I)
+        if not m:
+            continue
+        # Nome: primeira linha não vazia que não seja rótulo.
+        nome = None
+        for linha in texto.split("\n"):
+            linha = linha.strip()
+            if linha and not _NAO_NOME.search(linha) and len(linha.split()) >= 2:
+                nome = linha
+                break
+        if not nome:
+            continue
+        registros.append(
+            LeiloeiroRaw(
+                nome=nome,
+                matricula=m.group(1).strip(),
+                uf_matricula=uf,
+                junta_comercial=junta,
+                site_oficial=extrair_site(texto),
                 fonte_cadastro=fonte_cadastro,
             )
         )

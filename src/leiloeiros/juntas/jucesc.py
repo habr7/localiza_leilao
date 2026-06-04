@@ -1,19 +1,20 @@
-"""Coletor da JUCESC (Santa Catarina) — leiloeiros não-SP (alvo da tese)."""
+"""Coletor da JUCESC (Santa Catarina) — leiloeiros não-SP (alvo da tese).
+
+Lista pública em tabela HTML (subportal de leiloeiros): colunas
+AARC(matrícula) | Nome | Data | Situação. Sem site do leiloeiro.
+"""
 
 from __future__ import annotations
 
 from src.leiloeiros.cadastro import LeiloeiroRaw
+from src.leiloeiros.juntas._util import parse_tabela
 from src.leiloeiros.juntas.base import JuntaScraper
 
 
 class JucescScraper(JuntaScraper):
     junta = "JUCESC"
     uf = "SC"
-    # TODO(rede): preencher com a URL da relação pública de leiloeiros da JUCESC
-    # (homepage: https://www.jucesc.sc.gov.br).
-    url_lista = None
+    url_lista = "https://leiloeiros.jucesc.sc.gov.br/site/index.php"
 
     def _parse(self, html: str) -> list[LeiloeiroRaw]:
-        raise NotImplementedError(
-            "JUCESC: implementar selectors contra o HTML real (sessão com rede)."
-        )
+        return parse_tabela(html, self.uf, self.junta, self.fonte_cadastro, 1, 0)

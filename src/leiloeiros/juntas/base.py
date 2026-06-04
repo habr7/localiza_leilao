@@ -32,6 +32,7 @@ class JuntaScraper(abc.ABC):
     junta: str  # ex.: "JUCERJA"
     uf: str  # ex.: "RJ"
     url_lista: str | None = None  # URL da relação pública de leiloeiros
+    verificar_ssl: bool = True  # algumas Juntas têm cadeia SSL quebrada (ex.: BA)
 
     @property
     def fonte_cadastro(self) -> str:
@@ -41,7 +42,10 @@ class JuntaScraper(abc.ABC):
         """Baixa uma página respeitando UA identificável e throttling."""
         proprio = client is None
         client = client or httpx.AsyncClient(
-            headers={"User-Agent": USER_AGENT}, timeout=30, follow_redirects=True
+            headers={"User-Agent": USER_AGENT},
+            timeout=30,
+            follow_redirects=True,
+            verify=self.verificar_ssl,
         )
         try:
             resposta = await client.get(url)

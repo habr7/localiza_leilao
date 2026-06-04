@@ -73,6 +73,7 @@ JUNTA_TO_UF: dict[str, str] = {
     "JUCERJA": "RJ",
     "JUCERJ": "RJ",
     "JUCERN": "RN",
+    "JUCISRS": "RS",
     "JUCERGS": "RS",
     "JUCERS": "RS",
     "JUCER": "RO",
