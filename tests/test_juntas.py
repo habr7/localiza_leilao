@@ -2,7 +2,7 @@
 
 import pytest
 
-from src.leiloeiros.juntas import JUNTAS_DISPONIVEIS, JucerjaScraper, JucespScraper
+from src.leiloeiros.juntas import JUNTAS_DISPONIVEIS, JucerjaScraper
 from src.leiloeiros.matricula import JUNTA_TO_UF
 
 
@@ -51,8 +51,10 @@ def test_coletar_csv_aplica_defaults_da_junta(tmp_path):
 
 async def test_coletar_sem_url_lista_avisa_pendencia():
     """Sem URL de lista pública configurada, coletar sinaliza a pendência."""
+    from src.leiloeiros.juntas import JucerjaScraper
+
     with pytest.raises(NotImplementedError):
-        await JucespScraper().coletar()
+        await JucerjaScraper().coletar()
 
 
 def test_jucepar_parse_extrai_nome_matricula_site():
