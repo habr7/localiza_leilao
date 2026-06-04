@@ -17,7 +17,7 @@ from pathlib import Path
 
 import structlog
 
-from src.ingestao.sites_proprios.verificacao import VerificadorJucesp
+from src.ingestao.sites_proprios.verificacao import TEM, VerificadorJucesp
 
 log = structlog.get_logger()
 
@@ -31,11 +31,14 @@ async def _verificar_sites(sites: list[str]) -> dict[str, str]:
     async with VerificadorJucesp(delay_s=1.0) as v:
         for i, site in enumerate(sites, 1):
             try:
-                tem = await v.tem_jucesp(site)
+                classe = await v.classificar(site)
             except Exception as exc:  # noqa: BLE001
                 log.warning("verif_erro", site=site, erro=type(exc).__name__)
-                tem = None
-            resultado[site] = "sim" if tem else ("desconhecido" if tem is None else "nao")
+                classe = "desconhecido"
+            # 'tem' -> sim (JUCESP); 'limpo' -> nao; 'desconhecido' -> desconhecido.
+            resultado[site] = (
+                "sim" if classe == TEM else ("nao" if classe == "limpo" else "desconhecido")
+            )
             log.info("verif_site", i=i, total=len(sites), site=site, jucesp=resultado[site])
     return resultado
 

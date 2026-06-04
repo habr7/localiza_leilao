@@ -20,9 +20,18 @@ from src.ingestao.base import BaseScraper
 
 log = structlog.get_logger()
 
-_RE_JUCESP = re.compile(r"JUCESP", re.IGNORECASE)
+# Matrícula JUCESP com número: "JUCESP n°1098", "JUCESP nº 844". Exigir o número
+# evita falso positivo do seletor de estados (que lista "JUCESP" sem matrícula).
+_RE_JUCESP_MAT = re.compile(r"JUCESP\D{0,10}\d", re.IGNORECASE)
+# Qualquer matrícula de Junta com número (JUCERJA n°, JUCISRS n° 382, JUCEG nº 9…).
+_RE_JUNTA_MAT = re.compile(r"\b(JUC[EI][A-Z]{1,5}|JUCIS[A-Z]{2})\D{0,10}\d", re.IGNORECASE)
 # Links que provavelmente levam a uma página de lote (onde ficam as matrículas).
-_RE_LOTE = re.compile(r"/imovel|/lote|/oferta|/bem[/-]|id-\d", re.IGNORECASE)
+_RE_LOTE = re.compile(r"/imove|/imóve|/lote|/oferta|/bem[/-]|id-\d|/leilao/", re.IGNORECASE)
+
+# Resultado da classificação.
+TEM = "tem"  # achou matrícula JUCESP -> não é alvo
+LIMPO = "limpo"  # leu matrícula de Junta não-SP e nenhuma JUCESP -> alvo puro
+DESCONHECIDO = "desconhecido"  # não conseguiu ler matrícula (ex.: site em JS)
 
 
 class VerificadorJucesp(BaseScraper):
@@ -31,13 +40,12 @@ class VerificadorJucesp(BaseScraper):
     fonte_origem = "verificacao"
     fonte_tipo = "verificacao"
 
-    async def tem_jucesp(self, site: str) -> bool | None:
-        """True se achou "JUCESP"; False se leu o site e não achou; None se não leu."""
+    async def classificar(self, site: str) -> str:
+        """Classifica o site em TEM | LIMPO | DESCONHECIDO lendo home + 1 lote."""
         home = await self.fetch(site, tentativas=1)
         if not home:
-            return None
+            return DESCONHECIDO
         textos = [home]
-        # Busca um link de lote para inspecionar (lá ficam as matrículas completas).
         tree = HTMLParser(home)
         lote_url = None
         for a in tree.css("a"):
@@ -51,11 +59,34 @@ class VerificadorJucesp(BaseScraper):
             lote_html = await self.fetch(lote_url, tentativas=1)
             if lote_html:
                 textos.append(lote_html)
-        return any(pagina_tem_jucesp(t) for t in textos)
+        return classificar_jucesp(" ".join(textos))
+
+    async def tem_jucesp(self, site: str) -> bool | None:
+        """True se tem JUCESP; False se limpo (leu matrícula não-SP); None se incerto."""
+        classe = await self.classificar(site)
+        if classe == TEM:
+            return True
+        if classe == LIMPO:
+            return False
+        return None
+
+
+def classificar_jucesp(html: str) -> str:
+    """Classifica o texto em TEM | LIMPO | DESCONHECIDO.
+
+    - TEM: há "JUCESP" seguido de número (matrícula JUCESP de fato).
+    - LIMPO: há matrícula de outra Junta (com número) e nenhuma JUCESP.
+    - DESCONHECIDO: nenhuma matrícula legível (não dá para afirmar nada).
+    """
+    tree = HTMLParser(html)
+    texto = tree.body.text(separator=" ") if tree.body else html
+    if _RE_JUCESP_MAT.search(texto):
+        return TEM
+    if any(m.group(0) for m in _RE_JUNTA_MAT.finditer(texto)):
+        return LIMPO
+    return DESCONHECIDO
 
 
 def pagina_tem_jucesp(html: str) -> bool:
-    """True se o texto da página menciona "JUCESP" (matrícula do leiloeiro)."""
-    tree = HTMLParser(html)
-    texto = tree.body.text(separator=" ") if tree.body else html
-    return bool(_RE_JUCESP.search(texto))
+    """True se o texto menciona uma matrícula JUCESP (com número)."""
+    return classificar_jucesp(html) == TEM
