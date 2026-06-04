@@ -65,3 +65,24 @@ def test_detalhe_fixture_resolve_para_sp():
     html = (FIXTURES / "megaleiloes_detalhe.html").read_text(encoding="utf-8")
     det = parse_detalhe(html)
     assert uf_efetiva_de_matriculas(det["leiloeiro_matriculas"]) == "SP"
+
+
+def test_franquia_ms_reusa_plataforma():
+    """A franquia Mega Leilões MS reusa a plataforma com base_url própria."""
+    from src.ingestao.agregadores.megaleiloes import MegaLeiloesMsScraper
+
+    assert MegaLeiloesMsScraper.fonte_origem == "megaleiloesms"
+    assert MegaLeiloesMsScraper.fonte_tipo == "site_proprio"
+    assert "megaleiloesms" in MegaLeiloesMsScraper.base_url
+
+
+def test_parse_listagem_fonte_parametrizada():
+    from pathlib import Path
+
+    from src.ingestao.agregadores.megaleiloes import parse_listagem
+
+    html = (Path(__file__).parent / "fixtures" / "megaleiloes_listagem_sp.html").read_text(
+        encoding="utf-8"
+    )
+    lotes = parse_listagem(html, "megaleiloesms", "site_proprio")
+    assert lotes and all(lo.fonte_origem == "megaleiloesms" for lo in lotes)

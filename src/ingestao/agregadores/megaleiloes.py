@@ -61,7 +61,9 @@ def contar_cards(html: str) -> int:
     return len(HTMLParser(html).css(".card"))
 
 
-def parse_listagem(html: str) -> list[LoteRaw]:
+def parse_listagem(
+    html: str, fonte_origem: str = "megaleiloes", fonte_tipo: str = "agregador"
+) -> list[LoteRaw]:
     """Extrai os lotes de uma página de listagem (cards). Sem dados do leiloeiro."""
     tree = HTMLParser(html)
     lotes: list[LoteRaw] = []
@@ -87,8 +89,8 @@ def parse_listagem(html: str) -> list[LoteRaw]:
         numero_node = card.css_first(".card-number")
         lotes.append(
             LoteRaw(
-                fonte_origem="megaleiloes",
-                fonte_tipo="agregador",
+                fonte_origem=fonte_origem,
+                fonte_tipo=fonte_tipo,
                 fonte_url=url,
                 titulo=titulo_node.text(strip=True) or None,
                 numero_lote=(numero_node.text(strip=True) if numero_node else None),
@@ -139,10 +141,17 @@ def parse_detalhe(html: str) -> dict:
 
 
 class MegaLeiloesScraper(BaseScraper):
-    """Coletor do agregador Mega Leilões."""
+    """Coletor do agregador Mega Leilões (e franquias na mesma plataforma).
+
+    A plataforma é reusada por franquias regionais (ex.: Mega Leilões MS) com a
+    MESMA estrutura — basta trocar ``base_url`` e ``fonte_origem``. Os lotes SP de
+    uma franquia podem ser conduzidos pelo mesmo leiloeiro JUCESP do Mega: por isso
+    o detalhe traz as matrículas, resolvidas por-lote em `uf_efetiva_de_matriculas`.
+    """
 
     fonte_origem = "megaleiloes"
     fonte_tipo = "agregador"
+    base_url = BASE
 
     async def listar_lotes_sp(self, max_paginas: int | None = None) -> list[LoteRaw]:
         """Varre ``/sp?pagina=N`` e enriquece cada lote com dados do detalhe.
@@ -150,12 +159,13 @@ class MegaLeiloesScraper(BaseScraper):
         ``max_paginas`` limita quantas páginas de listagem varrer (cada uma traz
         ~48 lotes). Sem limite, segue até uma página vazia.
         """
+        url_sp = f"{self.base_url}/sp"
         lotes: list[LoteRaw] = []
         pagina = 1
         while True:
             if max_paginas is not None and pagina > max_paginas:
                 break
-            url = URL_SP if pagina == 1 else f"{URL_SP}?pagina={pagina}"
+            url = url_sp if pagina == 1 else f"{url_sp}?pagina={pagina}"
             html = await self.fetch(url)
             if not html:
                 break
@@ -163,7 +173,7 @@ class MegaLeiloesScraper(BaseScraper):
             # listagem ``/sp`` intercala categorias).
             if contar_cards(html) == 0:
                 break
-            da_pagina = parse_listagem(html)
+            da_pagina = parse_listagem(html, self.fonte_origem, self.fonte_tipo)
             # Mantém só imóveis em SP (filtro duro da tese).
             da_pagina = [lo for lo in da_pagina if lo.uf == "SP"]
             lotes.extend(da_pagina)
@@ -186,3 +196,15 @@ class MegaLeiloesScraper(BaseScraper):
             lote.leiloeiro_nome = det["leiloeiro_nome"]
             lote.leiloeiro_matriculas = det["leiloeiro_matriculas"]
         return lotes
+
+
+class MegaLeiloesMsScraper(MegaLeiloesScraper):
+    """Franquia Mega Leilões MS (megaleiloesms.com.br) — mesma plataforma.
+
+    Site próprio de leiloeira não-SP (JUCEMAT), mas o inventário SP é o mesmo do
+    Mega (leiloeiro com JUCESP). A resolução por-lote marca corretamente como SP.
+    """
+
+    fonte_origem = "megaleiloesms"
+    fonte_tipo = "site_proprio"
+    base_url = "https://www.megaleiloesms.com.br"

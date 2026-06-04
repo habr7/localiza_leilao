@@ -28,6 +28,7 @@ COLUNAS = [
     "leiloeiro",
     "uf_leiloeiro",
     "jucesp",
+    "confianca",
     "cidade",
     "tipo_imovel",
     "descricao",
@@ -36,6 +37,37 @@ COLUNAS = [
 ]
 
 _RE_MONEY = re.compile(r"R\$\s*([\d.]+,\d{2})")
+
+# Cidades de SP (fora a capital) — sinal forte; "São Paulo" sozinho costuma ser
+# opção de filtro/dropdown (ruído) nas varreduras heurísticas.
+_INTERIOR_SP = {
+    "santo andre", "santo andré", "maua", "mauá", "guaruja", "guarujá", "santos",
+    "sao bernardo do campo", "são bernardo do campo", "campinas", "sao carlos",
+    "são carlos", "andradina", "sorocaba", "osasco", "guarulhos", "ribeirao preto",
+    "ribeirão preto", "bauru", "jundiai", "jundiaí", "diadema", "praia grande",
+    "sao vicente", "são vicente", "piracicaba", "franca", "marilia", "marília",
+    "presidente prudente", "aracatuba", "araçatuba", "taubate", "taubaté", "limeira",
+    "americana", "itu", "indaiatuba", "jacarei", "jacareí", "barueri", "cotia",
+    "suzano", "mogi das cruzes", "itanhaem", "itanhaém", "itaquaquecetuba", "araras",
+    "lorena", "sao jose do rio preto", "são josé do rio preto", "cosmopolis",
+    "cosmópolis", "auriflama", "sao jose dos campos", "são josé dos campos", "sumare",
+    "sumaré",
+}
+
+
+def _confianca(fonte: str, jucesp: str, cidade: str, estruturado: bool) -> str:
+    """Classifica a confiança do registro como alvo da tese.
+
+    - ``estruturado-limpo``: lote estruturado, leiloeiro sem JUCESP (alvo forte).
+    - ``estruturado-jucesp``: lote estruturado, mas leiloeiro com JUCESP (refer.).
+    - ``heuristico-interior``: indício heurístico em cidade do interior SP (checar).
+    - ``heuristico-capital``: indício só "São Paulo" — provável ruído de filtro.
+    """
+    if jucesp == "sim":
+        return "estruturado-jucesp" if estruturado else "heuristico-jucesp"
+    if estruturado:
+        return "estruturado-limpo"
+    return "heuristico-interior" if cidade.strip().lower() in _INTERIOR_SP else "heuristico-capital"
 
 
 def _valor(texto: str) -> str:
@@ -62,6 +94,7 @@ def _do_mega() -> list[dict[str, str]]:
                 "uf_leiloeiro": r.get("uf_leiloeiro", ""),
                 # No Mega, todos resolveram para SP (têm JUCESP).
                 "jucesp": "sim" if r.get("fora_sp") == "nao" else "?",
+                "confianca": _confianca("mega", "sim" if r.get("fora_sp") == "nao" else "?", r.get("cidade", ""), True),
                 "cidade": r.get("cidade", ""),
                 "tipo_imovel": r.get("tipo_imovel", ""),
                 "descricao": r.get("titulo", ""),
@@ -82,6 +115,7 @@ def _do_sites_dedicados() -> list[dict[str, str]]:
                 "leiloeiro": r.get("leiloeiro", ""),
                 "uf_leiloeiro": r.get("uf_leiloeiro", ""),
                 "jucesp": "nao",  # site verificado sem JUCESP
+                "confianca": "estruturado-limpo",
                 "cidade": r.get("cidade", ""),
                 "tipo_imovel": r.get("tipo_imovel", ""),
                 "descricao": desc,
@@ -102,6 +136,7 @@ def _do_nacional() -> list[dict[str, str]]:
                 "leiloeiro": r.get("leiloeiro", ""),
                 "uf_leiloeiro": r.get("uf_leiloeiro", ""),
                 "jucesp": "nao",  # já filtrado por nome (alvos puros)
+                "confianca": _confianca("nacional", "nao", r.get("cidade_sp", ""), False),
                 "cidade": r.get("cidade_sp", ""),
                 "tipo_imovel": "",
                 "descricao": (r.get("contexto", "") or "")[:200],
