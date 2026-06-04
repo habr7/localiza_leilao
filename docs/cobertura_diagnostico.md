@@ -290,3 +290,24 @@ leiloeiro Sérgio Fleury, GO/MT), ericosobral (MT), galvanileiloes (PR).
 - Atualizar periodicamente o PDF da JUCESP e reprocessar o cross-check.
 - Resolver os "desconhecidos" (sites JS) via cross-check por nome (já cobre boa
   parte) ou render headless onde valer a pena.
+
+## 10. Expansão nacional — varredura dos sites limpos (19 Juntas)
+
+Cobertura ampliada para **SP (exclusão) + 18 UFs não-SP** com parser ao vivo
+(faltam AL/AP/MA/RN/TO por servidor 503 e PE/RR por SPA/AJAX). Cadastro nacional:
+**~2.780 leiloeiros, ~700 não-SP com site**. Cross-check JUCESP por nome →
+**546 alvos puros (452 sites limpos distintos)**.
+
+Varredura dos 452 sites limpos (`fase3_sites_proprios` já exclui JUCESP por nome):
+**343 indícios de SP em 73 sites**. Filtrando cidade SP real em lote **ativo**
+(excluindo encerrados/cancelados): **165 indícios em 61 sites limpos**, de 14 UFs.
+
+Leads mais fortes (cidade do interior SP, não só capital): `megaleiloesms` (MT —
+Campinas/Guarujá/Franca/Araçatuba), `topoleiloes` (Ribeirão Preto/SJCampos),
+`capitalleiloes` (DF — Ribeirão Preto), `marcoantonioleiloeiro` (BA — Itanhaém),
+`spencerleiloes` (Diadema). Saída curada em `data/imoveis_sp_nacional.csv`.
+
+> A expansão nacional **multiplicou o universo de oportunidades**: de ~2 imóveis
+> ativos (cobertura inicial) para **61 sites limpos com imóvel em SP**. O próximo
+> ganho é escrever parsers dedicados (lote estruturado) para os leads de interior
+> e fechar as 7 Juntas pendentes quando os servidores voltarem.
