@@ -252,8 +252,41 @@ leiloariasmart, das ~24 "cidades SP" detectadas, a maioria vinha de
 **2 imóveis SP** ativos — esse é o número real. Moral: a contagem que vale é a do
 **parser dedicado sobre lotes ativos**, não a dos indícios brutos.
 
+## 9. Lista de exclusão da JUCESP + cross-check por nome (o filtro definitivo)
+
+A JUCESP publica a relação oficial dos leiloeiros num **PDF** do D.O.E.
+(`Relacao_de_Leiloeiros.pdf`). Implementado em `src/leiloeiros/juntas/jucesp.py`
+(via `pypdf`): **623 leiloeiros** carregados na lista de exclusão.
+
+`src/leiloeiros/jucesp_exclusao.py` faz o **cross-check por nome normalizado**:
+um leiloeiro de fora que também aparece na JUCESP tem matrícula paulista → não é
+alvo. Resultado: **118 dos leiloeiros "não-SP" do cadastro também estão na
+JUCESP** — incluindo quase todos os "promissores":
+
+| Site | Leiloeiro | Junta de fora | Também JUCESP? |
+|---|---|---|---|
+| liderleiloes.com.br | Caroline Ribas / Tatiana Zani | JUCEPAR | **sim** |
+| alfaleiloes.com | Davi Borges de Aquino | JUCEPAR/JUCEG | **sim** |
+| valeroleiloes.com.br | José Valéro | JUCEPAR | **sim** |
+| andraleiloes.com.br | Mauricio Sambugari | JUCEPAR | **sim** |
+| topoleiloes / lanceja / portalzuk / sfrazao / megaleiloes | vários | — | **sim** |
+
+Cruzando os **dois sinais** (nome na JUCESP + leitura do site) sobre os 1.327
+indícios (`fase3_alvos_finais`): **1.024 caem por JUCESP**; sobram **218 indícios
+em 5 sites** sem JUCESP: leiloariasmart (MT), leilo.com.br + leilomaster (mesmo
+leiloeiro Sérgio Fleury, GO/MT), ericosobral (MT), galvanileiloes (PR).
+
+> **Conclusão da tese:** depois do filtro JUCESP rigoroso, os alvos puros são
+> **raros** — a maioria dos leiloeiros que atuam em SP, mesmo registrados fora,
+> mantém matrícula JUCESP (sem assimetria). Os imóveis SP **ativos** confirmados
+> num site limpo e estruturável são os 2 do leiloariasmart.
+
 ### Próximo passo
 
-Parser dedicado da plataforma **Leilo** (cobre leilo.com.br + leilomaster, ambos
-limpos) e de leilaobrasil; completar a lista de exclusão com o scraper da própria
-JUCESP (resolve os 38 "desconhecidos" de forma definitiva).
+- **Plataforma Leilo** (leilo.com.br + leilomaster, limpos): os lotes vêm de uma
+  **API autenticada** (`api.leilo.com.br` responde 401) — exige reverse-engineering
+  do token do SPA; os dados embutidos no HTML são só pátios/veículos. Avaliar custo
+  × retorno (poucos imóveis SP aparentes).
+- Atualizar periodicamente o PDF da JUCESP e reprocessar o cross-check.
+- Resolver os "desconhecidos" (sites JS) via cross-check por nome (já cobre boa
+  parte) ou render headless onde valer a pena.
