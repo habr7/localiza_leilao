@@ -25,6 +25,8 @@ from sqlalchemy import select
 from src.core.db import get_session
 from src.core.models import Leiloeiro
 from src.ingestao.sites_proprios.scanner import AchadoSP, SiteProprioScanner
+from src.leiloeiros.jucesp_exclusao import carregar_nomes_jucesp
+from src.leiloeiros.resolver import normalizar_nome
 
 log = structlog.get_logger()
 
@@ -32,20 +34,32 @@ DATA_DIR = Path(__file__).resolve().parents[2] / "data"
 COLUNAS = ["leiloeiro", "uf_leiloeiro", "junta", "site", "cidade_sp", "pagina_url", "contexto"]
 
 
-def _carregar_sites() -> list[tuple[str, str, str, str]]:
-    """(nome, uf, junta, site) dos leiloeiros não-SP com site oficial."""
+def _carregar_sites(excluir_jucesp: bool = True) -> list[tuple[str, str, str, str]]:
+    """(nome, uf, junta, site) dos leiloeiros não-SP com site, um por domínio.
+
+    Com ``excluir_jucesp`` (padrão), remove quem também tem matrícula JUCESP
+    (cross-check por nome) — restando só os alvos puros da tese. Deduplica por
+    site para não varrer o mesmo domínio duas vezes.
+    """
     with get_session() as session:
+        nomes_jucesp = carregar_nomes_jucesp(session) if excluir_jucesp else set()
         q = (
             select(Leiloeiro)
             .where(Leiloeiro.site_oficial.isnot(None))
             .where(Leiloeiro.uf_matricula != "SP")
             .where(Leiloeiro.ativo.is_(True))
         )
-        return [
-            (lo.nome, lo.uf_matricula, lo.junta_comercial, lo.site_oficial)
-            for lo in session.scalars(q)
-            if lo.site_oficial
-        ]
+        por_site: dict[str, tuple[str, str, str, str]] = {}
+        for lo in session.scalars(q):
+            if not lo.site_oficial:
+                continue
+            if excluir_jucesp and normalizar_nome(lo.nome) in nomes_jucesp:
+                continue
+            por_site.setdefault(
+                lo.site_oficial,
+                (lo.nome, lo.uf_matricula, lo.junta_comercial, lo.site_oficial),
+            )
+        return list(por_site.values())
 
 
 async def _varrer_todos(
