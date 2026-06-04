@@ -231,7 +231,29 @@ leilo.com.br (GO), leilomaster, leilaobrasil (MT).
 > heurística inflava a contagem. O `fase3_sites_dedicados` agora só persiste os
 > imóveis de sites **verificados sem JUCESP**.
 
+### Resultado da verificação dos 53 sites com indício
+
+`fase3_verificar_jucesp` (classificador honesto em 3 vias):
+
+- **8 com JUCESP (excluídos):** webleiloes, valeroleiloes, e-confianca,
+  bastonleiloes, + portalzuk, lanceja, magalhaesleiloes (estes são agregadores).
+- **7 limpos confirmados:** leiloariasmart (JUCISRS), leilo.com.br (JUCEG),
+  leilomaster, leilaobrasil, galvanileiloes, ericosobral — leiloeiro de fora,
+  matrícula lida, sem JUCESP.
+- **38 desconhecidos:** sites em JS/SPA onde não dá para ler a matrícula na
+  resposta HTML (não afirmamos nada — nem alvo, nem excluído).
+
+### Cuidado: indício ≠ imóvel ativo
+
+Os indícios da heurística incluem **leilões encerrados/cancelados**. Ex.: no
+leiloariasmart, das ~24 "cidades SP" detectadas, a maioria vinha de
+`/leiloes/encerrados` e `/leiloes/cancelados` ("Apartamento em Santos/SP
+**(SUSPENSO)**"). O parser dedicado (que olha só o catálogo **ativo**) encontra
+**2 imóveis SP** ativos — esse é o número real. Moral: a contagem que vale é a do
+**parser dedicado sobre lotes ativos**, não a dos indícios brutos.
+
 ### Próximo passo
 
-Parser dedicado para os demais sites **limpos** com imóveis (leilo.com.br tem JSON;
-liderleiloes), e completar a lista de exclusão com o scraper da própria JUCESP.
+Parser dedicado da plataforma **Leilo** (cobre leilo.com.br + leilomaster, ambos
+limpos) e de leilaobrasil; completar a lista de exclusão com o scraper da própria
+JUCESP (resolve os 38 "desconhecidos" de forma definitiva).
